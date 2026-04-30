@@ -88,7 +88,7 @@ export function HowItWorks() {
             <p className="text-primary font-medium">The Process</p>
             <DecorativeBow className="w-8 h-8 text-primary opacity-50 scale-x-[-1]" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4 text-balance">
+          <h2 className="text-3xl md:text-4xl font-noto-sans text-foreground mb-4 text-balance">
             How Cash Stuffing Works
           </h2>
           <p className="text-muted-foreground leading-relaxed">

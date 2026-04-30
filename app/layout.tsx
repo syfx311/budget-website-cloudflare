@@ -1,17 +1,35 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Playfair_Display } from 'next/font/google'
+import { Geist, Playfair_Display, Noto_Sans_Adlam, Noto_Sans, DM_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 
-const geist = Geist({ 
+const geist = Geist({
   subsets: ["latin"],
   variable: '--font-geist'
 })
 
-const playfair = Playfair_Display({ 
+const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: '--font-playfair',
+  weight: ['400', '500', '600', '700']
+})
+
+const notoSansAdlam = Noto_Sans_Adlam({
+  subsets: ["latin"],
+  variable: '--font-noto-sans-adlam',
+  weight: ['400', '500', '600', '700']
+})
+
+const notoSans = Noto_Sans({
+  subsets: ["latin"],
+  variable: '--font-noto-sans',
+  weight: ['400', '500', '600', '700']
+})
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: '--font-dm-sans',
   weight: ['400', '500', '600', '700']
 })
 
@@ -40,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className={`${geist.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} font-sans antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <SpeedInsights />

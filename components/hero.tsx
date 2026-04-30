@@ -108,9 +108,9 @@ export function Hero() {
             </motion.div>
 
             {/* Heading */}
-            <motion.h1 
+            <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground leading-tight mb-6 text-balance"
+              className="text-4xl md:text-5xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance"
             >
               Take Control of Your Money with{' '}
               <span className="text-primary">Cash Stuffing</span>

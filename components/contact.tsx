@@ -84,7 +84,7 @@ export function Contact() {
               <p className="text-primary font-medium">Get Started</p>
               <DecorativeBow className="w-8 h-8 text-primary opacity-50 scale-x-[-1]" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4 text-balance">
+            <h2 className="text-3xl md:text-4xl font-noto-sans text-foreground mb-4 text-balance">
               Ready to Transform Your Finances?
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -236,7 +236,7 @@ export function Footer() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-3"
           >
@@ -248,7 +248,7 @@ export function Footer() {
               className="rounded-full border-2 border-primary/30"
             />
             <div>
-              <span className="font-serif text-foreground block leading-tight">Mommy Louise&apos;s</span>
+              <span className="font-dm-sans text-foreground block leading-tight">Mommy Louise&apos;s</span>
               <span className="text-xs text-primary font-medium tracking-wider uppercase">Budget PH</span>
             </div>
           </motion.div>
