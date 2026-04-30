@@ -248,7 +248,7 @@ export function Footer() {
               className="rounded-full border-2 border-primary/30"
             />
             <div>
-              <span className="font-noto-sans text-foreground block leading-tight">Mommy Louise&apos;s</span>
+              <span className="font-dm-sans text-foreground block leading-tight">Mommy Louise&apos;s</span>
               <span className="text-xs text-primary font-medium tracking-wider uppercase">Budget PH</span>
             </div>
           </motion.div>
