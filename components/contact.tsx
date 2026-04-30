@@ -254,7 +254,7 @@ export function Footer() {
           </motion.div>
           
           <p className="text-sm text-muted-foreground text-center">
-            © {new Date().getFullYear()} Mommy Louise&apos;s Budget PH. Made with love for families who dream big.
+            © {new Date().getFullYear()}&nbsp;Mommy Louise&apos;s Budget PH. Made with love for families who dream big.
           </p>
 
           <div className="flex gap-6">
