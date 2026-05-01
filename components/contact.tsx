@@ -60,7 +60,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-card relative overflow-hidden">
+    <section id="contact" className="py-20 md:py-28 bg-card relative overflow-hidden" style={{ backgroundColor: 'rgba(236, 222, 222, 1)' }}>
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 opacity-10">
         <DecorativeBow className="w-16 h-16 text-primary" />
@@ -227,12 +227,13 @@ export function Contact() {
 
 export function Footer() {
   return (
-    <motion.footer 
+    <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className="gingham-pattern border-t-2 border-primary/20 py-12"
+      style={{ backgroundColor: 'rgba(236, 222, 222, 1)' }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -248,7 +249,7 @@ export function Footer() {
               className="rounded-full border-2 border-primary/30"
             />
             <div>
-              <span className="font-dm-sans text-foreground block leading-tight">Mommy Louise&apos;s</span>
+              <span className="font-dm-sans text-foreground block leading-tight" style={{ fontFamily: '"DM Sans", "DM Sans Fallback"' }}>Mommy Louise&apos;s</span>
               <span className="text-xs text-primary font-medium tracking-wider uppercase">Budget PH</span>
             </div>
           </motion.div>
