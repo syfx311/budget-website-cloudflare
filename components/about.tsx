@@ -133,7 +133,7 @@ export function About() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 gingham-pattern rounded-3xl p-8 md:p-12 text-center border-2 border-primary/20 relative overflow-hidden"
+          className="mt-16 gingham-pattern rounded-3xl p-8 md:p-12 text-center border-2 border-primary/20 relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 255, 255, 1)' }}
         >
           <div className="absolute top-4 left-8 opacity-30">
             <DecorativeBow className="w-12 h-12 text-primary" />
