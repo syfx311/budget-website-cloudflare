@@ -103,7 +103,7 @@ export function Portfolio() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
   return (
-    <section id="portfolio" className="py-20 md:py-28 gingham-pattern relative overflow-hidden" style={{ backgroundColor: 'rgba(231, 214, 214, 1)' }}>
+    <section id="portfolio" className="py-20 md:py-28 gingham-pattern relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 245, 245, 1)' }}>
       {/* Decorative bows */}
       <div className="absolute top-20 right-10 opacity-10">
         <DecorativeBow className="w-24 h-24 text-primary" />
