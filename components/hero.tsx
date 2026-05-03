@@ -57,7 +57,7 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden gingham-pattern-lg" style={{ backgroundColor: 'rgba(229, 215, 215, 1)' }}>
+    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden gingham-pattern-lg" style={{ backgroundColor: 'rgba(255, 241, 241, 1)' }}>
       {/* Decorative bows */}
       <motion.div
         initial={{ opacity: 0, rotate: -20 }}
