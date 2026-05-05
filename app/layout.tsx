@@ -43,6 +43,15 @@ export const metadata: Metadata = {
     description: 'Take control of your money with beautiful cash stuffing templates and budget envelopes.',
     type: 'website',
   },
+  icons: {
+    icon: [
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.ico' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
 }
 
 export const viewport: Viewport = {
