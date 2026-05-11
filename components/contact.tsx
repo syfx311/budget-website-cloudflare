@@ -60,7 +60,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-card relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 214, 214, 1)' }}>
+    <section id="contact" className="py-20 md:py-28 bg-card relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 222, 222, 1)' }}>
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 opacity-10">
         <DecorativeBow className="w-16 h-16 text-primary" />
@@ -233,7 +233,7 @@ export function Footer() {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className="gingham-pattern border-t-2 border-primary/20 py-12"
-      style={{ backgroundColor: 'rgba(255, 255, 255, 1)' }}
+      style={{ backgroundColor: 'rgba(253, 209, 209, 1)' }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
