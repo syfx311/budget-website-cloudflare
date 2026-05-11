@@ -2,8 +2,17 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Heart, Sparkles, Download, Printer, MessageCircle, Instagram } from 'lucide-react'
+import { Heart, Sparkles, Download, Printer, MessageCircle, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+
+// TikTok Logo SVG component
+function TikTokLogo({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.68v13.67a2.4 2.4 0 1 1-2.4-2.4c.4 0 .8.04 1.2.12V9.41a7.26 7.26 0 0 0-1.2-.12A7.26 7.26 0 0 0 5 16.67a7.26 7.26 0 0 0 7.26 7.26 7.26 7.26 0 0 0 7.26-7.26V12.6a9.6 9.6 0 0 0 3.77 1.5v-3.88a4.84 4.84 0 0 1-3.3-1.53z" />
+    </svg>
+  )
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -487,10 +496,10 @@ export function Packages() {
                 asChild
                 className="bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
               >
-                <Link href="#contact" className="flex items-center gap-2">
-                  <MessageCircle className="w-5 h-5" />
-                  Message via Website
-                </Link>
+                <a href="https://www.facebook.com/profile.php?id=100087797289721" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <Facebook className="w-5 h-5" />
+                  Message via Facebook
+                </a>
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -498,9 +507,9 @@ export function Packages() {
                 asChild
                 className="bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white rounded-full px-8 py-6 font-semibold shadow-lg"
               >
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <Instagram className="w-5 h-5" />
-                  Message on Instagram
+                <a href="https://www.tiktok.com/@mommylouiseee" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <TikTokLogo className="w-5 h-5" />
+                  Message on TikTok
                 </a>
               </Button>
             </motion.div>
