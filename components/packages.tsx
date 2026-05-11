@@ -215,17 +215,17 @@ function ElegancePackageImage() {
   )
 }
 
-function MysticPlannerMockup() {
+function MysticPackageImage() {
   return (
-    <div className="mystic-package-mockup-placeholder">
-      <svg viewBox="0 0 140 160" className="w-20 h-24" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="10" width="100" height="140" rx="8" fill="rgba(255, 200, 220, 0.2)" stroke="#e869ab" strokeWidth="2" />
-        <rect x="22" y="12" width="96" height="136" rx="7" fill="none" stroke="rgba(232, 105, 171, 0.3)" strokeWidth="1" />
-        <circle cx="50" cy="50" r="15" fill="none" stroke="#e869ab" strokeWidth="1.5" opacity="0.5" />
-        <circle cx="90" cy="50" r="15" fill="none" stroke="#e869ab" strokeWidth="1.5" opacity="0.5" />
-        <path d="M 40 100 Q 70 110 100 100" stroke="#e869ab" strokeWidth="1.5" fill="none" opacity="0.6" />
-        <circle cx="70" cy="75" r="4" fill="#e869ab" opacity="0.7" />
-      </svg>
+    <div className="mystic-package-img-wrapper">
+      <Image
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F2f816cba4c524f3fbcd0f68d799104d7?format=webp&width=800&height=1200"
+        alt="Mystic Package"
+        width={280}
+        height={420}
+        className="mystic-package-img"
+        priority
+      />
     </div>
   )
 }
@@ -292,7 +292,7 @@ export function Packages() {
         '2 dashboards',
         'Effortless elegance for your budget journey'
       ],
-      image: <MysticPlannerMockup />
+      image: <MysticPackageImage />
     }
   ]
 
