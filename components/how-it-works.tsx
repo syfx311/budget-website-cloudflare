@@ -6,7 +6,7 @@ const steps = [
   {
     number: '01',
     title: 'Choose Your Categories',
-    description: 'Select the budget categories that fit your family&apos;s needs - groceries, utilities, savings, self-care, and more.',
+    description: 'Select the budget categories that fit your family needs - groceries, utilities, savings, self-care, and more.',
   },
   {
     number: '02',
