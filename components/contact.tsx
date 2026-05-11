@@ -300,6 +300,15 @@ export function Footer() {
               >
                 <TikTokLogo className="h-5 w-5" />
               </motion.a>
+              <motion.a
+                href="/admin"
+                className="text-muted-foreground hover:text-primary transition-colors text-xs opacity-50 hover:opacity-100"
+                title="Admin Panel"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                ⚙️
+              </motion.a>
             </div>
           </div>
         </div>
