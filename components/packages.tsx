@@ -189,7 +189,7 @@ function SophiePackageImage() {
   return (
     <div className="sophie-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F58bc977f6cfb427ba9c61bfb72495606?format=webp&width=800&height=1200"
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F753ed173dea54d3985e7133172d35642?format=webp&width=800&height=1200"
         alt="Sophie Package"
         width={280}
         height={420}
