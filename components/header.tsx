@@ -33,8 +33,8 @@ export function Header() {
                 className="rounded-full border-2 border-primary/30"
               />
             </motion.div>
-            <div className="hidden sm:block">
-              <span className="font-serif text-lg text-foreground block leading-tight" style={{ fontFamily: 'AR One Sans, sans-serif' }}>Mommy Louise&apos;s</span>
+            <div>
+              <span className="font-serif text-sm sm:text-lg text-foreground block leading-tight" style={{ fontFamily: 'AR One Sans, sans-serif' }}>Mommy Louise&apos;s</span>
               <span className="text-xs text-primary font-medium tracking-wider uppercase">Budget PH</span>
             </div>
           </Link>
