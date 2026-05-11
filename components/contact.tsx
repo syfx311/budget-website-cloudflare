@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Send, CheckCircle, Facebook, Music } from 'lucide-react'
+import { Send, CheckCircle, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -16,31 +16,40 @@ const fadeInUp = {
 function DecorativeBow({ className = '' }: { className?: string }) {
   return (
     <svg viewBox="0 0 60 50" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M30 25C30 25 15 15 10 20C5 25 10 35 15 35C20 35 30 25 30 25Z" 
-        stroke="currentColor" 
-        strokeWidth="2" 
+      <path
+        d="M30 25C30 25 15 15 10 20C5 25 10 35 15 35C20 35 30 25 30 25Z"
+        stroke="currentColor"
+        strokeWidth="2"
         fill="none"
       />
-      <path 
-        d="M30 25C30 25 45 15 50 20C55 25 50 35 45 35C40 35 30 25 30 25Z" 
-        stroke="currentColor" 
-        strokeWidth="2" 
+      <path
+        d="M30 25C30 25 45 15 50 20C55 25 50 35 45 35C40 35 30 25 30 25Z"
+        stroke="currentColor"
+        strokeWidth="2"
         fill="none"
       />
-      <path 
-        d="M30 25C30 25 25 35 27 45" 
-        stroke="currentColor" 
-        strokeWidth="2" 
+      <path
+        d="M30 25C30 25 25 35 27 45"
+        stroke="currentColor"
+        strokeWidth="2"
         fill="none"
       />
-      <path 
-        d="M30 25C30 25 35 35 33 45" 
-        stroke="currentColor" 
-        strokeWidth="2" 
+      <path
+        d="M30 25C30 25 35 35 33 45"
+        stroke="currentColor"
+        strokeWidth="2"
         fill="none"
       />
       <circle cx="30" cy="25" r="3" fill="currentColor" />
+    </svg>
+  )
+}
+
+// TikTok Logo SVG component
+function TikTokLogo({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.68v13.67a2.4 2.4 0 1 1-2.4-2.4c.4 0 .8.04 1.2.12V9.41a7.26 7.26 0 0 0-1.2-.12A7.26 7.26 0 0 0 5 16.67a7.26 7.26 0 0 0 7.26 7.26 7.26 7.26 0 0 0 7.26-7.26V12.6a9.6 9.6 0 0 0 3.77 1.5v-3.88a4.84 4.84 0 0 1-3.3-1.53z" />
     </svg>
   )
 }
@@ -289,7 +298,7 @@ export function Footer() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Music className="h-5 w-5" />
+                <TikTokLogo className="h-5 w-5" />
               </motion.a>
             </div>
           </div>
