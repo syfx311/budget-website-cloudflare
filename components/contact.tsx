@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Send, CheckCircle } from 'lucide-react'
+import { Send, CheckCircle, Facebook, Music } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -258,17 +258,40 @@ export function Footer() {
             © {new Date().getFullYear()}&nbsp;Mommy Louise&apos;s Budget PH
           </p>
 
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             {['About', 'How It Works', 'Contact'].map((item) => (
-              <motion.a 
+              <motion.a
                 key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                href={`#${item.toLowerCase().replace(' ', '-')}`}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 whileHover={{ y: -2 }}
               >
                 {item}
               </motion.a>
             ))}
+
+            <div className="flex gap-4 pl-4 border-l border-border/50">
+              <motion.a
+                href="https://www.facebook.com/profile.php?id=100087797289721"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Facebook className="h-5 w-5" />
+              </motion.a>
+              <motion.a
+                href="https://www.tiktok.com/@mommylouiseee"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Music className="h-5 w-5" />
+              </motion.a>
+            </div>
           </div>
         </div>
       </div>
