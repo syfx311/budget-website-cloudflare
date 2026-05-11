@@ -24,6 +24,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Verify Supabase credentials are loaded
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      console.error('Missing Supabase credentials')
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      )
+    }
+
     const { data, error } = await supabase
       .from('orders')
       .insert([
@@ -31,21 +40,20 @@ export async function POST(request: NextRequest) {
           package_name: packageName,
           customer_name: customerName,
           customer_email: customerEmail,
-          customer_phone: customerPhone,
-          binder_type: binderType,
-          colors: colors,
-          inserts: inserts,
-          challenges: challenges,
-          special_requests: specialRequests,
-          created_at: new Date().toISOString()
+          customer_phone: customerPhone || null,
+          binder_type: binderType || null,
+          colors: colors || null,
+          inserts: Array.isArray(inserts) ? inserts : null,
+          challenges: challenges || null,
+          special_requests: specialRequests || null
         }
       ])
       .select()
 
     if (error) {
-      console.error('Supabase error:', error)
+      console.error('Supabase insert error:', error.message, error.details, error.hint)
       return NextResponse.json(
-        { error: 'Failed to submit order' },
+        { error: error.message || 'Failed to submit order', details: error.details },
         { status: 500 }
       )
     }
@@ -55,9 +63,9 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
   } catch (error) {
-    console.error('API error:', error)
+    console.error('API error:', error instanceof Error ? error.message : error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', message: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }
