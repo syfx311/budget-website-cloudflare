@@ -205,4 +205,20 @@
     filter: drop-shadow(0 30px 60px rgba(232, 105, 171, 0.35)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.15));
     transform: translateY(-4px) scale(1.02);
   }
+
+  .sophie-package-img-wrapper {
+    @apply relative w-full h-full flex items-center justify-center;
+    perspective: 1000px;
+  }
+
+  .sophie-package-img {
+    @apply max-w-full h-auto object-contain transition-all duration-300;
+    filter: drop-shadow(0 20px 40px rgba(219, 123, 168, 0.25)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+    border-radius: 16px;
+  }
+
+  .sophie-package-img-wrapper:hover .sophie-package-img {
+    filter: drop-shadow(0 30px 60px rgba(219, 123, 168, 0.35)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.15));
+    transform: translateY(-4px) scale(1.02);
+  }
 }

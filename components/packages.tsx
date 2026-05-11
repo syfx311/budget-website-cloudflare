@@ -185,22 +185,18 @@ function PremiumPackageImage() {
   )
 }
 
-function SophiePlannerMockup() {
+function SophiePackageImage() {
   return (
-    <svg viewBox="0 0 140 160" className="w-20 h-24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="18" y="15" width="104" height="130" rx="10" fill="url(#sophieGradient)" stroke="#db7ba8" strokeWidth="2" />
-      <defs>
-        <linearGradient id="sophieGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#ffc0db" />
-          <stop offset="100%" stopColor="#ffb3d9" />
-        </linearGradient>
-      </defs>
-      <circle cx="50" cy="45" r="12" fill="#fff" opacity="0.6" />
-      <circle cx="90" cy="45" r="12" fill="#fff" opacity="0.6" />
-      <path d="M 45 60 Q 60 65 75 60" stroke="#db7ba8" strokeWidth="2" fill="none" />
-      <line x1="35" y1="80" x2="105" y2="80" stroke="#ffb3d9" strokeWidth="1" opacity="0.5" />
-      <line x1="35" y1="95" x2="105" y2="95" stroke="#ffb3d9" strokeWidth="1" opacity="0.5" />
-    </svg>
+    <div className="sophie-package-img-wrapper">
+      <Image
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F58bc977f6cfb427ba9c61bfb72495606?format=webp&width=800&height=1200"
+        alt="Sophie Package"
+        width={280}
+        height={420}
+        className="sophie-package-img"
+        priority
+      />
+    </div>
   )
 }
 
@@ -278,7 +274,7 @@ export function Packages() {
         '2 dividers',
         'Thoughtful surprises'
       ],
-      image: <SophiePlannerMockup />
+      image: <SophiePackageImage />
     },
     {
       title: 'Elegance Package',
