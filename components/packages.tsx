@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Heart, Sparkles, Download, Printer, MessageCircle, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -169,23 +170,18 @@ function PackageCard({
   )
 }
 
-// Planner mockup SVG for each package
-function PremiumPlannerMockup() {
+function PremiumPackageImage() {
   return (
-    <svg viewBox="0 0 140 160" className="w-20 h-24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="20" y="10" width="100" height="140" rx="8" fill="url(#plannerGradient)" stroke="#e869ab" strokeWidth="2" />
-      <defs>
-        <linearGradient id="plannerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ffc8dc" />
-          <stop offset="100%" stopColor="#ffb3d9" />
-        </linearGradient>
-      </defs>
-      <circle cx="45" cy="40" r="8" fill="#e869ab" opacity="0.6" />
-      <circle cx="95" cy="40" r="8" fill="#e869ab" opacity="0.6" />
-      <rect x="30" y="55" width="80" height="70" fill="rgba(255, 255, 255, 0.4)" rx="4" />
-      <circle cx="55" cy="75" r="4" fill="#e869ab" opacity="0.5" />
-      <circle cx="75" cy="85" r="4" fill="#e869ab" opacity="0.5" />
-    </svg>
+    <div className="premium-package-img-wrapper">
+      <Image
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc719f46ba5de4eeca82854cc7fcb020b?format=webp&width=800&height=1200"
+        alt="Premium Package"
+        width={280}
+        height={420}
+        className="premium-package-img"
+        priority
+      />
+    </div>
   )
 }
 
@@ -269,7 +265,7 @@ export function Packages() {
         'Acrylic pen',
         'Bling charm'
       ],
-      image: <PremiumPlannerMockup />,
+      image: <PremiumPackageImage />,
       isPopular: true
     },
     {
