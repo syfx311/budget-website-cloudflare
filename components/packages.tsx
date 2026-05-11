@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Heart, Sparkles, Download, Printer, MessageCircle, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { OrderModal } from '@/components/order-modal'
 
 // TikTok Logo SVG component
 function TikTokLogo({ className = '' }: { className?: string }) {
@@ -83,13 +85,15 @@ function PackageCard({
   badge,
   features,
   image,
-  isPopular
+  isPopular,
+  onOrderClick
 }: {
   title: string
   badge?: string
   features: string[]
   image: React.ReactNode
   isPopular?: boolean
+  onOrderClick: () => void
 }) {
   return (
     <motion.div
@@ -150,14 +154,14 @@ function PackageCard({
         {/* CTA Button */}
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Button
-            asChild
+            onClick={onOrderClick}
             className={`w-full rounded-full font-semibold transition-all ${
               isPopular
                 ? 'bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground shadow-lg'
                 : 'bg-pink-200/60 hover:bg-pink-300/60 text-foreground'
             }`}
           >
-            <Link href="#contact">Order Now</Link>
+            Order Now
           </Button>
         </motion.div>
       </div>
@@ -239,6 +243,19 @@ function MysticPlannerMockup() {
 }
 
 export function Packages() {
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openOrderModal = (packageName: string) => {
+    setSelectedPackage(packageName)
+    setIsModalOpen(true)
+  }
+
+  const closeOrderModal = () => {
+    setIsModalOpen(false)
+    setSelectedPackage(null)
+  }
+
   const packages = [
     {
       title: 'Premium Package',
@@ -346,10 +363,22 @@ export function Packages() {
         >
           {packages.map((pkg, index) => (
             <motion.div key={pkg.title} variants={fadeInUp}>
-              <PackageCard {...pkg} />
+              <PackageCard
+                {...pkg}
+                onOrderClick={() => openOrderModal(pkg.title)}
+              />
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Order Modal */}
+        {selectedPackage && (
+          <OrderModal
+            isOpen={isModalOpen}
+            onClose={closeOrderModal}
+            packageName={selectedPackage}
+          />
+        )}
 
         {/* Digital & Printable Options */}
         <motion.div
