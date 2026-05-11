@@ -50,6 +50,9 @@ export function Header() {
             <Link href="#portfolio" className="text-muted-foreground hover:text-primary transition-colors">
               Templates
             </Link>
+            <Link href="#packages" className="text-muted-foreground hover:text-primary transition-colors">
+              Packages
+            </Link>
             <Link href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
               Contact
             </Link>
@@ -79,14 +82,14 @@ export function Header() {
               className="md:hidden py-4 border-t border-border/50 overflow-hidden"
             >
               <div className="flex flex-col gap-4">
-                {['About', 'How It Works', 'Templates', 'Contact'].map((item, index) => (
+                {['About', 'How It Works', 'Templates', 'Packages', 'Contact'].map((item, index) => (
                   <motion.div
                     key={item}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link 
+                    <Link
                       href={`#${item.toLowerCase().replace(' ', '-').replace('templates', 'portfolio')}`}
                       className="text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
