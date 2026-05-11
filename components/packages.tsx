@@ -200,37 +200,33 @@ function SophiePackageImage() {
   )
 }
 
-function ElegancePlannerMockup() {
+function ElegancePackageImage() {
   return (
-    <svg viewBox="0 0 140 160" className="w-20 h-24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="22" y="12" width="96" height="136" rx="6" fill="rgba(255, 240, 250, 0.8)" stroke="#e869ab" strokeWidth="2" strokeDasharray="4,4" />
-      <defs>
-        <linearGradient id="eleganceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ffd9eb" />
-          <stop offset="100%" stopColor="#ffc8dc" />
-        </linearGradient>
-      </defs>
-      <rect x="30" y="25" width="80" height="40" fill="url(#eleganceGradient)" rx="4" opacity="0.7" />
-      <circle cx="45" cy="40" r="3" fill="#e869ab" />
-      <circle cx="55" cy="40" r="3" fill="#e869ab" />
-      <circle cx="65" cy="40" r="3" fill="#e869ab" />
-      <line x1="35" y1="75" x2="105" y2="75" stroke="#e869ab" strokeWidth="1" opacity="0.4" />
-      <line x1="35" y1="85" x2="105" y2="85" stroke="#e869ab" strokeWidth="1" opacity="0.4" />
-      <line x1="35" y1="95" x2="105" y2="95" stroke="#e869ab" strokeWidth="1" opacity="0.4" />
-    </svg>
+    <div className="elegance-package-img-wrapper">
+      <Image
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F66ca53884f8a4a09923a531198152c43?format=webp&width=800&height=1200"
+        alt="Elegance Package"
+        width={280}
+        height={420}
+        className="elegance-package-img"
+        priority
+      />
+    </div>
   )
 }
 
 function MysticPlannerMockup() {
   return (
-    <svg viewBox="0 0 140 160" className="w-20 h-24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="20" y="10" width="100" height="140" rx="8" fill="rgba(255, 200, 220, 0.2)" stroke="#e869ab" strokeWidth="2" />
-      <rect x="22" y="12" width="96" height="136" rx="7" fill="none" stroke="rgba(232, 105, 171, 0.3)" strokeWidth="1" />
-      <circle cx="50" cy="50" r="15" fill="none" stroke="#e869ab" strokeWidth="1.5" opacity="0.5" />
-      <circle cx="90" cy="50" r="15" fill="none" stroke="#e869ab" strokeWidth="1.5" opacity="0.5" />
-      <path d="M 40 100 Q 70 110 100 100" stroke="#e869ab" strokeWidth="1.5" fill="none" opacity="0.6" />
-      <circle cx="70" cy="75" r="4" fill="#e869ab" opacity="0.7" />
-    </svg>
+    <div className="mystic-package-mockup-placeholder">
+      <svg viewBox="0 0 140 160" className="w-20 h-24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="10" width="100" height="140" rx="8" fill="rgba(255, 200, 220, 0.2)" stroke="#e869ab" strokeWidth="2" />
+        <rect x="22" y="12" width="96" height="136" rx="7" fill="none" stroke="rgba(232, 105, 171, 0.3)" strokeWidth="1" />
+        <circle cx="50" cy="50" r="15" fill="none" stroke="#e869ab" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="90" cy="50" r="15" fill="none" stroke="#e869ab" strokeWidth="1.5" opacity="0.5" />
+        <path d="M 40 100 Q 70 110 100 100" stroke="#e869ab" strokeWidth="1.5" fill="none" opacity="0.6" />
+        <circle cx="70" cy="75" r="4" fill="#e869ab" opacity="0.7" />
+      </svg>
+    </div>
   )
 }
 
@@ -285,7 +281,7 @@ export function Packages() {
         'Choice of challenge (12-Month / Weekly / Theme-Based)',
         'Hand-matched to your order'
       ],
-      image: <ElegancePlannerMockup />
+      image: <ElegancePackageImage />
     },
     {
       title: 'Mystic Package',
