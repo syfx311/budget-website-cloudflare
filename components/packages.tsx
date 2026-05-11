@@ -27,26 +27,44 @@ const scaleHover = {
 }
 
 // Decorative ribbon
-function DecorativeRibbon() {
+function DecorativeRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <svg
-      viewBox="0 0 300 80"
-      className="w-full h-auto"
-      preserveAspectRatio="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* Ribbon background */}
-      <defs>
-        <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.7" />
-        </linearGradient>
-      </defs>
-      <rect x="0" y="20" width="300" height="40" fill="url(#ribbonGradient)" rx="8" />
-      {/* Ribbon tails */}
-      <path d="M 10 20 L 0 10 L 5 20 Z" fill="var(--primary)" opacity="0.8" />
-      <path d="M 290 20 L 300 10 L 295 20 Z" fill="var(--primary)" opacity="0.8" />
-    </svg>
+    <div className="relative inline-block w-full px-4">
+      <div
+        className="relative rounded-2xl overflow-hidden shadow-lg py-4 px-8"
+        style={{
+          background: 'linear-gradient(135deg, #e869ab 0%, #db7ba8 100%)'
+        }}
+      >
+        {/* Ribbon tails */}
+        <div className="absolute -left-4 top-1/2 transform -translate-y-1/2">
+          <div
+            className="w-0 h-0"
+            style={{
+              borderLeft: '8px solid transparent',
+              borderRight: '8px solid #db7ba8',
+              borderTop: '12px solid transparent',
+              borderBottom: '12px solid transparent'
+            }}
+          />
+        </div>
+        <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
+          <div
+            className="w-0 h-0"
+            style={{
+              borderLeft: '8px solid #db7ba8',
+              borderRight: '8px solid transparent',
+              borderTop: '12px solid transparent',
+              borderBottom: '12px solid transparent'
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 text-center text-primary-foreground font-bold text-2xl md:text-3xl">
+          {children}
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -296,14 +314,9 @@ export function Packages() {
           {/* Ribbon with heading */}
           <motion.div
             variants={fadeInUp}
-            className="relative mb-8 inline-block w-full"
+            className="relative mb-8 w-full"
           >
-            <div className="w-full max-w-2xl mx-auto h-16">
-              <DecorativeRibbon />
-            </div>
-            <h2 className="absolute inset-0 flex items-center justify-center text-3xl md:text-4xl font-bold text-primary-foreground pointer-events-none">
-              Planning to Order?
-            </h2>
+            <DecorativeRibbon>Planning to Order?</DecorativeRibbon>
           </motion.div>
 
           <motion.p
