@@ -58,6 +58,9 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 export function Hero() {
   return (
     <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden gingham-pattern-lg" style={{ backgroundColor: 'rgba(255, 241, 241, 1)' }}>
+      {/* Full-width frosted glass overlay */}
+      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm pointer-events-none" />
+
       {/* Decorative bows */}
       <motion.div
         initial={{ opacity: 0, rotate: -20 }}
@@ -87,11 +90,11 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Text Content */}
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex-1 text-center lg:text-left"
+            className="flex-1 text-center lg:text-left relative z-10"
           >
             {/* Badge */}
             <motion.div 

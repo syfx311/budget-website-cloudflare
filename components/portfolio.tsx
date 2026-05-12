@@ -104,6 +104,9 @@ export function Portfolio() {
 
   return (
     <section id="portfolio" className="py-20 md:py-28 gingham-pattern relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 245, 245, 1)' }}>
+      {/* Full-width frosted glass overlay */}
+      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm pointer-events-none" />
+
       {/* Decorative bows */}
       <div className="absolute top-20 right-10 opacity-10">
         <DecorativeBow className="w-24 h-24 text-primary" />
@@ -112,7 +115,7 @@ export function Portfolio() {
         <DecorativeBow className="w-20 h-20 text-primary" />
       </div>
       
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -123,7 +126,7 @@ export function Portfolio() {
         >
           <div className="flex items-center justify-center gap-4 mb-4">
             <DecorativeBow className="w-8 h-8 text-primary opacity-50" />
-            <p className="text-primary font-medium">Sample Designs</p>
+            <p className="text-primary font-medium">Sample Budget Plans</p>
             <DecorativeBow className="w-8 h-8 text-primary opacity-50 scale-x-[-1]" />
           </div>
           <h2 className="text-3xl md:text-4xl font-noto-sans text-foreground mb-4 text-balance">

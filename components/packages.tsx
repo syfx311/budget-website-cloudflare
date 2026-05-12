@@ -298,6 +298,9 @@ export function Packages() {
 
   return (
     <section id="packages" className="relative py-20 md:py-32 overflow-hidden bg-white">
+      {/* Full-width frosted glass overlay */}
+      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm pointer-events-none" />
+
       {/* Decorative elements */}
       <motion.div
         initial={{ opacity: 0, rotate: -45 }}
@@ -316,7 +319,7 @@ export function Packages() {
         💝
       </motion.div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
         <motion.div
           variants={staggerContainer}
