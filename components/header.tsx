@@ -34,7 +34,7 @@ export function Header() {
               />
             </motion.div>
             <div>
-              <span className="font-serif text-sm sm:text-lg text-foreground block leading-tight" style={{ fontFamily: 'Grand Hotel, sans-serif', fontSize: '27px', backgroundColor: '#fcd0d4' }}>Mommy Louise&apos;s</span>
+              <span className="font-serif text-sm sm:text-lg text-foreground block leading-tight" style={{ fontFamily: 'Grand Hotel, sans-serif', fontSize: '27px', backgroundColor: '#fff3f8' }}>Mommy Louise&apos;s</span>
               <span className="text-xs text-primary font-semibold tracking-wider uppercase" style={{ fontFamily: 'Noto Sans Tamil, sans-serif' }}>Budget PH</span>
             </div>
           </Link>
