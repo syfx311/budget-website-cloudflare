@@ -174,7 +174,7 @@ function PremiumPackageImage() {
   return (
     <div className="premium-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc719f46ba5de4eeca82854cc7fcb020b?format=webp&width=800&height=1200"
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F2ed6502fa9814452944e4c6aa119e796?format=webp&width=800&height=1200"
         alt="Premium Package"
         width={280}
         height={420}
@@ -189,7 +189,7 @@ function SophiePackageImage() {
   return (
     <div className="sophie-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F753ed173dea54d3985e7133172d35642?format=webp&width=800&height=1200"
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3060276967c449fcba661dc39b4142d9?format=webp&width=800&height=1200"
         alt="Sophie Package"
         width={280}
         height={420}
@@ -204,7 +204,7 @@ function ElegancePackageImage() {
   return (
     <div className="elegance-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F66ca53884f8a4a09923a531198152c43?format=webp&width=800&height=1200"
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1373a388724947b3bdcef125b1240bad?format=webp&width=800&height=1200"
         alt="Elegance Package"
         width={280}
         height={420}
@@ -219,7 +219,7 @@ function MysticPackageImage() {
   return (
     <div className="mystic-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F2f816cba4c524f3fbcd0f68d799104d7?format=webp&width=800&height=1200"
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F580f45d62d4c4d9f95b5b8a5e2cf5eb7?format=webp&width=800&height=1200"
         alt="Mystic Package"
         width={280}
         height={420}
