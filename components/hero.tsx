@@ -87,12 +87,15 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Text Content */}
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex-1 text-center lg:text-left"
+            className="flex-1 text-center lg:text-left relative"
           >
+            {/* Frosted glass overlay backdrop */}
+            <div className="absolute inset-0 -mx-8 -my-6 bg-white/40 backdrop-blur-sm rounded-3xl pointer-events-none" />
+            <div className="relative z-10">
             {/* Badge */}
             <motion.div 
               variants={fadeInUp}
@@ -179,6 +182,7 @@ export function Hero() {
                 </motion.div>
               ))}
             </motion.div>
+            </div>
           </motion.div>
 
           {/* Logo/Image */}
