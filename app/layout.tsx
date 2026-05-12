@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Playfair_Display, Noto_Sans_Adlam, Noto_Sans, DM_Sans, Allura } from 'next/font/google'
+import { Geist, Playfair_Display, Noto_Sans_Adlam, Noto_Sans, DM_Sans, Allura, Grand_Hotel } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
@@ -39,6 +39,12 @@ const allura = Allura({
   weight: ['400']
 })
 
+const grandHotel = Grand_Hotel({
+  subsets: ["latin"],
+  variable: '--font-grand-hotel',
+  weight: ['400']
+})
+
 export const metadata: Metadata = {
   title: 'Mommy Louise Budget | Cash Stuffing & Budget Templates',
   description: 'Take control of your money with beautiful cash stuffing templates and budget envelopes. Simple, visual, and satisfying way to manage your family finances.',
@@ -73,7 +79,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} ${allura.variable} font-sans antialiased`}>
+      <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} ${allura.variable} ${grandHotel.variable} font-sans antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <SpeedInsights />
