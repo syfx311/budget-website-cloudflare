@@ -126,7 +126,7 @@ export function Portfolio() {
         >
           <div className="flex items-center justify-center gap-4 mb-4">
             <DecorativeBow className="w-8 h-8 text-primary opacity-50" />
-            <p className="text-primary font-medium">Sample Designs</p>
+            <p className="text-primary font-medium">Sample Budget Plans</p>
             <DecorativeBow className="w-8 h-8 text-primary opacity-50 scale-x-[-1]" />
           </div>
           <h2 className="text-3xl md:text-4xl font-noto-sans text-foreground mb-4 text-balance">
