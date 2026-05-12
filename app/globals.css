@@ -4,9 +4,9 @@
 @font-face {
   font-family: 'Brittany Signature';
   src: url('/fonts/BrittanySignature.otf') format('opentype');
-  font-weight: 400;
+  font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -206,6 +206,8 @@
 
   .font-signature {
     font-family: var(--font-signature);
+    font-weight: 400;
+    font-style: normal;
   }
 
   .premium-package-img-wrapper {
