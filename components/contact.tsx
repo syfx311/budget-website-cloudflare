@@ -259,7 +259,7 @@ export function Footer() {
             />
             <div>
               <span className="font-serif text-foreground block leading-tight" style={{ fontFamily: 'Grand Hotel, sans-serif', fontSize: '27px' }}>Mommy Louise&apos;s</span>
-              <span className="text-xs text-primary font-medium tracking-wider uppercase">Budget PH</span>
+              <span className="text-xs text-primary font-semibold tracking-wider uppercase" style={{ fontFamily: 'Saira Semi Condensed, sans-serif' }}>Budget PH</span>
             </div>
           </motion.div>
           
