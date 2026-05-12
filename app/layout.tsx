@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Playfair_Display, Noto_Sans_Adlam, Noto_Sans, DM_Sans, Great_Vibes } from 'next/font/google'
+import { Geist, Playfair_Display, Noto_Sans_Adlam, Noto_Sans, DM_Sans, Allura } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
@@ -33,7 +33,7 @@ const dmSans = DM_Sans({
   weight: ['400', '500', '600', '700']
 })
 
-const greatVibes = Great_Vibes({
+const allura = Allura({
   subsets: ["latin"],
   variable: '--font-handwrite',
   weight: ['400']
@@ -73,7 +73,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} ${greatVibes.variable} font-sans antialiased`}>
+      <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} ${allura.variable} font-sans antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <SpeedInsights />
