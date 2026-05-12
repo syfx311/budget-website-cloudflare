@@ -9,7 +9,7 @@ export const builderConfig = defineConfig({
       css: `
         @font-face {
           font-family: 'Brittany Signature';
-          src: url('/fonts/BrittanySignature.woff2') format('woff2');
+          src: url('/fonts/BrittanySignature.otf') format('opentype');
           font-weight: 400;
           font-style: normal;
           font-display: swap;
