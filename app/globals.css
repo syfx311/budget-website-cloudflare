@@ -1,6 +1,14 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@font-face {
+  font-family: 'Brittany Signature';
+  src: url('/fonts/BrittanySignature.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -83,6 +91,7 @@
   --font-noto-sans-adlam-custom: 'Noto Sans Adlam', sans-serif;
   --font-noto-sans-custom: 'Noto Sans', sans-serif;
   --font-handwrite: 'Allura', cursive;
+  --font-signature: 'Brittany Signature', 'Allura', cursive;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -193,6 +202,10 @@
 
   .font-handwrite {
     font-family: var(--font-handwrite);
+  }
+
+  .font-signature {
+    font-family: var(--font-signature);
   }
 
   .premium-package-img-wrapper {
