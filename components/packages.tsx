@@ -204,7 +204,7 @@ function ElegancePackageImage() {
   return (
     <div className="elegance-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F66ca53884f8a4a09923a531198152c43?format=webp&width=800&height=1200"
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1373a388724947b3bdcef125b1240bad?format=webp&width=800&height=1200"
         alt="Elegance Package"
         width={280}
         height={420}
