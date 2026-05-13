@@ -250,8 +250,8 @@ export function ProductsGallery() {
                 <div className="p-6 relative">
                   {/* Decorative corner bow */}
                   <Bow className="absolute top-0 right-4 w-10 h-6 text-primary/30 -translate-y-1/2" />
-                  
-                  <h3 className="font-serif text-xl md:text-2xl text-foreground mb-2">
+
+                  <h3 className="font-noto-sans text-xl md:text-2xl text-foreground mb-2">
                     {product.title}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4">
