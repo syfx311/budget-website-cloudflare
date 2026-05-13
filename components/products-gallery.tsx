@@ -7,12 +7,24 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { DesignLibraryShowcase } from '@/components/design-library-showcase'
 
+const envelopeInsertTiles = [
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3f2dceb91f944d5db35fd45a0c0cde10?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fe649da41462a4c538ba0aff8ab3f4c40?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fa83299145c1f4926ba880787739d0629?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F9a2ced2b30f14ede83e65e6638055fb1?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fb19d0ec3276c4c7da9620542a6fae275?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ffc3c89ecc3464663bc486021d7de0492?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fd979f1f525a3446dbd30ad0c9962dec4?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F2501f75fa4e74a0e92a07606d956f3ff?format=webp&width=800&height=1200',
+]
+
 const products = [
   {
     id: 1,
     title: 'Budget Envelope Inserts',
     description: 'Beautiful pink gingham cash envelopes with custom categories for every budget need',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3f2dceb91f944d5db35fd45a0c0cde10?format=webp&width=800&height=1200',
+    tiles: envelopeInsertTiles,
     features: ['Customizable Categories', 'Premium Cardstock', 'Gingham Design'],
     badge: 'Best Seller',
   },
@@ -189,12 +201,27 @@ export function ProductsGallery() {
 
                 {/* Image Container */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {product.tiles && product.tiles.length > 0 ? (
+                    <div className="w-full h-full grid grid-cols-4 gap-0">
+                      {product.tiles.map((tile, idx) => (
+                        <div key={idx} className="relative overflow-hidden">
+                          <Image
+                            src={tile}
+                            alt={`${product.title} ${idx + 1}`}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
                 </div>
