@@ -6,6 +6,7 @@ import { Sparkles, Heart, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { DesignLibraryShowcase } from '@/components/design-library-showcase'
+import { AutoRotatingProductImage } from '@/components/auto-rotating-product-image'
 
 const envelopeInsertTiles = [
   'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3f2dceb91f944d5db35fd45a0c0cde10?format=webp&width=800&height=1200',
@@ -39,7 +40,8 @@ const products = [
     id: 2,
     title: 'Premium Budget Binders',
     description: 'Elegant leather binders in multiple colors with gold ring mechanisms and card slots',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F737b1d8259f944f2bc33f99a69eae200?format=webp&width=800&height=1200',
+    image: '/images/budget-binders.png',
+    tiles: binderTiles,
     features: ['Multiple Colors', 'Card Pockets', 'Gold Rings'],
     badge: 'Premium',
   },
@@ -208,7 +210,8 @@ export function ProductsGallery() {
 
                 {/* Image Container */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
-                  {product.tiles && product.tiles.length > 0 ? (
+                  {product.id === 1 && product.tiles && product.tiles.length > 0 ? (
+                    // Envelope Inserts: Static tiled grid
                     <div className="w-full h-full grid grid-cols-5 gap-0">
                       {product.tiles.map((tile, idx) => (
                         <div key={idx} className="relative overflow-hidden">
@@ -221,6 +224,16 @@ export function ProductsGallery() {
                         </div>
                       ))}
                     </div>
+                  ) : product.id === 2 && product.tiles && product.tiles.length > 0 ? (
+                    // Budget Binders: Auto-rotating images
+                    <AutoRotatingProductImage
+                      rotatingImages={product.tiles.map((src, idx) => ({
+                        id: idx,
+                        src,
+                        alt: `${product.title} ${idx + 1}`,
+                      }))}
+                      alt={product.title}
+                    />
                   ) : (
                     <Image
                       src={product.image}
