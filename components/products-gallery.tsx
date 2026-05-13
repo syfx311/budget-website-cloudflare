@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Sparkles, Heart } from 'lucide-react'
+import { Sparkles, Heart, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { DesignLibraryShowcase } from '@/components/design-library-showcase'

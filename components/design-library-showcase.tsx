@@ -51,53 +51,45 @@ function Bow({ className = '' }: { className?: string }) {
 }
 
 export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [displayedIndices, setDisplayedIndices] = useState<number[]>([0])
+  const [currentImageIndices, setCurrentImageIndices] = useState<number[]>([0, 1, 2])
+  const [displayedIndices, setDisplayedIndices] = useState<Set<number>>(new Set([0, 1, 2]))
   const [isHovering, setIsHovering] = useState(false)
   const rotationIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    if (!isHovering || images.length <= 1) return
+    if (!isHovering || images.length <= 3) return
 
-    const rotateImage = () => {
-      setDisplayedIndices((prev) => {
+    const rotateImages = () => {
+      setCurrentImageIndices((prevIndices) => {
+        setDisplayedIndices((prev) => new Set([...prev, ...prevIndices]))
+
         const availableIndices = Array.from(
           { length: images.length },
           (_, i) => i
-        ).filter((i) => !prev.includes(i))
+        ).filter((i) => !displayedIndices.has(i))
 
-        if (availableIndices.length === 0) {
-          // Reset cycle if all images shown
-          const newIndex = Math.floor(Math.random() * images.length)
-          return [newIndex]
+        if (availableIndices.length < 3) {
+          // Reset cycle if not enough unseen images
+          const shuffled = Array.from({ length: images.length }, (_, i) => i)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3)
+          setDisplayedIndices(new Set(shuffled))
+          return shuffled
         }
 
-        const randomIndex =
-          availableIndices[Math.floor(Math.random() * availableIndices.length)]
-        return [...prev, randomIndex]
-      })
-
-      setCurrentImageIndex((prevIndex) => {
-        const availableIndices = Array.from(
-          { length: images.length },
-          (_, i) => i
-        ).filter((i) => !displayedIndices.includes(i))
-
-        if (availableIndices.length === 0) {
-          const newIndex = Math.floor(Math.random() * images.length)
-          setDisplayedIndices([newIndex])
-          return newIndex
+        // Pick 3 random unseen images
+        const newImages: number[] = []
+        for (let i = 0; i < 3 && availableIndices.length > 0; i++) {
+          const randomIdx = Math.floor(Math.random() * availableIndices.length)
+          newImages.push(availableIndices[randomIdx])
+          availableIndices.splice(randomIdx, 1)
         }
 
-        return (
-          availableIndices[
-            Math.floor(Math.random() * availableIndices.length)
-          ] || 0
-        )
+        return newImages
       })
     }
 
-    rotationIntervalRef.current = setInterval(rotateImage, 800)
+    rotationIntervalRef.current = setInterval(rotateImages, 1000)
 
     return () => {
       if (rotationIntervalRef.current) {
@@ -108,7 +100,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
 
   const handleMouseEnter = () => {
     setIsHovering(true)
-    setDisplayedIndices([currentImageIndex])
+    setDisplayedIndices(new Set(currentImageIndices))
   }
 
   const handleMouseLeave = () => {
@@ -116,8 +108,8 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
     if (rotationIntervalRef.current) {
       clearInterval(rotationIntervalRef.current)
     }
-    setCurrentImageIndex(0)
-    setDisplayedIndices([0])
+    setCurrentImageIndices([0, 1, 2])
+    setDisplayedIndices(new Set([0, 1, 2]))
   }
 
   return (
@@ -146,27 +138,31 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
           </h3>
         </div>
 
-        {/* Interactive Image Container */}
+        {/* Interactive Image Grid Container - 3 tiles per rotation */}
         <div
           className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden cursor-pointer group"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <motion.div
-            key={currentImageIndex}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={images[currentImageIndex].src}
-              alt={images[currentImageIndex].alt}
-              fill
-              className="object-cover"
-            />
-          </motion.div>
+          <div className="w-full h-full grid grid-cols-3 gap-0">
+            {currentImageIndices.map((imageIndex) => (
+              <motion.div
+                key={imageIndex}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="relative overflow-hidden"
+              >
+                <Image
+                  src={images[imageIndex].src}
+                  alt={images[imageIndex].alt}
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+            ))}
+          </div>
 
           {/* Overlay hint */}
           <motion.div
@@ -199,7 +195,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
             animate={{ opacity: isHovering ? 1 : 0.7 }}
             className="absolute top-4 right-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-sm font-medium z-10"
           >
-            {displayedIndices.length} / {images.length}
+            {displayedIndices.size} / {images.length}
           </motion.div>
         </div>
 
@@ -210,7 +206,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
               {images.length}+ unique designs available
             </p>
             <p className="text-muted-foreground text-sm">
-              Hover over the image to see different designs. Custom orders welcome!
+              Hover to see 3 designs rotate every second. Custom orders welcome!
             </p>
           </div>
           <Button
