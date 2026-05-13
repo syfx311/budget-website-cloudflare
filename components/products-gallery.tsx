@@ -96,8 +96,8 @@ export function ProductsGallery() {
             </span>
             <Bow className="w-12 h-8 text-primary transform scale-x-[-1]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 text-balance">
-            Our Finished Products
+          <h2 className="font-noto-sans text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 text-balance">
+            Our <span className="font-signature text-4xl md:text-5xl lg:text-6xl text-primary">Finished Products</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Each piece is thoughtfully designed and crafted to help you achieve your financial goals with style
@@ -203,8 +203,8 @@ export function ProductsGallery() {
                 </span>
                 <Star className="w-5 h-5 text-primary fill-primary" />
               </div>
-              <h3 className="font-serif text-2xl md:text-3xl text-foreground">
-                Browse Our Complete Design Library
+              <h3 className="font-noto-sans text-2xl md:text-3xl text-foreground">
+                Browse Our <span className="font-signature text-3xl md:text-4xl text-primary">Complete Design Library</span>
               </h3>
             </div>
 
@@ -263,8 +263,8 @@ export function ProductsGallery() {
           className="mt-20"
         >
           <div className="text-center mb-12">
-            <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-2">
-              Our Binder Collection
+            <h3 className="font-noto-sans text-2xl md:text-3xl text-foreground mb-2">
+              Our <span className="font-signature text-3xl md:text-4xl text-primary">Binder Collection</span>
             </h3>
             <p className="text-muted-foreground">
               Beautiful colors and finishes to match your style
