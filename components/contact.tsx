@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Send, CheckCircle, Facebook } from 'lucide-react'
+import { Send, CheckCircle, Facebook, Youtube } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -287,6 +287,7 @@ export function Footer() {
                 className="text-muted-foreground hover:text-primary transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Visit our Facebook page"
               >
                 <Facebook className="h-5 w-5" />
               </motion.a>
@@ -297,8 +298,20 @@ export function Footer() {
                 className="text-muted-foreground hover:text-primary transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Visit our TikTok profile"
               >
                 <TikTokLogo className="h-5 w-5" />
+              </motion.a>
+              <motion.a
+                href="https://www.youtube.com/channel/UCHFl5W8x4mgy5LiEkiu0UCw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Visit our YouTube channel"
+              >
+                <Youtube className="h-5 w-5" />
               </motion.a>
             </div>
           </div>
