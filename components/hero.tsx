@@ -152,8 +152,8 @@ export function Hero() {
                   size="lg"
                   className="border-2 border-primary/30 text-foreground hover:bg-accent/50 rounded-full"
                 >
-                  <Link href="#portfolio" className="flex items-center gap-2">
-                    View Templates
+                  <Link href="/products" className="flex items-center gap-2">
+                    View Products
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
