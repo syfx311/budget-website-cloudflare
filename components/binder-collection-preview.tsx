@@ -205,7 +205,7 @@ export function BinderCollectionPreview() {
                 Premium Budget Collection
               </span>
               <h1 className="font-noto-sans text-2xl sm:text-3xl md:text-5xl text-foreground">
-                <span className="font-signature text-3xl sm:text-4xl md:text-6xl text-primary">Premium</span> Budget Binder
+                Premium Budget Binder
               </h1>
               <p className="text-muted-foreground mt-2 md:mt-4 text-sm md:text-base">
                 Elegant leather binder crafted with premium materials and gold-plated hardware for the modern budgeter.
