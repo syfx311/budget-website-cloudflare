@@ -12,7 +12,7 @@ const products = [
     id: 1,
     title: 'Budget Envelope Inserts',
     description: 'Beautiful pink gingham cash envelopes with custom categories for every budget need',
-    image: '/images/budget-inserts.png',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3f2dceb91f944d5db35fd45a0c0cde10?format=webp&width=800&height=1200',
     features: ['Customizable Categories', 'Premium Cardstock', 'Gingham Design'],
     badge: 'Best Seller',
   },
