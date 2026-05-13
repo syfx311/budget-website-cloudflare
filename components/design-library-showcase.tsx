@@ -89,7 +89,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
       })
     }
 
-    rotationIntervalRef.current = setInterval(rotateImages, 1000)
+    rotationIntervalRef.current = setInterval(rotateImages, 3000)
 
     return () => {
       if (rotationIntervalRef.current) {
@@ -100,7 +100,6 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
 
   const handleMouseEnter = () => {
     setIsHovering(true)
-    setDisplayedIndices(new Set(currentImageIndices))
   }
 
   const handleMouseLeave = () => {
@@ -151,7 +150,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
                 className="relative overflow-hidden"
               >
                 <Image
