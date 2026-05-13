@@ -6,6 +6,16 @@ import { Sparkles, Heart, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { DesignLibraryShowcase } from '@/components/design-library-showcase'
+import { RotatingProductImage } from '@/components/rotating-product-image'
+
+const binderShowcaseImages = [
+  { id: 1, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fdfae96e0893746369ab28daedc2c8f8a?format=webp&width=800&height=1200', alt: 'Pink Binder' },
+  { id: 2, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1e1009599815405b984fd58247059757?format=webp&width=800&height=1200', alt: 'Purple Binder' },
+  { id: 3, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F203d94a6b39744f7a1e9c9608885b3b8?format=webp&width=800&height=1200', alt: 'Beige Quilted Binder' },
+  { id: 4, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F10cb06612e554f978152736d0bd9487c?format=webp&width=800&height=1200', alt: 'Beige Textured Binder' },
+  { id: 5, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F6ff55fd22fa84dc9a5fab9b912343b67?format=webp&width=800&height=1200', alt: 'Brown Textured Binder' },
+  { id: 6, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F708d58124c7c43bdb5320631c8964ec0?format=webp&width=800&height=1200', alt: 'Sage Green Binder' },
+]
 
 const products = [
   {
@@ -23,6 +33,7 @@ const products = [
     image: '/images/budget-binders.png',
     features: ['Multiple Colors', 'Card Pockets', 'Gold Rings'],
     badge: 'Premium',
+    rotatingImages: binderShowcaseImages,
   },
 ]
 
@@ -189,11 +200,10 @@ export function ProductsGallery() {
 
                 {/* Image Container */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
-                  <Image
-                    src={product.image}
+                  <RotatingProductImage
+                    staticFallback={product.image}
+                    rotatingImages={product.rotatingImages}
                     alt={product.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
