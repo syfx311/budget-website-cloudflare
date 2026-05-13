@@ -6,9 +6,18 @@ import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const getNavLink = (hash: string) => {
+    if (pathname === '/products') {
+      return `/?${hash.slice(1)}`
+    }
+    return hash
+  }
 
   return (
     <motion.header 
@@ -41,26 +50,26 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link href={getNavLink('#about')} className="text-muted-foreground hover:text-primary transition-colors">
               About
             </Link>
-            <Link href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link href={getNavLink('#how-it-works')} className="text-muted-foreground hover:text-primary transition-colors">
               How It Works
             </Link>
-            <Link href="#portfolio" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link href={getNavLink('#portfolio')} className="text-muted-foreground hover:text-primary transition-colors">
               Templates
             </Link>
             <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
               Products
             </Link>
-            <Link href="#packages" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link href={getNavLink('#packages')} className="text-muted-foreground hover:text-primary transition-colors">
               Packages
             </Link>
-            <Link href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link href={getNavLink('#contact')} className="text-muted-foreground hover:text-primary transition-colors">
               Contact
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-              <Link href="#contact">Get Started</Link>
+              <Link href={getNavLink('#contact')}>Get Started</Link>
             </Button>
           </div>
 
@@ -100,7 +109,7 @@ export function Header() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
-                      href={item.href}
+                      href={item.href === '/products' ? '/products' : getNavLink(item.href)}
                       className="text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -114,7 +123,7 @@ export function Header() {
                   transition={{ delay: 0.4 }}
                 >
                   <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground w-fit rounded-full">
-                    <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+                    <Link href={getNavLink('#contact')} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
                   </Button>
                 </motion.div>
               </div>
