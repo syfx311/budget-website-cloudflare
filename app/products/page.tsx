@@ -7,7 +7,7 @@ import { Contact, Footer } from '@/components/contact'
 export default function ProductsPage() {
   return (
     <main className="min-h-screen">
-      <WebsiteNotice />
+      <WebsiteNotice isPopup />
       <Header />
       <div className="pt-20">
         <ProductsGallery />
