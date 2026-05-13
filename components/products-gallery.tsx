@@ -254,6 +254,78 @@ export function ProductsGallery() {
           </div>
         </motion.div>
 
+        {/* Binder Color Gallery */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-20"
+        >
+          <div className="text-center mb-12">
+            <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-2">
+              Our Binder Collection
+            </h3>
+            <p className="text-muted-foreground">
+              Beautiful colors and finishes to match your style
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[
+              { id: 1, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fdfae96e0893746369ab28daedc2c8f8a?format=webp&width=800&height=1200', alt: 'Pink Binder' },
+              { id: 2, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1e1009599815405b984fd58247059757?format=webp&width=800&height=1200', alt: 'Purple Binder' },
+              { id: 3, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F203d94a6b39744f7a1e9c9608885b3b8?format=webp&width=800&height=1200', alt: 'Beige Quilted Binder' },
+              { id: 4, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F10cb06612e554f978152736d0bd9487c?format=webp&width=800&height=1200', alt: 'Beige Textured Binder' },
+              { id: 5, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F6ff55fd22fa84dc9a5fab9b912343b67?format=webp&width=800&height=1200', alt: 'Brown Textured Binder' },
+              { id: 6, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F708d58124c7c43bdb5320631c8964ec0?format=webp&width=800&height=1200', alt: 'Sage Green Binder' },
+              { id: 7, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F75050672607d46a79d98d6610f1898ee?format=webp&width=800&height=1200', alt: 'Cream Textured Binder' },
+              { id: 8, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc980857a33ab4f7ebae6d526c01d0fe4?format=webp&width=800&height=1200', alt: 'Binder Detail' },
+              { id: 9, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fba0b545f3b1a459b9e061e95ba59a52d?format=webp&width=800&height=1200', alt: 'Binder Open View' },
+              { id: 10, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F31d7c1acc72547d79e8d60323f560392?format=webp&width=800&height=1200', alt: 'Green Flat Binder' },
+              { id: 11, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F33ae2ef4fee94d56a292a0785dfe628c?format=webp&width=800&height=1200', alt: 'Cream Flat Binder' },
+              { id: 12, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F7be8b59edf3e42f7a357353860d61611?format=webp&width=800&height=1200', alt: 'Binder Set' },
+              { id: 13, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F862fc695ec7644d58621a0e8efba82f7?format=webp&width=800&height=1200', alt: 'Gray Textured Binder' },
+              { id: 14, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F63b4a5c016294ae9871229aa05c0d454?format=webp&width=800&height=1200', alt: 'Binder with Accessories' },
+              { id: 15, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F25b70437e935496584b264fa5d2dcfc7?format=webp&width=800&height=1200', alt: 'Binder Collection Display' },
+              { id: 16, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fd5ee15999e0243a38a822063c000d914?format=webp&width=800&height=1200', alt: 'Blue Binder Detail' },
+              { id: 17, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F4535294a702a422bac409907c8d7f420?format=webp&width=800&height=1200', alt: 'Periwinkle Binder' },
+              { id: 18, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ffc0e7e32b2044a8c8c74828305a32e12?format=webp&width=800&height=1200', alt: 'Lavender Binder' },
+              { id: 19, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F33d59c77f47445c8a4411180b57f8914?format=webp&width=800&height=1200', alt: 'Pink Wallet Binder' },
+              { id: 20, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3c5faba6283f48b2af1cf8635e109e11?format=webp&width=800&height=1200', alt: 'Blush Pink Binder' },
+              { id: 21, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F686c64d0b5bf4fe081156df176a8db28?format=webp&width=800&height=1200', alt: 'Lavender Wallet' },
+              { id: 22, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F438d128ba67a4c82ad12ab3ce202769f?format=webp&width=800&height=1200', alt: 'Pink Flat Binder' },
+              { id: 23, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F00f7de44e3dc4250bc4ae395a8c5d6ea?format=webp&width=800&height=1200', alt: 'Cream Flat Design' },
+              { id: 24, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F019874c754e34bfba09fab73955e2279?format=webp&width=800&height=1200', alt: 'Binder Interior' },
+              { id: 25, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fe03842bedb3f4e9e8367f042e6fc52fe?format=webp&width=800&height=1200', alt: 'Binder Full Setup' },
+              { id: 26, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F705fe0e593d64692887378da4cd521bb?format=webp&width=800&height=1200', alt: 'Binder Closed' },
+              { id: 27, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1cea14c07f6d46e5b1c65d28ec157384?format=webp&width=800&height=1200', alt: 'Budget Planner Setup' },
+              { id: 28, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fb494f985414240a48ccf0f2340744d43?format=webp&width=800&height=1200', alt: 'Binder with Inserts' },
+              { id: 29, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fa715ea64de274830960d68eb32f014f0?format=webp&width=800&height=1200', alt: 'Premium Binder' },
+              { id: 30, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F46491b0d1f6c4e53af96348e5f32937f?format=webp&width=800&height=1200', alt: 'Binder Collection' },
+            ].map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ y: -4 }}
+                className="relative group overflow-hidden rounded-2xl bg-card border border-primary/10 hover:border-primary/30 transition-all duration-300"
+              >
+                <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -266,7 +338,7 @@ export function ProductsGallery() {
             { label: 'Designs Available', value: '50+' },
             { label: 'Happy Customers', value: '100+' },
             { label: 'Custom Orders', value: '200+' },
-            { label: 'Binder Colors', value: '4+' },
+            { label: 'Binder Colors', value: '30+' },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
