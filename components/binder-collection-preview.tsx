@@ -65,10 +65,10 @@ export function BinderCollectionPreview() {
   }
 
   return (
-    <section className="binder-product-section py-16 md:py-24 bg-background">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="binder-product-section py-12 md:py-24 bg-background">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         {/* Main Product Container */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 lg:gap-16">
           {/* Left Column - Image Gallery */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -99,35 +99,35 @@ export function BinderCollectionPreview() {
               <button
                 onClick={handlePrevImage}
                 type="button"
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-primary p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-primary p-1.5 md:p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95"
                 aria-label="Previous image"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
               </button>
               <button
                 onClick={handleNextImage}
                 type="button"
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-primary p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-primary p-1.5 md:p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95"
                 aria-label="Next image"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
               {/* Image Counter */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-foreground">
+              <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 bg-background/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-foreground">
                 {mainImageIndex + 1} / {binderImages.length}
               </div>
             </div>
 
             {/* Thumbnail Gallery */}
-            <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex gap-1.5 md:gap-2 overflow-x-auto pb-2 snap-x snap-mandatory">
               {binderImages.map((image, index) => (
                 <motion.button
                   key={`thumb-${index}`}
                   onClick={() => setMainImageIndex(index)}
                   whileHover={{ scale: 1.05 }}
                   type="button"
-                  className={`relative flex-shrink-0 aspect-square w-20 md:w-24 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+                  className={`relative flex-shrink-0 aspect-square w-16 md:w-24 rounded-lg md:rounded-xl overflow-hidden border-2 transition-all duration-200 snap-center ${
                     index === mainImageIndex
                       ? 'border-primary shadow-lg'
                       : 'border-primary/20 hover:border-primary/50'
@@ -158,8 +158,8 @@ export function BinderCollectionPreview() {
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
-                      key={i}
-                      className="w-4 h-4 fill-primary text-primary"
+                      key={`star-${i}`}
+                      className="w-3.5 h-3.5 md:w-4 md:h-4 fill-primary text-primary"
                     />
                   ))}
                 </div>
@@ -188,29 +188,29 @@ export function BinderCollectionPreview() {
               <span className="text-xs uppercase tracking-widest font-medium text-primary">
                 Premium Budget Collection
               </span>
-              <h1 className="font-serif text-4xl md:text-5xl text-foreground">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-5xl text-foreground">
                 Premium Budget Binder
               </h1>
-              <p className="text-muted-foreground mt-4">
+              <p className="text-muted-foreground mt-2 md:mt-4 text-sm md:text-base">
                 Elegant leather binder crafted with premium materials and gold-plated hardware for the modern budgeter.
               </p>
             </div>
 
             {/* Price */}
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-serif text-primary">$89.00</span>
-              <span className="text-lg text-muted-foreground line-through">$120.00</span>
-              <span className="ml-2 text-sm font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <span className="text-2xl md:text-4xl font-serif text-primary">$89.00</span>
+              <span className="text-base md:text-lg text-muted-foreground line-through">$120.00</span>
+              <span className="text-xs md:text-sm font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">
                 Save 26%
               </span>
             </div>
 
             {/* Color Selector */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium text-foreground">
+            <div className="space-y-2 md:space-y-3">
+              <label className="text-xs md:text-sm font-medium text-foreground">
                 Color: <span className="text-primary">{colorOptions.find(c => c.id === selectedColor)?.name}</span>
               </label>
-              <div className="flex gap-3">
+              <div className="flex gap-2 md:gap-3">
                 {colorOptions.map((option) => (
                   <motion.button
                     key={`color-${option.id}`}
@@ -222,7 +222,7 @@ export function BinderCollectionPreview() {
                     aria-pressed={selectedColor === option.id}
                   >
                     <div
-                      className={`w-12 h-12 rounded-full border-2 transition-all duration-200 ${
+                      className={`w-10 md:w-12 h-10 md:h-12 rounded-full border-2 transition-all duration-200 ${
                         selectedColor === option.id
                           ? 'border-primary shadow-lg shadow-primary/30'
                           : 'border-primary/30 hover:border-primary/50'
@@ -238,43 +238,43 @@ export function BinderCollectionPreview() {
             </div>
 
             {/* Size Selector */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium text-foreground">Size</label>
-              <div className="space-y-2">
+            <div className="space-y-2 md:space-y-3">
+              <label className="text-xs md:text-sm font-medium text-foreground">Size</label>
+              <div className="space-y-1 md:space-y-2">
                 {sizeOptions.map((option) => (
                   <motion.button
                     key={`size-${option.id}`}
                     onClick={() => setSelectedSize(option.id)}
                     whileHover={{ scale: 1.02 }}
                     type="button"
-                    className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-all duration-200 ${
+                    className={`w-full text-left px-3 md:px-4 py-2 md:py-3 rounded-lg md:rounded-xl border-2 transition-all duration-200 ${
                       selectedSize === option.id
                         ? 'bg-primary/10 border-primary'
                         : 'bg-card border-primary/20 hover:border-primary/50'
                     }`}
                     aria-pressed={selectedSize === option.id}
                   >
-                    <span className="font-medium text-foreground">{option.name}</span>
+                    <span className="font-medium text-foreground text-xs md:text-sm">{option.name}</span>
                   </motion.button>
                 ))}
               </div>
             </div>
 
             {/* Quantity Selector */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium text-foreground">Quantity</label>
-              <div className="flex items-center gap-3 bg-card rounded-xl border-2 border-primary/20 p-2 w-fit">
+            <div className="space-y-2 md:space-y-3">
+              <label className="text-xs md:text-sm font-medium text-foreground">Quantity</label>
+              <div className="flex items-center gap-2 md:gap-3 bg-card rounded-lg md:rounded-xl border-2 border-primary/20 p-1.5 md:p-2 w-fit">
                 <motion.button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   type="button"
-                  className="p-1 hover:bg-primary/10 rounded-lg transition-colors"
+                  className="p-1 hover:bg-primary/10 rounded transition-colors text-lg"
                   aria-label="Decrease quantity"
                 >
                   −
                 </motion.button>
-                <span className="w-8 text-center font-medium text-foreground">
+                <span className="w-6 md:w-8 text-center font-medium text-foreground text-sm md:text-base">
                   {quantity}
                 </span>
                 <motion.button
@@ -282,7 +282,7 @@ export function BinderCollectionPreview() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   type="button"
-                  className="p-1 hover:bg-primary/10 rounded-lg transition-colors"
+                  className="p-1 hover:bg-primary/10 rounded transition-colors text-lg"
                   aria-label="Increase quantity"
                 >
                   +
@@ -291,12 +291,12 @@ export function BinderCollectionPreview() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2 md:gap-3">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="button"
-                className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-medium text-lg transition-all duration-200 hover:shadow-lg hover:shadow-primary/30"
+                className="w-full bg-primary text-primary-foreground py-3 md:py-4 rounded-lg md:rounded-xl font-medium text-base md:text-lg transition-all duration-200 hover:shadow-lg hover:shadow-primary/30 active:scale-95"
               >
                 Add to Cart
               </motion.button>
@@ -304,14 +304,14 @@ export function BinderCollectionPreview() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="button"
-                className="w-full bg-card border-2 border-primary/30 text-primary py-3 rounded-xl font-medium transition-all duration-200 hover:bg-primary/10 hover:border-primary"
+                className="w-full bg-card border-2 border-primary/30 text-primary py-2.5 md:py-3 rounded-lg md:rounded-xl font-medium transition-all duration-200 hover:bg-primary/10 hover:border-primary active:scale-95"
               >
                 Buy Now
               </motion.button>
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-4 py-4 border-t border-b border-primary/10">
+            <div className="grid grid-cols-3 gap-2 md:gap-4 py-3 md:py-4 border-t border-b border-primary/10">
               {[
                 { icon: Zap, label: 'Secure Checkout' },
                 { icon: Package, label: 'Handmade' },
@@ -324,10 +324,10 @@ export function BinderCollectionPreview() {
                     whileHover={{ y: -2 }}
                     className="text-center"
                   >
-                    <div className="flex justify-center mb-2">
-                      <IconComponent className="w-5 h-5 text-primary" />
+                    <div className="flex justify-center mb-1 md:mb-2">
+                      <IconComponent className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                     </div>
-                    <p className="text-xs font-medium text-foreground">
+                    <p className="text-xs font-medium text-foreground leading-tight">
                       {badge.label}
                     </p>
                   </motion.div>
@@ -343,9 +343,9 @@ export function BinderCollectionPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 max-w-3xl mx-auto space-y-3"
+          className="mt-12 md:mt-16 max-w-3xl mx-auto space-y-2 md:space-y-3"
         >
-          <h3 className="text-2xl font-serif text-foreground mb-6">More Information</h3>
+          <h3 className="text-xl md:text-2xl font-serif text-foreground mb-4 md:mb-6">More Information</h3>
           {accordionItems.map((item) => (
             <motion.div
               key={`accordion-${item.id}`}
@@ -359,10 +359,10 @@ export function BinderCollectionPreview() {
                   )
                 }
                 type="button"
-                className="w-full px-6 py-4 flex items-center justify-between hover:bg-primary/5 transition-colors"
+                className="w-full px-4 md:px-6 py-3 md:py-4 flex items-center justify-between hover:bg-primary/5 transition-colors active:bg-primary/5"
                 aria-expanded={expandedAccordion === item.id}
               >
-                <span className="font-medium text-foreground text-left">
+                <span className="font-medium text-foreground text-left text-sm md:text-base">
                   {item.title}
                 </span>
                 <motion.div
@@ -380,7 +380,7 @@ export function BinderCollectionPreview() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="px-6 py-4 border-t border-primary/10 text-muted-foreground text-sm leading-relaxed">
+                <div className="px-4 md:px-6 py-3 md:py-4 border-t border-primary/10 text-muted-foreground text-xs md:text-sm leading-relaxed">
                   {item.content}
                 </div>
               </motion.div>
@@ -394,12 +394,12 @@ export function BinderCollectionPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 pt-16 border-t border-primary/10"
+          className="mt-12 md:mt-20 pt-8 md:pt-16 border-t border-primary/10"
         >
-          <h3 className="text-2xl font-serif text-foreground mb-8">
+          <h3 className="text-xl md:text-2xl font-serif text-foreground mb-4 md:mb-8">
             You Might Also Like
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
             {[
               {
                 title: 'Budget Envelope Inserts',
@@ -422,7 +422,7 @@ export function BinderCollectionPreview() {
                 whileHover={{ y: -4 }}
                 className="group"
               >
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-card border-2 border-primary/20 mb-4">
+                <div className="relative aspect-square rounded-lg md:rounded-2xl overflow-hidden bg-card border-2 border-primary/20 mb-2 md:mb-4">
                   <Image
                     src={product.image}
                     alt={product.title}
@@ -430,10 +430,10 @@ export function BinderCollectionPreview() {
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <h4 className="font-medium text-foreground mb-2">
+                <h4 className="font-medium text-foreground mb-1 md:mb-2 text-sm md:text-base">
                   {product.title}
                 </h4>
-                <p className="text-lg text-primary font-serif">
+                <p className="text-base md:text-lg text-primary font-serif">
                   {product.price}
                 </p>
               </motion.div>
