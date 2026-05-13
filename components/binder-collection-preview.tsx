@@ -67,6 +67,22 @@ export function BinderCollectionPreview() {
   return (
     <section className="binder-product-section py-12 md:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-8 md:mb-12 text-center max-w-2xl mx-auto"
+        >
+          <h2 className="font-noto-sans text-2xl sm:text-3xl md:text-4xl text-foreground mb-2 md:mb-4">
+            <span className="font-signature text-3xl sm:text-4xl md:text-5xl text-primary">Binder Collection</span>
+          </h2>
+          <p className="text-muted-foreground text-sm md:text-base">
+            Explore our premium budget binder with handcrafted leather, elegant design, and functionality built for modern money management.
+          </p>
+        </motion.div>
+
         {/* Main Product Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 lg:gap-16">
           {/* Left Column - Image Gallery */}
@@ -150,7 +166,7 @@ export function BinderCollectionPreview() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col gap-8"
+            className="flex flex-col gap-6 md:gap-8 md:sticky md:top-24 md:h-fit"
           >
             {/* Rating and Wishlist */}
             <div className="flex items-start justify-between gap-4">
@@ -336,6 +352,63 @@ export function BinderCollectionPreview() {
             </div>
           </motion.div>
         </div>
+
+        {/* Customer Reviews Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-12 md:mt-16 max-w-3xl mx-auto mb-12 md:mb-16"
+        >
+          <h3 className="text-xl md:text-2xl font-serif text-foreground mb-6 md:mb-8">Customer Reviews</h3>
+          <div className="space-y-4">
+            {[
+              {
+                name: 'Sarah M.',
+                rating: 5,
+                title: 'Absolutely Beautiful!',
+                text: 'This binder has transformed my budgeting routine. The quality is premium and the design is so elegant. Highly recommend!',
+              },
+              {
+                name: 'Jessica L.',
+                rating: 5,
+                title: 'Perfect for Organization',
+                text: 'The compartments are perfectly sized and the leather feels so luxurious. Worth every penny!',
+              },
+              {
+                name: 'Amanda K.',
+                rating: 5,
+                title: 'Great Customer Service',
+                text: 'Fast shipping, beautiful packaging, and the binder exceeded my expectations. This is now my favorite piece!',
+              },
+            ].map((review, index) => (
+              <motion.div
+                key={`review-${index}`}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-card rounded-lg md:rounded-xl border border-primary/20 p-4 md:p-6"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <p className="font-medium text-foreground text-sm md:text-base">{review.name}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">{review.title}</p>
+                  </div>
+                  <div className="flex gap-0.5">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={`rating-${i}`} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
+                  {review.text}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Accordion Sections */}
         <motion.div
