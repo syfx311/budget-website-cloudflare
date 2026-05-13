@@ -50,6 +50,9 @@ export function Header() {
             <Link href="#portfolio" className="text-muted-foreground hover:text-primary transition-colors">
               Templates
             </Link>
+            <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
+              Products
+            </Link>
             <Link href="#packages" className="text-muted-foreground hover:text-primary transition-colors">
               Packages
             </Link>
@@ -82,19 +85,26 @@ export function Header() {
               className="md:hidden py-4 border-t border-border/50 overflow-hidden"
             >
               <div className="flex flex-col gap-4">
-                {['About', 'How It Works', 'Templates', 'Packages', 'Contact'].map((item, index) => (
+                {[
+                  { label: 'About', href: '#about' },
+                  { label: 'How It Works', href: '#how-it-works' },
+                  { label: 'Templates', href: '#portfolio' },
+                  { label: 'Products', href: '/products' },
+                  { label: 'Packages', href: '#packages' },
+                  { label: 'Contact', href: '#contact' }
+                ].map((item, index) => (
                   <motion.div
-                    key={item}
+                    key={item.label}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
-                      href={`#${item.toLowerCase().replace(' ', '-').replace('templates', 'portfolio')}`}
+                      href={item.href}
                       className="text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      {item}
+                      {item.label}
                     </Link>
                   </motion.div>
                 ))}
