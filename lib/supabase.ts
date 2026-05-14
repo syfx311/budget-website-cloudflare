@@ -4,14 +4,9 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Supabase credentials missing:', {
-    url: supabaseUrl ? 'present' : 'missing',
-    key: supabaseAnonKey ? 'present' : 'missing'
-  })
+  throw new Error('Supabase credentials are not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.')
 }
 
-const supabase = supabaseUrl && supabaseAnonKey
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null
+const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 export { supabase }
