@@ -1,17 +1,16 @@
 'use client'
 
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
   const [message, setMessage] = useState('')
-  const [email, setEmail] = useState('')
 
   useEffect(() => {
     const token = searchParams.get('token')
@@ -22,8 +21,6 @@ export default function VerifyEmailPage() {
       setMessage('Invalid verification link')
       return
     }
-
-    setEmail(emailParam)
 
     // Simulate email verification
     // In production, you would validate the token against your database
@@ -92,5 +89,13 @@ export default function VerifyEmailPage() {
         )}
       </motion.div>
     </div>
+  )
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="text-foreground">Loading...</div></div>}>
+      <VerifyEmailContent />
+    </Suspense>
   )
 }
