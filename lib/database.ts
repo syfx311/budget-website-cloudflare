@@ -78,13 +78,11 @@ export async function createOrder(
     }
 
     // 2. Generate order number
-    const { data: lastOrders } = await supabase
+    const { count } = await supabase
       .from('orders')
-      .select('id')
-      .order('created_at', { ascending: false })
-      .limit(1)
+      .select('id', { count: 'exact', head: true })
 
-    const sequence = lastOrders && lastOrders.length > 0 ? lastOrders.length : 0
+    const sequence = count || 0
     const orderNumber = generateOrderNumber(sequence + 1)
 
     // 3. Create order
