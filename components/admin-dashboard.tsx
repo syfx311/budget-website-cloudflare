@@ -49,6 +49,13 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   const fetchOrders = async () => {
     try {
+      if (!supabase) {
+        console.error('Supabase client is not initialized')
+        setOrders([])
+        setIsLoading(false)
+        return
+      }
+
       const { data, error } = await supabase
         .from('orders')
         .select('*')
@@ -58,6 +65,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       setOrders(data || [])
     } catch (error) {
       console.error('Error fetching orders:', error)
+      setOrders([])
     } finally {
       setIsLoading(false)
     }
