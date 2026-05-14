@@ -1,31 +1,36 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle, AlertCircle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export default function VerifyEmailPage() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
   const [message, setMessage] = useState('')
+  const [email, setEmail] = useState('')
 
   useEffect(() => {
     const token = searchParams.get('token')
-    const email = searchParams.get('email')
+    const emailParam = searchParams.get('email')
 
-    if (!token || !email) {
+    if (!token || !emailParam) {
       setStatus('error')
       setMessage('Invalid verification link')
       return
     }
 
-    // In a real app, you'd verify the token against a database
-    // For now, we'll just show a success message
+    setEmail(emailParam)
+
+    // Simulate email verification
+    // In production, you would validate the token against your database
     setTimeout(() => {
       setStatus('success')
-      setMessage(`Email verified for ${email}`)
-    }, 1000)
+      setMessage(`Email verified for ${emailParam}`)
+    }, 1500)
   }, [searchParams])
 
   return (
@@ -61,7 +66,13 @@ export default function VerifyEmailPage() {
             </motion.div>
             <h1 className="text-2xl font-bold text-foreground mb-2">Email Verified!</h1>
             <p className="text-muted-foreground mb-6">{message}</p>
-            <p className="text-sm text-muted-foreground">Thank you for verifying your email. You can now manage your orders.</p>
+            <p className="text-sm text-muted-foreground mb-8">Thank you for verifying your email. You can now manage your orders.</p>
+            <Button
+              onClick={() => router.push('/')}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-3 font-semibold"
+            >
+              Return Home
+            </Button>
           </>
         )}
 
