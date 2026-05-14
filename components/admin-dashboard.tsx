@@ -3,54 +3,87 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Download, LogOut, Eye, Trash2, Filter, X } from 'lucide-react'
+import {
+  Search,
+  Download,
+  LogOut,
+  Eye,
+  Trash2,
+  X,
+  Mail,
+  CheckCircle,
+  Clock,
+  DollarSign,
+  Truck,
+  MoreVertical,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { OrderDetailModal } from '@/components/order-detail-modal'
 
 interface Order {
-  id: number
+  id: string
+  order_number: string
   package_name: string
   customer_name: string
   customer_email: string
   customer_phone: string | null
   binder_type: string | null
   colors: string | null
-  inserts: string[] | null
+  inserts: string | null
   challenges: string | null
   special_requests: string | null
+  order_status: string
+  payment_status: string
+  total_price: number | null
+  notes: string | null
+  admin_notes: string | null
   created_at: string
-  status?: string
+  updated_at: string
 }
 
 interface AdminDashboardProps {
   onLogout: () => void
 }
 
+const ORDER_STATUSES = [
+  { value: 'pending', label: 'Pending', color: 'bg-yellow-100 text-yellow-800' },
+  { value: 'processing', label: 'Processing', color: 'bg-blue-100 text-blue-800' },
+  { value: 'shipped', label: 'Shipped', color: 'bg-green-100 text-green-800' },
+  { value: 'delivered', label: 'Delivered', color: 'bg-emerald-100 text-emerald-800' },
+  { value: 'cancelled', label: 'Cancelled', color: 'bg-red-100 text-red-800' },
+]
+
+const PAYMENT_STATUSES = [
+  { value: 'unpaid', label: 'Unpaid' },
+  { value: 'paid', label: 'Paid' },
+  { value: 'refunded', label: 'Refunded' },
+]
+
 export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [orders, setOrders] = useState<Order[]>([])
   const [filteredOrders, setFilteredOrders] = useState<Order[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
-  const [filterPackage, setFilterPackage] = useState('')
+  const [filterStatus, setFilterStatus] = useState('')
+  const [filterPayment, setFilterPayment] = useState('')
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false)
+  const [actionInProgress, setActionInProgress] = useState<string | null>(null)
 
   useEffect(() => {
     fetchOrders()
-    // Refresh orders every 30 seconds
     const interval = setInterval(fetchOrders, 30000)
     return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
     filterOrders()
-  }, [orders, searchTerm, filterPackage])
+  }, [orders, searchTerm, filterStatus, filterPayment])
 
   const fetchOrders = async () => {
     try {
       if (!supabase) {
-        console.error('Supabase client is not initialized')
         setOrders([])
         setIsLoading(false)
         return
@@ -78,53 +111,126 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       filtered = filtered.filter(
         order =>
           order.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          order.customer_email.toLowerCase().includes(searchTerm.toLowerCase())
+          order.customer_email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          order.order_number.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 
-    if (filterPackage) {
-      filtered = filtered.filter(order => order.package_name === filterPackage)
+    if (filterStatus) {
+      filtered = filtered.filter(order => order.order_status === filterStatus)
+    }
+
+    if (filterPayment) {
+      filtered = filtered.filter(order => order.payment_status === filterPayment)
     }
 
     setFilteredOrders(filtered)
   }
 
-  const handleDeleteOrder = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this order?')) return
-
+  const handleUpdateOrderStatus = async (orderId: string, newStatus: string) => {
+    setActionInProgress(orderId)
     try {
+      if (!supabase) throw new Error('Database connection failed')
+
+      const { error } = await supabase
+        .from('orders')
+        .update({ order_status: newStatus, updated_at: new Date().toISOString() })
+        .eq('id', orderId)
+
+      if (error) throw error
+      await fetchOrders()
+    } catch (error) {
+      console.error('Error updating order:', error)
+      alert('Failed to update order status')
+    } finally {
+      setActionInProgress(null)
+    }
+  }
+
+  const handleUpdatePaymentStatus = async (orderId: string, newStatus: string) => {
+    setActionInProgress(orderId)
+    try {
+      if (!supabase) throw new Error('Database connection failed')
+
+      const { error } = await supabase
+        .from('orders')
+        .update({ payment_status: newStatus, updated_at: new Date().toISOString() })
+        .eq('id', orderId)
+
+      if (error) throw error
+      await fetchOrders()
+    } catch (error) {
+      console.error('Error updating payment:', error)
+      alert('Failed to update payment status')
+    } finally {
+      setActionInProgress(null)
+    }
+  }
+
+  const handleResendEmail = async (orderId: string, emailType: 'customer_confirmation' | 'admin_notification') => {
+    setActionInProgress(`${orderId}-${emailType}`)
+    try {
+      const response = await fetch(`/api/orders/${orderId}/resend-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ emailType }),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Failed to resend email')
+      }
+
+      alert(`${emailType.replace(/_/g, ' ')} email sent successfully`)
+    } catch (error) {
+      console.error('Error resending email:', error)
+      alert(`Failed to resend email: ${error instanceof Error ? error.message : 'Unknown error'}`)
+    } finally {
+      setActionInProgress(null)
+    }
+  }
+
+  const handleDeleteOrder = async (orderId: string) => {
+    if (!confirm('Are you sure you want to delete this order? This cannot be undone.')) return
+
+    setActionInProgress(orderId)
+    try {
+      if (!supabase) throw new Error('Database connection failed')
+
       const { error } = await supabase
         .from('orders')
         .delete()
-        .eq('id', id)
+        .eq('id', orderId)
 
       if (error) throw error
-      setOrders(orders.filter(o => o.id !== id))
+      setOrders(orders.filter(o => o.id !== orderId))
+      alert('Order deleted successfully')
     } catch (error) {
       console.error('Error deleting order:', error)
       alert('Failed to delete order')
+    } finally {
+      setActionInProgress(null)
     }
   }
 
   const handleExportCSV = () => {
-    const headers = ['ID', 'Package', 'Name', 'Email', 'Phone', 'Binder Type', 'Colors', 'Inserts', 'Challenges', 'Special Requests', 'Date']
+    const headers = ['Order Number', 'Date', 'Name', 'Email', 'Phone', 'Package', 'Binder Type', 'Order Status', 'Payment Status', 'Total Price']
     const rows = filteredOrders.map(order => [
-      order.id,
-      order.package_name,
+      order.order_number,
+      new Date(order.created_at).toLocaleDateString(),
       order.customer_name,
       order.customer_email,
       order.customer_phone || '',
+      order.package_name,
       order.binder_type || '',
-      order.colors || '',
-      Array.isArray(order.inserts) ? order.inserts.join('; ') : '',
-      order.challenges || '',
-      order.special_requests || '',
-      new Date(order.created_at).toLocaleDateString()
+      order.order_status,
+      order.payment_status,
+      order.total_price || '0',
     ])
 
     const csv = [
       headers.join(','),
-      ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')),
     ].join('\n')
 
     const blob = new Blob([csv], { type: 'text/csv' })
@@ -138,7 +244,13 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     document.body.removeChild(a)
   }
 
-  const uniquePackages = Array.from(new Set(orders.map(o => o.package_name)))
+  const getStatusColor = (status: string) => {
+    const statusObj = ORDER_STATUSES.find(s => s.value === status)
+    return statusObj?.color || 'bg-gray-100 text-gray-800'
+  }
+
+  const pendingCount = orders.filter(o => o.order_status === 'pending').length
+  const unpaidCount = orders.filter(o => o.payment_status === 'unpaid').length
 
   return (
     <div className="min-h-screen bg-background">
@@ -148,20 +260,64 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         animate={{ opacity: 1, y: 0 }}
         className="sticky top-0 z-40 bg-card border-b border-primary/20 shadow-sm"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Orders Dashboard</h1>
-            <p className="text-sm text-muted-foreground">
-              {filteredOrders.length} of {orders.length} orders
-            </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">Orders Dashboard</h1>
+              <p className="text-sm text-muted-foreground">
+                Manage {orders.length} total orders
+              </p>
+            </div>
+            <button
+              onClick={onLogout}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors font-medium"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
+            </button>
           </div>
-          <button
-            onClick={onLogout}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
-          >
-            <LogOut className="w-4 h-4" />
-            Logout
-          </button>
+
+          {/* Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-background rounded-lg p-4 border border-primary/20">
+              <div className="flex items-center gap-3">
+                <Clock className="w-5 h-5 text-yellow-600" />
+                <div>
+                  <p className="text-xs text-muted-foreground">Pending Orders</p>
+                  <p className="text-2xl font-bold text-foreground">{pendingCount}</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-background rounded-lg p-4 border border-primary/20">
+              <div className="flex items-center gap-3">
+                <DollarSign className="w-5 h-5 text-orange-600" />
+                <div>
+                  <p className="text-xs text-muted-foreground">Unpaid Orders</p>
+                  <p className="text-2xl font-bold text-foreground">{unpaidCount}</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-background rounded-lg p-4 border border-primary/20">
+              <div className="flex items-center gap-3">
+                <Truck className="w-5 h-5 text-blue-600" />
+                <div>
+                  <p className="text-xs text-muted-foreground">Total Orders</p>
+                  <p className="text-2xl font-bold text-foreground">{orders.length}</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-background rounded-lg p-4 border border-primary/20">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 text-green-600" />
+                <div>
+                  <p className="text-xs text-muted-foreground">Delivered</p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {orders.filter(o => o.order_status === 'delivered').length}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -170,50 +326,72 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col md:flex-row gap-4 mb-6"
+          className="space-y-4 mb-6"
         >
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search by name or email..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-card border-primary/20 rounded-full"
-            />
+          {/* Search and Filters */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="relative md:col-span-2">
+              <Search className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search by name, email, or order number..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-card border-primary/20 rounded-full"
+              />
+            </div>
+
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="px-4 py-2 rounded-full border-2 border-primary/20 bg-card text-foreground focus:outline-none focus:border-primary transition-colors"
+            >
+              <option value="">All Statuses</option>
+              {ORDER_STATUSES.map(status => (
+                <option key={status.value} value={status.value}>
+                  {status.label}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={filterPayment}
+              onChange={(e) => setFilterPayment(e.target.value)}
+              className="px-4 py-2 rounded-full border-2 border-primary/20 bg-card text-foreground focus:outline-none focus:border-primary transition-colors"
+            >
+              <option value="">All Payments</option>
+              {PAYMENT_STATUSES.map(status => (
+                <option key={status.value} value={status.value}>
+                  {status.label}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <select
-            value={filterPackage}
-            onChange={(e) => setFilterPackage(e.target.value)}
-            className="px-4 py-2 rounded-full border-2 border-primary/20 bg-card text-foreground focus:outline-none focus:border-primary transition-colors"
-          >
-            <option value="">All Packages</option>
-            {uniquePackages.map(pkg => (
-              <option key={pkg} value={pkg}>{pkg}</option>
-            ))}
-          </select>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-2">
+            {(searchTerm || filterStatus || filterPayment) && (
+              <button
+                onClick={() => {
+                  setSearchTerm('')
+                  setFilterStatus('')
+                  setFilterPayment('')
+                }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+              >
+                <X className="w-4 h-4" />
+                Clear Filters
+              </button>
+            )}
 
-          {(searchTerm || filterPackage) && (
-            <button
-              onClick={() => {
-                setSearchTerm('')
-                setFilterPackage('')
-              }}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+            <Button
+              onClick={handleExportCSV}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full flex items-center gap-2"
             >
-              <X className="w-4 h-4" />
-              Clear
-            </button>
-          )}
-
-          <Button
-            onClick={handleExportCSV}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full flex items-center gap-2"
-          >
-            <Download className="w-4 h-4" />
-            Export CSV
-          </Button>
+              <Download className="w-4 h-4" />
+              Export CSV
+            </Button>
+          </div>
         </motion.div>
 
         {/* Orders Table */}
@@ -222,8 +400,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             Loading orders...
           </div>
         ) : filteredOrders.length === 0 ? (
-          <div className="text-center py-12 text-muted-foreground">
-            No orders found
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">
+              {orders.length === 0 ? 'No orders yet' : 'No orders match your filters'}
+            </p>
           </div>
         ) : (
           <motion.div
@@ -231,15 +411,16 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             animate={{ opacity: 1 }}
             className="overflow-x-auto rounded-2xl border border-primary/20 bg-card shadow-sm"
           >
-            <table className="w-full">
+            <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-primary/20 bg-primary/5">
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Date</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Name</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Email</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Package</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Binder</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Actions</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Order #</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Date</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Customer</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Package</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Order Status</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Payment</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -253,41 +434,94 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       transition={{ delay: index * 0.05 }}
                       className="border-b border-primary/10 hover:bg-primary/5 transition-colors"
                     >
-                      <td className="px-6 py-4 text-sm text-foreground whitespace-nowrap">
+                      <td className="px-6 py-4 font-mono font-semibold text-primary">
+                        {order.order_number}
+                      </td>
+                      <td className="px-6 py-4 text-muted-foreground">
                         {new Date(order.created_at).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 text-sm text-foreground font-medium">
-                        {order.customer_name}
+                      <td className="px-6 py-4">
+                        <div>
+                          <p className="font-medium text-foreground">{order.customer_name}</p>
+                          <p className="text-xs text-muted-foreground">{order.customer_email}</p>
+                        </div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-muted-foreground">
-                        {order.customer_email}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-foreground">
-                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
-                          {order.package_name}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-muted-foreground">
-                        {order.binder_type || '-'}
-                      </td>
-                      <td className="px-6 py-4 text-sm flex gap-2">
-                        <button
-                          onClick={() => {
-                            setSelectedOrder(order)
-                            setIsDetailModalOpen(true)
-                          }}
-                          className="p-2 hover:bg-primary/20 rounded-lg text-primary transition-colors"
-                          title="View details"
+                      <td className="px-6 py-4 text-foreground">{order.package_name}</td>
+                      <td className="px-6 py-4">
+                        <select
+                          value={order.order_status}
+                          onChange={(e) => handleUpdateOrderStatus(order.id, e.target.value)}
+                          disabled={actionInProgress === order.id}
+                          className={`px-3 py-1 rounded-full text-xs font-semibold border-0 cursor-pointer ${getStatusColor(order.order_status)} focus:outline-none`}
                         >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteOrder(order.id)}
-                          className="p-2 hover:bg-destructive/20 rounded-lg text-destructive transition-colors"
-                          title="Delete order"
+                          {ORDER_STATUSES.map(status => (
+                            <option key={status.value} value={status.value}>
+                              {status.label}
+                            </option>
+                          ))}
+                        </select>
+                      </td>
+                      <td className="px-6 py-4">
+                        <select
+                          value={order.payment_status}
+                          onChange={(e) => handleUpdatePaymentStatus(order.id, e.target.value)}
+                          disabled={actionInProgress === order.id}
+                          className="px-3 py-1 rounded-full text-xs font-semibold border-2 border-primary/20 bg-background cursor-pointer focus:outline-none"
                         >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                          {PAYMENT_STATUSES.map(status => (
+                            <option key={status.value} value={status.value}>
+                              {status.label}
+                            </option>
+                          ))}
+                        </select>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex gap-2 items-center">
+                          <button
+                            onClick={() => {
+                              setSelectedOrder(order)
+                              setIsDetailModalOpen(true)
+                            }}
+                            title="View details"
+                            className="p-2 hover:bg-primary/20 rounded-lg text-primary transition-colors"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <div className="relative group">
+                            <button
+                              title="More actions"
+                              className="p-2 hover:bg-primary/20 rounded-lg text-primary transition-colors"
+                            >
+                              <MoreVertical className="w-4 h-4" />
+                            </button>
+                            <div className="absolute right-0 mt-1 w-48 bg-card border border-primary/20 rounded-lg shadow-lg hidden group-hover:block z-50">
+                              <button
+                                onClick={() => handleResendEmail(order.id, 'customer_confirmation')}
+                                disabled={actionInProgress?.startsWith(order.id)}
+                                className="w-full text-left px-4 py-2 hover:bg-primary/10 text-sm flex items-center gap-2 border-b border-primary/10"
+                              >
+                                <Mail className="w-4 h-4" />
+                                Resend Customer Email
+                              </button>
+                              <button
+                                onClick={() => handleResendEmail(order.id, 'admin_notification')}
+                                disabled={actionInProgress?.startsWith(order.id)}
+                                className="w-full text-left px-4 py-2 hover:bg-primary/10 text-sm flex items-center gap-2 border-b border-primary/10"
+                              >
+                                <Mail className="w-4 h-4" />
+                                Resend Admin Email
+                              </button>
+                              <button
+                                onClick={() => handleDeleteOrder(order.id)}
+                                disabled={actionInProgress === order.id}
+                                className="w-full text-left px-4 py-2 hover:bg-destructive/10 text-sm text-destructive flex items-center gap-2"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                                Delete Order
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                     </motion.tr>
                   ))}
@@ -296,6 +530,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </table>
           </motion.div>
         )}
+
+        <p className="text-xs text-muted-foreground mt-4">
+          Showing {filteredOrders.length} of {orders.length} orders
+        </p>
       </div>
 
       {/* Detail Modal */}
@@ -304,6 +542,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
           isOpen={isDetailModalOpen}
           onClose={() => setIsDetailModalOpen(false)}
           order={selectedOrder}
+          onOrderUpdated={fetchOrders}
         />
       )}
     </div>

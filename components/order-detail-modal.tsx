@@ -1,29 +1,88 @@
 'use client'
 
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Mail, Phone, Package, Heart } from 'lucide-react'
+import { X, Mail, Phone, Package, MapPin, AlertCircle, Save } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 interface Order {
-  id: number
+  id: string
+  order_number: string
   package_name: string
   customer_name: string
   customer_email: string
   customer_phone: string | null
   binder_type: string | null
   colors: string | null
-  inserts: string[] | null
+  inserts: string | null
   challenges: string | null
   special_requests: string | null
+  order_status: string
+  payment_status: string
+  total_price: number | null
+  notes: string | null
+  admin_notes: string | null
   created_at: string
+  updated_at: string
 }
 
 interface OrderDetailModalProps {
   isOpen: boolean
   onClose: () => void
   order: Order
+  onOrderUpdated?: () => void
 }
 
-export function OrderDetailModal({ isOpen, onClose, order }: OrderDetailModalProps) {
+export function OrderDetailModal({ isOpen, onClose, order, onOrderUpdated }: OrderDetailModalProps) {
+  const [adminNotes, setAdminNotes] = useState(order.admin_notes || '')
+  const [isSaving, setIsSaving] = useState(false)
+  const [saveMessage, setSaveMessage] = useState('')
+
+  const handleSaveNotes = async () => {
+    setIsSaving(true)
+    setSaveMessage('')
+
+    try {
+      if (!supabase) throw new Error('Database connection failed')
+
+      const { error } = await supabase
+        .from('orders')
+        .update({
+          admin_notes: adminNotes,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', order.id)
+
+      if (error) throw error
+
+      setSaveMessage('Notes saved successfully')
+      setTimeout(() => setSaveMessage(''), 2000)
+
+      if (onOrderUpdated) {
+        onOrderUpdated()
+      }
+    } catch (error) {
+      console.error('Error saving notes:', error)
+      setSaveMessage('Failed to save notes')
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const getStatusBadgeColor = (status: string) => {
+    const colors: Record<string, string> = {
+      pending: 'bg-yellow-100 text-yellow-800',
+      processing: 'bg-blue-100 text-blue-800',
+      shipped: 'bg-green-100 text-green-800',
+      delivered: 'bg-emerald-100 text-emerald-800',
+      cancelled: 'bg-red-100 text-red-800',
+      unpaid: 'bg-orange-100 text-orange-800',
+      paid: 'bg-green-100 text-green-800',
+      refunded: 'bg-gray-100 text-gray-800',
+    }
+    return colors[status] || 'bg-gray-100 text-gray-800'
+  }
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -43,130 +102,168 @@ export function OrderDetailModal({ isOpen, onClose, order }: OrderDetailModalPro
           >
             {/* Header */}
             <div className="sticky top-0 bg-gradient-to-r from-primary/10 to-rose-100/10 border-b border-primary/20 px-8 py-6 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-foreground">Order Details</h2>
+              <div>
+                <h2 className="text-2xl font-bold text-foreground">{order.order_number}</h2>
+                <p className="text-sm text-muted-foreground">
+                  {new Date(order.created_at).toLocaleDateString()} at {new Date(order.created_at).toLocaleTimeString()}
+                </p>
+              </div>
               <button
                 onClick={onClose}
                 className="p-2 hover:bg-primary/10 rounded-full transition-colors"
               >
-                <X className="w-5 h-5 text-foreground" />
+                <X className="w-6 h-6 text-foreground" />
               </button>
             </div>
 
             {/* Content */}
-            <div className="px-8 py-8 space-y-8">
-              {/* Order ID & Date */}
-              <div className="flex justify-between items-start pb-6 border-b border-primary/10">
+            <div className="px-8 py-6 space-y-6">
+              {/* Status Section */}
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Order ID</p>
-                  <p className="text-lg font-semibold text-foreground">#{order.id}</p>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">Order Status</p>
+                  <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${getStatusBadgeColor(order.order_status)}`}>
+                    {order.order_status.charAt(0).toUpperCase() + order.order_status.slice(1)}
+                  </span>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-muted-foreground mb-1">Order Date</p>
-                  <p className="text-lg font-semibold text-foreground">
-                    {new Date(order.created_at).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
-                  </p>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">Payment Status</p>
+                  <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${getStatusBadgeColor(order.payment_status)}`}>
+                    {order.payment_status.charAt(0).toUpperCase() + order.payment_status.slice(1)}
+                  </span>
                 </div>
               </div>
 
-              {/* Package */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
+              {/* Customer Information */}
+              <div className="space-y-3 border-t border-primary/20 pt-6">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
                   <Package className="w-5 h-5 text-primary" />
-                  <h3 className="text-lg font-semibold text-foreground">Package</h3>
-                </div>
-                <div className="px-4 py-3 rounded-xl bg-primary/5 border border-primary/20">
-                  <p className="font-semibold text-foreground">{order.package_name}</p>
-                </div>
-              </div>
+                  Customer Information
+                </h3>
 
-              {/* Customer Info */}
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-4">Customer Information</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3 p-4 rounded-xl bg-background/50 border border-primary/10">
-                    <div className="flex-1">
-                      <p className="text-sm text-muted-foreground mb-1">Full Name</p>
-                      <p className="font-semibold text-foreground">{order.customer_name}</p>
-                    </div>
+                <div className="space-y-2 text-sm">
+                  <div>
+                    <p className="text-muted-foreground text-xs mb-1">Name</p>
+                    <p className="text-foreground font-medium">{order.customer_name}</p>
                   </div>
-                  <div className="flex items-start gap-3 p-4 rounded-xl bg-background/50 border border-primary/10">
-                    <Mail className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <div className="flex-1">
-                      <p className="text-sm text-muted-foreground mb-1">Email</p>
-                      <a href={`mailto:${order.customer_email}`} className="font-semibold text-primary hover:underline">
-                        {order.customer_email}
+
+                  <div className="flex items-start gap-2">
+                    <Mail className="w-4 h-4 text-primary mt-1" />
+                    <a href={`mailto:${order.customer_email}`} className="text-primary hover:underline">
+                      {order.customer_email}
+                    </a>
+                  </div>
+
+                  {order.customer_phone && (
+                    <div className="flex items-start gap-2">
+                      <Phone className="w-4 h-4 text-primary mt-1" />
+                      <a href={`tel:${order.customer_phone}`} className="text-primary hover:underline">
+                        {order.customer_phone}
                       </a>
                     </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Order Details */}
+              <div className="space-y-3 border-t border-primary/20 pt-6">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <Package className="w-5 h-5 text-primary" />
+                  Order Details
+                </h3>
+
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Package:</span>
+                    <span className="font-medium text-foreground">{order.package_name}</span>
                   </div>
-                  {order.customer_phone && (
-                    <div className="flex items-start gap-3 p-4 rounded-xl bg-background/50 border border-primary/10">
-                      <Phone className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                      <div className="flex-1">
-                        <p className="text-sm text-muted-foreground mb-1">Phone</p>
-                        <a href={`tel:${order.customer_phone}`} className="font-semibold text-primary hover:underline">
-                          {order.customer_phone}
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
 
-              {/* Customization Details */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Heart className="w-5 h-5 text-primary" />
-                  <h3 className="text-lg font-semibold text-foreground">Customization</h3>
-                </div>
-                <div className="space-y-3">
                   {order.binder_type && (
-                    <div className="p-3 rounded-xl bg-background/50 border border-primary/10">
-                      <p className="text-sm text-muted-foreground">Binder Type</p>
-                      <p className="font-semibold text-foreground">{order.binder_type}</p>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Binder Type:</span>
+                      <span className="font-medium text-foreground">{order.binder_type}</span>
                     </div>
                   )}
+
                   {order.colors && (
-                    <div className="p-3 rounded-xl bg-background/50 border border-primary/10">
-                      <p className="text-sm text-muted-foreground">Colors</p>
-                      <p className="font-semibold text-foreground">{order.colors}</p>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Colors:</span>
+                      <span className="font-medium text-foreground">{order.colors}</span>
                     </div>
                   )}
-                  {order.inserts && Array.isArray(order.inserts) && order.inserts.length > 0 && (
-                    <div className="p-3 rounded-xl bg-background/50 border border-primary/10">
-                      <p className="text-sm text-muted-foreground mb-2">Inserts</p>
-                      <div className="flex flex-wrap gap-2">
-                        {order.inserts.map(insert => (
-                          <span key={insert} className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                            {insert}
-                          </span>
-                        ))}
-                      </div>
+
+                  {order.inserts && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Inserts:</span>
+                      <span className="font-medium text-foreground">{order.inserts}</span>
                     </div>
                   )}
-                  {order.challenges && (
-                    <div className="p-3 rounded-xl bg-background/50 border border-primary/10">
-                      <p className="text-sm text-muted-foreground">Challenge Type</p>
-                      <p className="font-semibold text-foreground">{order.challenges}</p>
+
+                  {order.total_price && (
+                    <div className="flex justify-between pt-2 border-t border-primary/20">
+                      <span className="text-muted-foreground font-semibold">Total Price:</span>
+                      <span className="font-bold text-primary">₱{order.total_price.toLocaleString()}</span>
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Special Requests */}
-              {order.special_requests && (
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">Special Requests</h3>
-                  <div className="p-4 rounded-xl bg-background/50 border border-primary/10">
-                    <p className="text-foreground whitespace-pre-wrap">{order.special_requests}</p>
+              {/* Customer Requests */}
+              {(order.challenges || order.special_requests) && (
+                <div className="space-y-3 border-t border-primary/20 pt-6">
+                  <h3 className="font-semibold text-foreground flex items-center gap-2">
+                    <AlertCircle className="w-5 h-5 text-primary" />
+                    Customer Requests
+                  </h3>
+
+                  <div className="space-y-3 text-sm bg-primary/5 p-4 rounded-lg">
+                    {order.challenges && (
+                      <div>
+                        <p className="text-muted-foreground mb-1 font-medium">Challenges:</p>
+                        <p className="text-foreground">{order.challenges}</p>
+                      </div>
+                    )}
+
+                    {order.special_requests && (
+                      <div>
+                        <p className="text-muted-foreground mb-1 font-medium">Special Requests:</p>
+                        <p className="text-foreground">{order.special_requests}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
+
+              {/* Admin Notes */}
+              <div className="space-y-3 border-t border-primary/20 pt-6">
+                <h3 className="font-semibold text-foreground">Admin Notes</h3>
+
+                <textarea
+                  value={adminNotes}
+                  onChange={(e) => setAdminNotes(e.target.value)}
+                  placeholder="Add internal notes about this order (not visible to customer)..."
+                  className="w-full h-24 p-3 bg-background border-2 border-primary/20 rounded-lg text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none resize-none"
+                />
+
+                {saveMessage && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`text-sm ${saveMessage.includes('successfully') ? 'text-green-600' : 'text-red-600'}`}
+                  >
+                    {saveMessage}
+                  </motion.p>
+                )}
+
+                <button
+                  onClick={handleSaveNotes}
+                  disabled={isSaving}
+                  className="w-full px-4 py-2 bg-primary hover:bg-primary/90 disabled:bg-primary/50 text-primary-foreground rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors"
+                >
+                  <Save className="w-4 h-4" />
+                  {isSaving ? 'Saving...' : 'Save Notes'}
+                </button>
+              </div>
             </div>
           </motion.div>
         </motion.div>
