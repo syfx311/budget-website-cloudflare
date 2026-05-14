@@ -36,42 +36,80 @@ export async function sendEmail({ to, subject, html }: SendEmailProps) {
 }
 
 export const emailTemplates = {
-  orderConfirmation: (customerName: string, orderDetails: string) => `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center; color: white; border-radius: 8px 8px 0 0;">
-        <h1 style="margin: 0;">Order Confirmation</h1>
-      </div>
-      <div style="padding: 20px; background: #f9f9f9;">
-        <p>Hi ${customerName},</p>
-        <p>Thank you for your order! We've received your order and will process it shortly.</p>
-        <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
-          <h3 style="margin-top: 0;">Order Details</h3>
-          ${orderDetails}
+  thankYou: (customerName: string, orderDetails: string, packageName: string) => `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body { margin: 0; padding: 0; background: #f9f7f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; }
+        .header { background: linear-gradient(135deg, #d4a5a5 0%, #c9888d 100%); padding: 40px 20px; text-align: center; }
+        .header h1 { margin: 0; color: white; font-size: 32px; font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.5px; }
+        .header p { margin: 8px 0 0 0; color: rgba(255,255,255,0.9); font-size: 14px; font-family: 'Poppins', sans-serif; }
+        .content { padding: 40px; font-family: 'Poppins', sans-serif; color: #35302e; }
+        .greeting { font-size: 18px; margin: 0 0 20px 0; }
+        .greeting strong { color: #d4a5a5; }
+        .message { font-size: 15px; line-height: 1.6; color: #555; margin: 20px 0; }
+        .order-box { background: #f9f7f5; border-left: 4px solid #d4a5a5; padding: 20px; border-radius: 4px; margin: 30px 0; }
+        .order-box h3 { margin: 0 0 15px 0; color: #d4a5a5; font-size: 16px; }
+        .order-details p { margin: 8px 0; font-size: 14px; }
+        .order-details strong { color: #35302e; }
+        .cta-text { margin: 30px 0; text-align: center; }
+        .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e8dcd9; }
+        .signature p { margin: 0; font-size: 14px; color: #555; }
+        .signature strong { color: #d4a5a5; }
+        .footer { background: #f9f7f5; padding: 20px; text-align: center; font-size: 12px; color: #888; border-top: 1px solid #e8dcd9; }
+        .divider { height: 2px; background: linear-gradient(to right, transparent, #d4a5a5, transparent); margin: 30px 0; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>✨ Thank You!</h1>
+          <p>We're so excited to bring your vision to life</p>
         </div>
-        <p>We'll send you an email update once your order is shipped.</p>
-        <p>Best regards,<br/>Mommy Louise's Budget PH Team</p>
-      </div>
-      <div style="padding: 20px; background: #f0f0f0; text-align: center; color: #666; font-size: 12px; border-radius: 0 0 8px 8px;">
-        <p style="margin: 0;">If you have any questions, please reply to this email.</p>
-      </div>
-    </div>
-  `,
 
-  emailVerification: (verificationLink: string) => `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center; color: white; border-radius: 8px 8px 0 0;">
-        <h1 style="margin: 0;">Verify Your Email</h1>
-      </div>
-      <div style="padding: 20px; background: #f9f9f9;">
-        <p>Thank you for placing an order with us!</p>
-        <p>Please verify your email address by clicking the button below:</p>
-        <div style="text-align: center; margin: 30px 0;">
-          <a href="${verificationLink}" style="background: #667eea; color: white; padding: 12px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold;">Verify Email</a>
+        <div class="content">
+          <p class="greeting">Hi <strong>${customerName}</strong>,</p>
+
+          <p class="message">
+            We've received your order and we're thrilled you've chosen Mommy Louise's Budget PH! Your customized <strong>${packageName}</strong> is going to be absolutely beautiful.
+          </p>
+
+          <div class="order-box">
+            <h3>📦 Your Order Details</h3>
+            <div class="order-details">
+              ${orderDetails}
+            </div>
+          </div>
+
+          <p class="message">
+            We'll be carefully crafting your order and will keep you updated every step of the way. You can expect to hear from us soon with exciting updates about your custom creation.
+          </p>
+
+          <p class="message">
+            If you have any questions or special instructions, don't hesitate to reply to this email. We're here to help make your experience amazing!
+          </p>
+
+          <div class="divider"></div>
+
+          <div class="signature">
+            <p>With love & gratitude,</p>
+            <p><strong>Mommy Louise's Budget PH Team</strong></p>
+            <p style="margin-top: 10px; font-size: 12px;">Making budgeting beautiful, one binder at a time ✨</p>
+          </div>
         </div>
-        <p style="color: #666; font-size: 12px;">Or copy this link: <br/>${verificationLink}</p>
-        <p>This link expires in 24 hours.</p>
+
+        <div class="footer">
+          <p style="margin: 0;">Questions? Reply to this email or visit our website for more info.</p>
+          <p style="margin: 8px 0 0 0;">© 2024 Mommy Louise's Budget PH. All rights reserved.</p>
+        </div>
       </div>
-    </div>
+    </body>
+    </html>
   `,
 
   adminNotification: (customerName: string, customerEmail: string, packageName: string, orderDetails: string) => `

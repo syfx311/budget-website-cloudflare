@@ -1,7 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { sendEmail, emailTemplates } from '@/lib/email'
 import { NextRequest, NextResponse } from 'next/server'
-import crypto from 'crypto'
 
 export async function POST(request: NextRequest) {
   try {
@@ -72,10 +71,10 @@ export async function POST(request: NextRequest) {
 
     const orderId = data?.[0]?.id
 
-    // Send order confirmation email to customer
+    // Send branded thank you email to customer
     const orderDetailsHtml = `
       <p><strong>Package:</strong> ${packageName}</p>
-      <p><strong>Binder Type:</strong> ${binderType || 'Not specified'}</p>
+      ${binderType ? `<p><strong>Binder Type:</strong> ${binderType}</p>` : ''}
       ${colors ? `<p><strong>Colors:</strong> ${colors}</p>` : ''}
       ${inserts && inserts.length > 0 ? `<p><strong>Inserts:</strong> ${inserts.join(', ')}</p>` : ''}
       ${challenges ? `<p><strong>Challenges:</strong> ${challenges}</p>` : ''}
@@ -84,18 +83,8 @@ export async function POST(request: NextRequest) {
 
     await sendEmail({
       to: customerEmail,
-      subject: `Order Confirmation - ${packageName}`,
-      html: emailTemplates.orderConfirmation(customerName, orderDetailsHtml),
-    })
-
-    // Send email verification link
-    const verificationToken = crypto.randomBytes(32).toString('hex')
-    const verificationLink = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/verify-email?token=${verificationToken}&email=${encodeURIComponent(customerEmail)}`
-
-    await sendEmail({
-      to: customerEmail,
-      subject: 'Verify Your Email - Mommy Louise\'s Budget PH',
-      html: emailTemplates.emailVerification(verificationLink),
+      subject: `Thank You for Your Order - ${packageName}`,
+      html: emailTemplates.thankYou(customerName, orderDetailsHtml, packageName),
     })
 
     // Send admin notification
