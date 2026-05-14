@@ -26,15 +26,10 @@ export async function POST(
       )
     }
 
-    // Fetch order and customer details
+    // Fetch order details
     const { data: order, error: orderError } = await supabase
       .from('orders')
-      .select(
-        `
-        *,
-        customers(id, name, email, phone)
-      `
-      )
+      .select('*')
       .eq('id', orderId)
       .single()
 
@@ -45,7 +40,19 @@ export async function POST(
       )
     }
 
-    const customer = order.customers as { name: string; email: string; phone: string | null }
+    // Fetch customer details
+    const { data: customer, error: customerError } = await supabase
+      .from('customers')
+      .select('id, name, email, phone')
+      .eq('id', order.customer_id)
+      .single()
+
+    if (customerError || !customer) {
+      return NextResponse.json(
+        { error: 'Customer not found' },
+        { status: 404 }
+      )
+    }
 
     let recipientEmail: string
     let subject: string
