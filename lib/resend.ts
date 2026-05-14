@@ -1,10 +1,18 @@
 import { Resend } from 'resend'
 
-if (!process.env.RESEND_API_KEY) {
-  console.warn('RESEND_API_KEY is not configured')
-}
+let resendClient: any = null
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() {
+  if (!resendClient) {
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      console.warn('RESEND_API_KEY is not configured')
+      return null
+    }
+    resendClient = new Resend(apiKey)
+  }
+  return resendClient
+}
 
 export interface EmailLogData {
   orderId: string
@@ -30,7 +38,15 @@ export async function sendEmail({
       }
     }
 
-    const response = await resend.emails.send({
+    const client = getResend()
+    if (!client) {
+      return {
+        success: false,
+        error: 'Resend API key not configured',
+      }
+    }
+
+    const response = await client.emails.send({
       from: 'Mommy Louise Budget PH <orders@resend.dev>',
       to,
       subject,
