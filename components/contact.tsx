@@ -56,16 +56,42 @@ function TikTokLogo({ className = '' }: { className?: string }) {
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
-    setSubmitted(true)
+    setIsSubmitting(true)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit contact form')
+      }
+
+      setSubmitted(true)
+      setTimeout(() => {
+        setSubmitted(false)
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+        })
+      }, 3000)
+    } catch (error) {
+      console.error('Contact submission error:', error)
+      alert('Failed to submit contact form. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -215,13 +241,23 @@ export function Contact() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full"
                       size="lg"
                     >
-                      <Send className="h-4 w-4 mr-2" />
-                      Start My Budget Journey
+                      {isSubmitting ? (
+                        <>
+                          <span className="inline-block animate-spin mr-2">⏳</span>
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4 mr-2" />
+                          Start My Budget Journey
+                        </>
+                      )}
                     </Button>
                   </motion.div>
                 </div>

@@ -16,6 +16,7 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
   const [step, setStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     customerName: '',
     customerEmail: '',
@@ -69,6 +70,7 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
     }
 
     setIsSubmitting(true)
+    setSubmitError(null)
     try {
       const response = await fetch('/api/orders', {
         method: 'POST',
@@ -79,8 +81,10 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
         })
       })
 
+      const data = await response.json()
+
       if (!response.ok) {
-        throw new Error('Failed to submit order')
+        throw new Error(data.error || 'Failed to submit order')
       }
 
       setSubmitSuccess(true)
@@ -88,6 +92,7 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
         onClose()
         setStep(1)
         setSubmitSuccess(false)
+        setSubmitError(null)
         setFormData({
           customerName: '',
           customerEmail: '',
@@ -100,8 +105,9 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
         })
       }, 2000)
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to submit order. Please try again.'
       console.error('Order submission error:', error)
-      alert('Failed to submit order. Please try again.')
+      setSubmitError(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
@@ -139,6 +145,19 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
 
             {/* Content */}
             <div className="px-6 md:px-8 py-8">
+              {submitError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-lg flex items-start gap-3"
+                >
+                  <div className="text-red-600 font-semibold">⚠</div>
+                  <div>
+                    <p className="text-sm font-semibold text-red-900">Error</p>
+                    <p className="text-sm text-red-800 mt-1">{submitError}</p>
+                  </div>
+                </motion.div>
+              )}
               <AnimatePresence mode="wait">
                 {submitSuccess ? (
                   <motion.div
