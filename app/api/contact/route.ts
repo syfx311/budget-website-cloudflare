@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { sendEmail } from '@/lib/resend'
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,6 +52,33 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Send email to admin
+    if (process.env.ADMIN_EMAIL) {
+      await sendEmail({
+        to: process.env.ADMIN_EMAIL,
+        subject: `New Contact Form Submission from ${name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Message:</strong></p>
+          <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+        `,
+      })
+    }
+
+    // Send confirmation email to user
+    await sendEmail({
+      to: email,
+      subject: 'Thank You for Your Message - Mommy Louise Budget PH',
+      html: `
+        <h2>Thank You, ${escapeHtml(name)}!</h2>
+        <p>We received your message and appreciate you reaching out to us.</p>
+        <p>We will review your budget goals and get back to you within 24-48 hours with personalized recommendations.</p>
+        <p>Best regards,<br>Mommy Louise Budget PH Team</p>
+      `,
+    })
+
     return NextResponse.json(
       {
         success: true,
@@ -68,4 +96,15 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
+}
+
+function escapeHtml(text: string): string {
+  const map: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  }
+  return text.replace(/[&<>"']/g, (char) => map[char])
 }
