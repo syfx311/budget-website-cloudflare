@@ -50,20 +50,14 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href={getNavLink('#portfolio')} className="text-muted-foreground hover:text-primary transition-colors">
-              Templates
+            <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+              Home
             </Link>
             <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
               Products
             </Link>
             <Link href="/gallery" className="text-muted-foreground hover:text-primary transition-colors">
               Gallery
-            </Link>
-            <Link href={getNavLink('#packages')} className="text-muted-foreground hover:text-primary transition-colors">
-              Packages
-            </Link>
-            <Link href={getNavLink('#contact')} className="text-muted-foreground hover:text-primary transition-colors">
-              Contact
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
               <Link href={getNavLink('#contact')}>Get Started</Link>
@@ -92,11 +86,9 @@ export function Header() {
             >
               <div className="flex flex-col gap-4">
                 {[
-                  { label: 'Templates', href: '#portfolio' },
+                  { label: 'Home', href: '/' },
                   { label: 'Products', href: '/products' },
-                  { label: 'Gallery', href: '/gallery' },
-                  { label: 'Packages', href: '#packages' },
-                  { label: 'Contact', href: '#contact' }
+                  { label: 'Gallery', href: '/gallery' }
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}
