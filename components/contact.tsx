@@ -60,6 +60,7 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phoneNumber: '',
     message: '',
     facebookAccount: '',
     tiktokAccount: '',
@@ -85,6 +86,7 @@ export function Contact() {
         setFormData({
           name: '',
           email: '',
+          phoneNumber: '',
           message: '',
           facebookAccount: '',
           tiktokAccount: '',
@@ -213,6 +215,25 @@ export function Contact() {
                       placeholder="maria@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.45 }}
+                  >
+                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-foreground mb-2">
+                      Phone Number
+                    </label>
+                    <Input
+                      id="phoneNumber"
+                      type="tel"
+                      placeholder="+63 9XX XXX XXXX"
+                      value={formData.phoneNumber}
+                      onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                       className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
                     />
                   </motion.div>
