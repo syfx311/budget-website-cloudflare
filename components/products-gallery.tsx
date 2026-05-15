@@ -153,6 +153,7 @@ interface SelectedProduct {
 function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedProduct | null; isOpen: boolean; onClose: () => void }) {
   const [quantity, setQuantity] = useState(1)
   const [orderNotes, setOrderNotes] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
 
   if (!product) return null
 
@@ -260,6 +261,19 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                     </button>
                   </div>
                 </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Phone Number (Optional)
+                </label>
+                <input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="+63 9XX XXX XXXX"
+                  className="w-full rounded-lg border border-border p-3 text-foreground placeholder:text-muted-foreground"
+                />
               </div>
 
               <div className="mb-6">
