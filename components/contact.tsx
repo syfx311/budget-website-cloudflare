@@ -61,6 +61,8 @@ export function Contact() {
     name: '',
     email: '',
     message: '',
+    facebookAccount: '',
+    tiktokAccount: '',
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -84,6 +86,8 @@ export function Contact() {
           name: '',
           email: '',
           message: '',
+          facebookAccount: '',
+          tiktokAccount: '',
         })
       }, 3000)
     } catch (error) {
@@ -230,6 +234,44 @@ export function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full rounded-xl border-2 border-primary/20 bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all focus:scale-[1.01]"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.55 }}
+                  >
+                    <label htmlFor="facebookAccount" className="block text-sm font-medium text-foreground mb-2">
+                      Facebook Account
+                    </label>
+                    <Input
+                      id="facebookAccount"
+                      type="text"
+                      placeholder="your.facebook.handle"
+                      value={formData.facebookAccount}
+                      onChange={(e) => setFormData({ ...formData, facebookAccount: e.target.value })}
+                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.57 }}
+                  >
+                    <label htmlFor="tiktokAccount" className="block text-sm font-medium text-foreground mb-2">
+                      TikTok Account
+                    </label>
+                    <Input
+                      id="tiktokAccount"
+                      type="text"
+                      placeholder="@your.tiktok.handle"
+                      value={formData.tiktokAccount}
+                      onChange={(e) => setFormData({ ...formData, tiktokAccount: e.target.value })}
+                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
                     />
                   </motion.div>
 
