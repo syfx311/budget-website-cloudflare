@@ -1,15 +1,15 @@
 import { Header } from '@/components/header'
 import { WebsiteNotice } from '@/components/website-notice'
-import { ProductsGallery } from '@/components/products-gallery'
+import { GalleryShowcase } from '@/components/gallery-showcase'
 import { Contact, Footer } from '@/components/contact'
 
-export default function ProductsPage() {
+export default function GalleryPage() {
   return (
     <main className="min-h-screen">
       <WebsiteNotice isPopup />
       <Header />
       <div className="pt-20">
-        <ProductsGallery />
+        <GalleryShowcase />
         <Contact />
       </div>
       <Footer />
