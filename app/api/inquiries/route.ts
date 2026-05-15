@@ -53,15 +53,22 @@ export async function POST(request: NextRequest) {
         tiktok_account: tiktokAccount || null,
         order_notes: orderNotes || null,
         status: 'new',
-        created_at: new Date().toISOString(),
       })
       .select('id')
       .single()
 
-    if (error || !inquiry) {
+    if (error) {
       console.error('Inquiry creation error:', error)
       return NextResponse.json(
-        { error: 'Failed to save inquiry' },
+        { error: 'Failed to save inquiry', details: error.message },
+        { status: 500 }
+      )
+    }
+
+    if (!inquiry) {
+      console.error('No inquiry returned from insert')
+      return NextResponse.json(
+        { error: 'Failed to save inquiry - no response from database' },
         { status: 500 }
       )
     }
