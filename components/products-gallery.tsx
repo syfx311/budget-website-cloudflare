@@ -41,7 +41,6 @@ const products = [
     id: 1,
     title: 'Budget Envelope Inserts',
     description: 'Beautiful pink gingham cash envelopes with custom categories',
-    price: '₱250',
     category: 'stationery',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3f2dceb91f944d5db35fd45a0c0cde10?format=webp&width=800&height=1200',
     tiles: envelopeInsertTiles,
@@ -54,7 +53,6 @@ const products = [
     id: 2,
     title: 'Premium Budget Binders',
     description: 'Elegant leather binders with gold ring mechanisms and card slots',
-    price: '₱1,200',
     category: 'planners',
     image: '/images/budget-binders.png',
     tiles: binderTiles,
@@ -67,7 +65,6 @@ const products = [
     id: 3,
     title: 'Decorative Budget Stickers',
     description: 'Cute and motivating stickers for budget tracking and planning',
-    price: '₱150',
     category: 'stickers',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fa375720d57914db4befdd6fec37e8cfb?format=webp&width=800&height=1200',
     features: ['150+ Designs', 'Waterproof', 'Removable'],
@@ -79,7 +76,6 @@ const products = [
     id: 4,
     title: 'Monthly Savings Tracker',
     description: 'Beautiful printable monthly savings and budget tracking sheets',
-    price: '₱300',
     category: 'stationery',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3414467aad2847d2ada40c2452e1142a?format=webp&width=800&height=1200',
     features: ['Printable', 'Customizable', 'Set of 12'],
@@ -91,7 +87,6 @@ const products = [
     id: 5,
     title: 'Custom Budget Set',
     description: 'Personalized budget system tailored to your needs',
-    price: 'Custom Quote',
     category: 'custom',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F5e00e5fb62d9406aa0ea777d62e48d0c?format=webp&width=800&height=1200',
     features: ['Fully Customized', 'Your Colors', 'Your Design'],
@@ -103,7 +98,6 @@ const products = [
     id: 6,
     title: 'Desk Organizer Bundle',
     description: 'Complete home office setup with budget planning essentials',
-    price: '₱850',
     category: 'essentials',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc455b93c553b40a384752fa000208e62?format=webp&width=800&height=1200',
     features: ['Multi-Piece Set', 'Storage Included', 'Aesthetic Design'],
@@ -204,7 +198,6 @@ interface SelectedProduct {
   id: number
   title: string
   description: string
-  price: string
   category: string
   image: string
   tiles?: string[]
@@ -266,12 +259,9 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
               </div>
 
               {/* Product Details */}
-              <h2 className="font-noto-sans text-3xl md:text-4xl text-foreground mb-2">
+              <h2 className="font-noto-sans text-3xl md:text-4xl text-foreground mb-4">
                 {product.title}
               </h2>
-              <p className="text-2xl text-primary font-semibold mb-4">
-                {product.price}
-              </p>
 
               <p className="text-muted-foreground mb-6 text-lg">
                 {product.fullDescription}
@@ -342,22 +332,13 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                 />
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex gap-3">
-                <Button
-                  asChild
-                  className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-6 text-lg"
-                >
-                  <Link href="#contact">Place Order</Link>
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={onClose}
-                  className="flex-1 border-primary/30 hover:bg-primary/10 rounded-full py-6 text-lg"
-                >
-                  Continue Shopping
-                </Button>
-              </div>
+              {/* CTA Button */}
+              <Button
+                asChild
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-6 text-lg"
+              >
+                <Link href="#contact">Send Inquiry</Link>
+              </Button>
             </div>
           </motion.div>
         </motion.div>
@@ -497,24 +478,19 @@ export function ProductsGallery() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-4">
+                    <div className="p-4 flex flex-col h-full">
                       <h3 className="font-noto-sans text-lg text-foreground mb-1 line-clamp-2">
                         {product.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm mb-3 line-clamp-1">
+                      <p className="text-muted-foreground text-sm mb-3 line-clamp-1 flex-1">
                         {product.description}
                       </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg font-semibold text-primary">
-                          {product.price}
-                        </span>
-                        <Button
-                          size="sm"
-                          className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full"
-                        >
-                          View Details
-                        </Button>
-                      </div>
+                      <Button
+                        size="sm"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full"
+                      >
+                        Inquire
+                      </Button>
                     </div>
                   </div>
                 </motion.div>
@@ -586,16 +562,12 @@ export function ProductsGallery() {
                       </div>
                     )}
 
-                    <div className="mt-auto flex items-center justify-between gap-2">
-                      <span className="text-lg font-semibold text-primary">
-                        {product.price}
-                      </span>
+                    <div className="mt-auto">
                       <Button
                         size="sm"
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full"
                       >
-                        <ShoppingBag className="w-4 h-4 mr-1" />
-                        View
+                        Inquire
                       </Button>
                     </div>
                   </div>
