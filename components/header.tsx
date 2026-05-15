@@ -50,23 +50,14 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href={getNavLink('#about')} className="text-muted-foreground hover:text-primary transition-colors">
-              About
-            </Link>
-            <Link href={getNavLink('#how-it-works')} className="text-muted-foreground hover:text-primary transition-colors">
-              How It Works
-            </Link>
-            <Link href={getNavLink('#portfolio')} className="text-muted-foreground hover:text-primary transition-colors">
-              Templates
+            <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+              Home
             </Link>
             <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
               Products
             </Link>
-            <Link href={getNavLink('#packages')} className="text-muted-foreground hover:text-primary transition-colors">
-              Packages
-            </Link>
-            <Link href={getNavLink('#contact')} className="text-muted-foreground hover:text-primary transition-colors">
-              Contact
+            <Link href="/gallery" className="text-muted-foreground hover:text-primary transition-colors">
+              Gallery
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
               <Link href={getNavLink('#contact')}>Get Started</Link>
@@ -95,12 +86,9 @@ export function Header() {
             >
               <div className="flex flex-col gap-4">
                 {[
-                  { label: 'About', href: '#about' },
-                  { label: 'How It Works', href: '#how-it-works' },
-                  { label: 'Templates', href: '#portfolio' },
+                  { label: 'Home', href: '/' },
                   { label: 'Products', href: '/products' },
-                  { label: 'Packages', href: '#packages' },
-                  { label: 'Contact', href: '#contact' }
+                  { label: 'Gallery', href: '/gallery' }
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}
@@ -109,7 +97,7 @@ export function Header() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
-                      href={item.href === '/products' ? '/products' : getNavLink(item.href)}
+                      href={item.href}
                       className="text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >

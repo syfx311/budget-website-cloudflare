@@ -51,41 +51,14 @@ function Bow({ className = '' }: { className?: string }) {
 }
 
 export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
-  const [currentImageIndices, setCurrentImageIndices] = useState<number[]>([0, 1, 2])
-  const [displayedIndices, setDisplayedIndices] = useState<Set<number>>(new Set([0, 1, 2]))
-  const [isHovering, setIsHovering] = useState(false)
+  const [currentImageIndices, setCurrentImageIndices] = useState<number[]>([0, 1, 2, 3, 4])
   const rotationIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    if (!isHovering || images.length <= 3) return
-
     const rotateImages = () => {
       setCurrentImageIndices((prevIndices) => {
-        setDisplayedIndices((prev) => new Set([...prev, ...prevIndices]))
-
-        const availableIndices = Array.from(
-          { length: images.length },
-          (_, i) => i
-        ).filter((i) => !displayedIndices.has(i))
-
-        if (availableIndices.length < 3) {
-          // Reset cycle if not enough unseen images
-          const shuffled = Array.from({ length: images.length }, (_, i) => i)
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 3)
-          setDisplayedIndices(new Set(shuffled))
-          return shuffled
-        }
-
-        // Pick 3 random unseen images
-        const newImages: number[] = []
-        for (let i = 0; i < 3 && availableIndices.length > 0; i++) {
-          const randomIdx = Math.floor(Math.random() * availableIndices.length)
-          newImages.push(availableIndices[randomIdx])
-          availableIndices.splice(randomIdx, 1)
-        }
-
-        return newImages
+        const newIndices = prevIndices.map((idx) => (idx + 5) % images.length)
+        return newIndices
       })
     }
 
@@ -96,20 +69,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
         clearInterval(rotationIntervalRef.current)
       }
     }
-  }, [isHovering, images.length, displayedIndices])
-
-  const handleMouseEnter = () => {
-    setIsHovering(true)
-  }
-
-  const handleMouseLeave = () => {
-    setIsHovering(false)
-    if (rotationIntervalRef.current) {
-      clearInterval(rotationIntervalRef.current)
-    }
-    setCurrentImageIndices([0, 1, 2])
-    setDisplayedIndices(new Set([0, 1, 2]))
-  }
+  }, [images.length])
 
   return (
     <motion.div
@@ -137,13 +97,9 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
           </h3>
         </div>
 
-        {/* Interactive Image Grid Container - 3 tiles per rotation */}
-        <div
-          className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden cursor-pointer group"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="w-full h-full grid grid-cols-3 gap-0">
+        {/* Image Grid Container - 5 tiles auto-rotating */}
+        <div className="relative aspect-[20/6] md:aspect-[25/6] overflow-hidden">
+          <div className="w-full h-full grid grid-cols-5 gap-0">
             {currentImageIndices.map((imageIndex) => (
               <motion.div
                 key={imageIndex}
@@ -163,39 +119,10 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
             ))}
           </div>
 
-          {/* Overlay hint */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovering ? 0 : 1 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 bg-black/20 flex items-center justify-center pointer-events-none"
-          >
-            <div className="text-center text-white">
-              <p className="text-sm font-medium">Hover to rotate designs</p>
-            </div>
-          </motion.div>
-
-          {/* Decorative overlay corners */}
-          <div className="absolute top-4 left-4 pointer-events-none">
-            <Bow className="w-16 h-10 text-white/50" />
-          </div>
-          <div className="absolute top-4 right-4 pointer-events-none">
-            <Bow className="w-16 h-10 text-white/50 transform scale-x-[-1]" />
-          </div>
-          <div className="absolute bottom-4 left-4 pointer-events-none">
-            <Bow className="w-16 h-10 text-white/50 transform scale-y-[-1]" />
-          </div>
-          <div className="absolute bottom-4 right-4 pointer-events-none">
-            <Bow className="w-16 h-10 text-white/50 transform scale-[-1]" />
-          </div>
-
           {/* Counter badge */}
-          <motion.div
-            animate={{ opacity: isHovering ? 1 : 0.7 }}
-            className="absolute top-4 right-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-sm font-medium z-10"
-          >
-            {displayedIndices.size} / {images.length}
-          </motion.div>
+          <div className="absolute top-4 right-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-sm font-medium z-10">
+            {currentImageIndices[0] + 1} / {images.length}
+          </div>
         </div>
 
         {/* Footer CTA */}
@@ -205,7 +132,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
               {images.length}+ unique designs available
             </p>
             <p className="text-muted-foreground text-sm">
-              Hover to see 3 designs rotate every second. Custom orders welcome!
+              New designs rotate every 3 seconds. Custom orders welcome!
             </p>
           </div>
           <Button
