@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { Sparkles, Heart, ShoppingBag, X } from 'lucide-react'
+import { Sparkles, Heart, ShoppingBag, X, CheckCircle, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 
 const CATEGORIES = [
@@ -152,10 +153,69 @@ interface SelectedProduct {
 
 function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedProduct | null; isOpen: boolean; onClose: () => void }) {
   const [quantity, setQuantity] = useState(1)
-  const [orderNotes, setOrderNotes] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [formData, setFormData] = useState({
+    customerName: '',
+    customerEmail: '',
+    customerPhone: '',
+    facebookAccount: '',
+    tiktokAccount: '',
+    orderNotes: '',
+  })
 
   if (!product) return null
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitError(null)
+    try {
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productName: product.title,
+          quantity,
+          ...formData
+        })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit inquiry')
+      }
+
+      setSubmitSuccess(true)
+      setTimeout(() => {
+        onClose()
+        setSubmitSuccess(false)
+        setSubmitError(null)
+        setQuantity(1)
+        setFormData({
+          customerName: '',
+          customerEmail: '',
+          customerPhone: '',
+          facebookAccount: '',
+          tiktokAccount: '',
+          orderNotes: '',
+        })
+      }, 2000)
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to submit inquiry. Please try again.'
+      console.error('Inquiry submission error:', error)
+      setSubmitError(errorMessage)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -239,63 +299,179 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                 </div>
               </div>
 
-              {/* Quantity and Notes */}
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Quantity
-                  </label>
-                  <div className="flex items-center border border-border rounded-lg">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="px-4 py-2 hover:bg-secondary transition-colors"
-                    >
-                      −
-                    </button>
-                    <span className="px-4 py-2 flex-1 text-center">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="px-4 py-2 hover:bg-secondary transition-colors"
-                    >
-                      +
-                    </button>
+              {submitError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-lg flex items-start gap-3"
+                >
+                  <div className="text-red-600 font-semibold">⚠</div>
+                  <div>
+                    <p className="text-sm font-semibold text-red-900">Error</p>
+                    <p className="text-sm text-red-800 mt-1">{submitError}</p>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              )}
 
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Phone Number (Optional)
-                </label>
-                <input
-                  type="tel"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="+63 9XX XXX XXXX"
-                  className="w-full rounded-lg border border-border p-3 text-foreground placeholder:text-muted-foreground"
-                />
-              </div>
+              <AnimatePresence mode="wait">
+                {submitSuccess ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="text-center py-12"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.1, type: 'spring' }}
+                    >
+                      <CheckCircle className="w-16 h-16 text-primary mx-auto mb-4" />
+                    </motion.div>
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                      Inquiry Submitted!
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Thank you! We'll review your inquiry and contact you soon.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Quantity */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Quantity
+                      </label>
+                      <div className="flex items-center border border-border rounded-lg">
+                        <button
+                          type="button"
+                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                          className="px-4 py-2 hover:bg-secondary transition-colors"
+                        >
+                          −
+                        </button>
+                        <span className="px-4 py-2 flex-1 text-center">{quantity}</span>
+                        <button
+                          type="button"
+                          onClick={() => setQuantity(quantity + 1)}
+                          className="px-4 py-2 hover:bg-secondary transition-colors"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
 
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Order Notes (Optional)
-                </label>
-                <textarea
-                  value={orderNotes}
-                  onChange={(e) => setOrderNotes(e.target.value)}
-                  placeholder="Add any special requests or details..."
-                  className="w-full rounded-lg border border-border p-3 text-foreground placeholder:text-muted-foreground resize-none"
-                  rows={3}
-                />
-              </div>
+                    {/* Name */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Full Name *
+                      </label>
+                      <Input
+                        type="text"
+                        name="customerName"
+                        value={formData.customerName}
+                        onChange={handleInputChange}
+                        placeholder="Maria Santos"
+                        required
+                        className="bg-card border-primary/20 rounded-xl"
+                      />
+                    </div>
 
-              {/* CTA Button */}
-              <Button
-                asChild
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-6 text-lg"
-              >
-                <Link href="#contact">Send Inquiry</Link>
-              </Button>
+                    {/* Email */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Email *
+                      </label>
+                      <Input
+                        type="email"
+                        name="customerEmail"
+                        value={formData.customerEmail}
+                        onChange={handleInputChange}
+                        placeholder="maria@example.com"
+                        required
+                        className="bg-card border-primary/20 rounded-xl"
+                      />
+                    </div>
+
+                    {/* Phone Number */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Phone Number
+                      </label>
+                      <Input
+                        type="tel"
+                        name="customerPhone"
+                        value={formData.customerPhone}
+                        onChange={handleInputChange}
+                        placeholder="+63 9XX XXX XXXX"
+                        className="bg-card border-primary/20 rounded-xl"
+                      />
+                    </div>
+
+                    {/* Facebook */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Facebook Account
+                      </label>
+                      <Input
+                        type="text"
+                        name="facebookAccount"
+                        value={formData.facebookAccount}
+                        onChange={handleInputChange}
+                        placeholder="your.facebook.handle"
+                        className="bg-card border-primary/20 rounded-xl"
+                      />
+                    </div>
+
+                    {/* TikTok */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        TikTok Account
+                      </label>
+                      <Input
+                        type="text"
+                        name="tiktokAccount"
+                        value={formData.tiktokAccount}
+                        onChange={handleInputChange}
+                        placeholder="@your.tiktok.handle"
+                        className="bg-card border-primary/20 rounded-xl"
+                      />
+                    </div>
+
+                    {/* Order Notes */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Order Notes (Optional)
+                      </label>
+                      <textarea
+                        name="orderNotes"
+                        value={formData.orderNotes}
+                        onChange={handleInputChange}
+                        placeholder="Add any special requests or details..."
+                        className="w-full rounded-lg border border-border p-3 text-foreground placeholder:text-muted-foreground resize-none"
+                        rows={3}
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-6 text-lg"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Submitting...
+                        </span>
+                      ) : (
+                        'Send Inquiry'
+                      )}
+                    </Button>
+                  </form>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </motion.div>
