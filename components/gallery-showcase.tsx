@@ -3,7 +3,124 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 import { DesignLibraryShowcase } from '@/components/design-library-showcase'
+
+function ProductCardShowcase({ products }: { products: any[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const rotationIntervalRef = useRef<NodeJS.Timeout>()
+
+  useEffect(() => {
+    rotationIntervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % products.length)
+    }, 5000)
+
+    return () => clearInterval(rotationIntervalRef.current!)
+  }, [products.length])
+
+  const currentProduct = products[currentIndex]
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="mb-20"
+    >
+      <div className="text-center mb-12">
+        <h2 className="font-noto-sans text-2xl md:text-3xl text-foreground mb-2">
+          Featured <span className="font-signature text-3xl md:text-4xl text-primary">Products</span>
+        </h2>
+        <p className="text-muted-foreground">
+          Curated stationery and planning essentials
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        {/* Featured Product Card */}
+        <motion.div
+          key={currentProduct.id}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.5 }}
+          className="relative overflow-hidden rounded-3xl bg-card border border-primary/20 shadow-lg"
+        >
+          <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
+            <Image
+              src={currentProduct.src}
+              alt={currentProduct.alt}
+              fill
+              className="object-cover"
+            />
+          </div>
+        </motion.div>
+
+        {/* Product Grid Carousel */}
+        <div className="space-y-6">
+          <div>
+            <p className="text-muted-foreground text-sm mb-2">Featured</p>
+            <h3 className="font-noto-sans text-xl md:text-2xl text-foreground">
+              {currentProduct.alt}
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-4 gap-2">
+            {products.map((product, index) => (
+              <motion.button
+                key={product.id}
+                onClick={() => {
+                  setCurrentIndex(index)
+                  clearInterval(rotationIntervalRef.current!)
+                  rotationIntervalRef.current = setInterval(() => {
+                    setCurrentIndex((prev) => (prev + 1) % products.length)
+                  }, 5000)
+                }}
+                whileHover={{ scale: 1.05 }}
+                className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
+                  index === currentIndex
+                    ? 'border-primary bg-primary/10'
+                    : 'border-primary/20 hover:border-primary/50'
+                }`}
+              >
+                <Image
+                  src={product.src}
+                  alt={product.alt}
+                  fill
+                  className="object-cover"
+                />
+              </motion.button>
+            ))}
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            View more of our collection. Automatically rotates every 5 seconds.
+          </p>
+
+          <Link href="#contact" className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors font-medium w-full">
+            Inquire About This Product
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+const productImages = [
+  { id: 1, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F313588b12fa643ec8299f5e0d28dfa32?format=webp&width=800&height=1200', alt: 'Stickers Collection' },
+  { id: 2, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F0472cdc4311e45f096617a26651d7a74?format=webp&width=800&height=1200', alt: 'Budget Binder Setup' },
+  { id: 3, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F30598e7f51fb4ad39faad340649a09fa?format=webp&width=800&height=1200', alt: 'Planning Inserts' },
+  { id: 4, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F174d3edaf0494e83902a9270632757ef?format=webp&width=800&height=1200', alt: 'Calendar Design' },
+  { id: 5, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc67b7d31ae1f45c7b15c1f4ddc343e02?format=webp&width=800&height=1200', alt: 'Household Budget' },
+  { id: 6, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fdbfa4dde55b24cb09f6c8f892898d0d3?format=webp&width=800&height=1200', alt: 'Budget Templates' },
+  { id: 7, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F07f7d0a0a0e444e09b1ebb7df259754a?format=webp&width=800&height=1200', alt: 'Hello Kitty Binder' },
+  { id: 8, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F71932b83a6be46cf8a408174d8e787b8?format=webp&width=800&height=1200', alt: 'Time to Budget' },
+  { id: 9, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fd5929455d126441e8d68c990c3fddb1d?format=webp&width=800&height=1200', alt: 'Savings Challenge Kit' },
+  { id: 10, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F44fdb59efd1d4fa88136e7703257400a?format=webp&width=800&height=1200', alt: 'A Penny Saved Binder' },
+  { id: 11, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F29a5ef29e2a446cd8db02baa0237d13e?format=webp&width=800&height=1200', alt: 'Kids Daily Allowance' },
+  { id: 12, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fe538d7f246e74d6db79ccea9da24c79a?format=webp&width=800&height=1200', alt: 'Flower Budget Planner' },
+]
 
 const designImages = [
   { id: 1, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc7105fef800b4637876202ef11a2d508?format=webp&width=800&height=1200', alt: 'Emergency Funds Design' },
@@ -93,6 +210,9 @@ export function GalleryShowcase() {
         >
           <DesignLibraryShowcase images={designImages} />
         </motion.div>
+
+        {/* Product Card Showcase */}
+        <ProductCardShowcase products={productImages} />
 
         {/* Binder Color Gallery */}
         <motion.div
