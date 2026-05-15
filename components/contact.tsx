@@ -303,19 +303,11 @@ export function Footer() {
             © {new Date().getFullYear()}&nbsp;Mommy Louise&apos;s Budget PH
           </p>
 
-          <div className="flex gap-6 items-center">
-            {['About', 'How It Works', 'Contact'].map((item) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                whileHover={{ y: -2 }}
-              >
-                {item}
-              </motion.a>
-            ))}
-
-            <div className="flex gap-4 pl-4 border-l border-border/50">
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-sm text-muted-foreground">
+              Follow us on our social media accounts
+            </p>
+            <div className="flex gap-4">
               <motion.a
                 href="https://www.facebook.com/profile.php?id=100087797289721"
                 target="_blank"
