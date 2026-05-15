@@ -50,9 +50,6 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href={getNavLink('#about')} className="text-muted-foreground hover:text-primary transition-colors">
-              About
-            </Link>
             <Link href={getNavLink('#how-it-works')} className="text-muted-foreground hover:text-primary transition-colors">
               How It Works
             </Link>
@@ -61,6 +58,9 @@ export function Header() {
             </Link>
             <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
               Products
+            </Link>
+            <Link href="/gallery" className="text-muted-foreground hover:text-primary transition-colors">
+              Gallery
             </Link>
             <Link href={getNavLink('#packages')} className="text-muted-foreground hover:text-primary transition-colors">
               Packages
@@ -95,10 +95,10 @@ export function Header() {
             >
               <div className="flex flex-col gap-4">
                 {[
-                  { label: 'About', href: '#about' },
                   { label: 'How It Works', href: '#how-it-works' },
                   { label: 'Templates', href: '#portfolio' },
                   { label: 'Products', href: '/products' },
+                  { label: 'Gallery', href: '/gallery' },
                   { label: 'Packages', href: '#packages' },
                   { label: 'Contact', href: '#contact' }
                 ].map((item, index) => (
