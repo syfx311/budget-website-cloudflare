@@ -5,7 +5,7 @@ import { sendEmail } from '@/lib/resend'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, message } = body
+    const { name, email, message, phoneNumber, facebookAccount, tiktokAccount } = body
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -38,6 +38,9 @@ export async function POST(request: NextRequest) {
         name,
         email,
         message,
+        phone_number: phoneNumber || null,
+        facebook_account: facebookAccount || null,
+        tiktok_account: tiktokAccount || null,
         status: 'new',
         created_at: new Date().toISOString(),
       })
@@ -61,8 +64,11 @@ export async function POST(request: NextRequest) {
           <h2>New Contact Form Submission</h2>
           <p><strong>Name:</strong> ${escapeHtml(name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          ${phoneNumber ? `<p><strong>Phone:</strong> ${escapeHtml(phoneNumber)}</p>` : ''}
           <p><strong>Message:</strong></p>
           <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+          ${facebookAccount ? `<p><strong>Facebook:</strong> ${escapeHtml(facebookAccount)}</p>` : ''}
+          ${tiktokAccount ? `<p><strong>TikTok:</strong> ${escapeHtml(tiktokAccount)}</p>` : ''}
         `,
       })
     }

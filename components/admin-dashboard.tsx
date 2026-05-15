@@ -70,17 +70,23 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false)
   const [actionInProgress, setActionInProgress] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState<'orders' | 'queries'>('orders')
+  const [activeTab, setActiveTab] = useState<'orders' | 'queries' | 'inquiries'>('orders')
   const [contactQueries, setContactQueries] = useState<any[]>([])
   const [queriesLoading, setQueriesLoading] = useState(false)
+  const [inquiries, setInquiries] = useState<any[]>([])
+  const [inquiriesLoading, setInquiriesLoading] = useState(false)
 
   useEffect(() => {
     fetchOrders()
     fetchContactQueries()
+    fetchInquiries()
     const interval = setInterval(() => {
       fetchOrders()
       if (activeTab === 'queries') {
         fetchContactQueries()
+      }
+      if (activeTab === 'inquiries') {
+        fetchInquiries()
       }
     }, 30000)
     return () => clearInterval(interval)
@@ -133,6 +139,29 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       setContactQueries([])
     } finally {
       setQueriesLoading(false)
+    }
+  }
+
+  const fetchInquiries = async () => {
+    setInquiriesLoading(true)
+    try {
+      if (!supabase) {
+        setInquiries([])
+        return
+      }
+
+      const { data, error } = await supabase
+        .from('inquiries')
+        .select('*')
+        .order('created_at', { ascending: false })
+
+      if (error) throw error
+      setInquiries(data || [])
+    } catch (error) {
+      console.error('Error fetching inquiries:', error)
+      setInquiries([])
+    } finally {
+      setInquiriesLoading(false)
     }
   }
 
@@ -288,6 +317,49 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     }
   }
 
+  const handleUpdateInquiryStatus = async (inquiryId: string, newStatus: string) => {
+    setActionInProgress(inquiryId)
+    try {
+      if (!supabase) throw new Error('Database connection failed')
+
+      const { error } = await supabase
+        .from('inquiries')
+        .update({ status: newStatus, updated_at: new Date().toISOString() })
+        .eq('id', inquiryId)
+
+      if (error) throw error
+      await fetchInquiries()
+    } catch (error) {
+      console.error('Error updating inquiry status:', error)
+      alert('Failed to update inquiry status')
+    } finally {
+      setActionInProgress(null)
+    }
+  }
+
+  const handleDeleteInquiry = async (inquiryId: string) => {
+    if (!confirm('Are you sure you want to delete this inquiry?')) return
+
+    setActionInProgress(inquiryId)
+    try {
+      if (!supabase) throw new Error('Database connection failed')
+
+      const { error } = await supabase
+        .from('inquiries')
+        .delete()
+        .eq('id', inquiryId)
+
+      if (error) throw error
+      setInquiries(inquiries.filter(i => i.id !== inquiryId))
+      alert('Inquiry deleted successfully')
+    } catch (error) {
+      console.error('Error deleting inquiry:', error)
+      alert('Failed to delete inquiry')
+    } finally {
+      setActionInProgress(null)
+    }
+  }
+
   const handleExportCSV = () => {
     const headers = ['Order Number', 'Date', 'Name', 'Email', 'Phone', 'Package', 'Binder Type', 'Order Status', 'Payment Status', 'Total Price']
     const rows = filteredOrders.map(order => [
@@ -342,7 +414,9 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
               <p className="text-sm text-muted-foreground">
                 {activeTab === 'orders'
                   ? `Manage ${orders.length} total orders`
-                  : `Manage ${contactQueries.length} contact queries`
+                  : activeTab === 'queries'
+                  ? `Manage ${contactQueries.length} contact queries`
+                  : `Manage ${inquiries.length} inquiries`
                 }
               </p>
             </div>
@@ -366,6 +440,21 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
               }`}
             >
               Orders ({orders.length})
+            </button>
+            <button
+              onClick={() => {
+                setActiveTab('inquiries')
+                if (inquiries.length === 0) {
+                  fetchInquiries()
+                }
+              }}
+              className={`px-4 py-3 font-medium transition-colors border-b-2 ${
+                activeTab === 'inquiries'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Inquiries ({inquiries.length})
             </button>
             <button
               onClick={() => {
@@ -647,6 +736,92 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       </div>
       )}
 
+      {/* Inquiries Tab Content */}
+      {activeTab === 'inquiries' && (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {inquiriesLoading ? (
+          <div className="text-center py-12 text-muted-foreground">
+            Loading inquiries...
+          </div>
+        ) : inquiries.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No inquiries yet</p>
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="overflow-x-auto rounded-2xl border border-primary/20 bg-card shadow-sm"
+          >
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-primary/20 bg-primary/5">
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Date</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Product</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Customer</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Email</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Qty</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Phone</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Status</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <AnimatePresence>
+                  {inquiries.map((inquiry, index) => (
+                    <motion.tr
+                      key={inquiry.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="border-b border-primary/10 hover:bg-primary/5 transition-colors"
+                    >
+                      <td className="px-6 py-4 text-muted-foreground text-sm">
+                        {new Date(inquiry.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-4 font-medium text-foreground">{inquiry.product_name}</td>
+                      <td className="px-6 py-4 font-medium text-foreground">{inquiry.customer_name}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{inquiry.customer_email}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{inquiry.quantity}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{inquiry.customer_phone || '-'}</td>
+                      <td className="px-6 py-4">
+                        <select
+                          value={inquiry.status}
+                          onChange={(e) => handleUpdateInquiryStatus(inquiry.id, e.target.value)}
+                          disabled={actionInProgress === inquiry.id}
+                          className="px-3 py-1 rounded-full text-xs font-semibold border-2 border-primary/20 bg-background cursor-pointer focus:outline-none"
+                        >
+                          <option value="new">New</option>
+                          <option value="contacted">Contacted</option>
+                          <option value="quote-sent">Quote Sent</option>
+                          <option value="ordered">Ordered</option>
+                          <option value="completed">Completed</option>
+                        </select>
+                      </td>
+                      <td className="px-6 py-4">
+                        <button
+                          onClick={() => handleDeleteInquiry(inquiry.id)}
+                          disabled={actionInProgress === inquiry.id}
+                          title="Delete inquiry"
+                          className="p-2 hover:bg-destructive/20 rounded-lg text-destructive transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </AnimatePresence>
+              </tbody>
+            </table>
+          </motion.div>
+        )}
+        <p className="text-xs text-muted-foreground mt-4">
+          Showing {inquiries.length} inquiries
+        </p>
+      </div>
+      )}
+
       {/* Queries Tab Content */}
       {activeTab === 'queries' && (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -670,7 +845,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Date</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Name</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Email</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Phone</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Message</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Facebook</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">TikTok</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Status</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Actions</th>
                 </tr>
@@ -691,7 +869,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       </td>
                       <td className="px-6 py-4 font-medium text-foreground">{query.name}</td>
                       <td className="px-6 py-4 text-muted-foreground text-sm">{query.email}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{query.phone_number || '-'}</td>
                       <td className="px-6 py-4 text-muted-foreground text-sm max-w-xs truncate">{query.message}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{query.facebook_account || '-'}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{query.tiktok_account || '-'}</td>
                       <td className="px-6 py-4">
                         <select
                           value={query.status}

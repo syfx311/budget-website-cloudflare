@@ -177,20 +177,27 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
     setIsSubmitting(true)
     setSubmitError(null)
     try {
+      const payload = {
+        productName: product.title,
+        quantity,
+        customerName: formData.customerName,
+        customerEmail: formData.customerEmail,
+        customerPhone: formData.customerPhone,
+        facebookAccount: formData.facebookAccount,
+        tiktokAccount: formData.tiktokAccount,
+        orderNotes: formData.orderNotes,
+      }
+
       const response = await fetch('/api/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          productName: product.title,
-          quantity,
-          ...formData
-        })
+        body: JSON.stringify(payload)
       })
 
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to submit inquiry')
+        throw new Error(data.error || data.details || 'Failed to submit inquiry')
       }
 
       setSubmitSuccess(true)
@@ -303,11 +310,11 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-lg flex items-start gap-3"
+                  className="mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-lg flex items-start gap-3"
                 >
-                  <div className="text-red-600 font-semibold">⚠</div>
+                  <div className="text-red-700 font-bold text-lg">!</div>
                   <div>
-                    <p className="text-sm font-semibold text-red-900">Error</p>
+                    <p className="text-sm font-semibold text-red-900">Error Submitting Inquiry</p>
                     <p className="text-sm text-red-800 mt-1">{submitError}</p>
                   </div>
                 </motion.div>
