@@ -50,9 +50,6 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href={getNavLink('#how-it-works')} className="text-muted-foreground hover:text-primary transition-colors">
-              How It Works
-            </Link>
             <Link href={getNavLink('#portfolio')} className="text-muted-foreground hover:text-primary transition-colors">
               Templates
             </Link>
@@ -95,7 +92,6 @@ export function Header() {
             >
               <div className="flex flex-col gap-4">
                 {[
-                  { label: 'How It Works', href: '#how-it-works' },
                   { label: 'Templates', href: '#portfolio' },
                   { label: 'Products', href: '/products' },
                   { label: 'Gallery', href: '/gallery' },
