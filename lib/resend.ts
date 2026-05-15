@@ -281,7 +281,7 @@ export const emailTemplates = {
               </div>
             </div>
 
-            <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/admin" class="action-link">View in Admin Dashboard</a>
+            <a href="https://mommy-louise.vercel.app/admin" class="action-link">View in Admin Dashboard</a>
 
             <p style="font-size: 12px; color: #666; margin-top: 20px;">
               Access the admin dashboard to update order status, add notes, and manage customer communication.
