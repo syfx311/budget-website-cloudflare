@@ -138,7 +138,6 @@ export function GalleryShowcase() {
               { id: 23, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F00f7de44e3dc4250bc4ae395a8c5d6ea?format=webp&width=800&height=1200', alt: 'Cream Flat Design' },
               { id: 24, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F019874c754e34bfba09fab73955e2279?format=webp&width=800&height=1200', alt: 'Binder Interior' },
               { id: 25, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fe03842bedb3f4e9e8367f042e6fc52fe?format=webp&width=800&height=1200', alt: 'Binder Full Setup' },
-              { id: 26, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F705fe0e593d64692887378da4cd521bb?format=webp&width=800&height=1200', alt: 'Binder Closed' },
               { id: 27, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1cea14c07f6d46e5b1c65d28ec157384?format=webp&width=800&height=1200', alt: 'Budget Planner Setup' },
               { id: 28, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fb494f985414240a48ccf0f2340744d43?format=webp&width=800&height=1200', alt: 'Binder with Inserts' },
               { id: 29, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fa715ea64de274830960d68eb32f014f0?format=webp&width=800&height=1200', alt: 'Premium Binder' },
