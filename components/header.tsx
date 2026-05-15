@@ -97,7 +97,7 @@ export function Header() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
-                      href={item.href === '/products' ? '/products' : getNavLink(item.href)}
+                      href={item.href}
                       className="text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
