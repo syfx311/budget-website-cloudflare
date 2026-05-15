@@ -670,7 +670,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Date</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Name</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Email</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Phone</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Message</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">Facebook</th>
+                  <th className="px-6 py-4 text-left font-semibold text-foreground">TikTok</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Status</th>
                   <th className="px-6 py-4 text-left font-semibold text-foreground">Actions</th>
                 </tr>
@@ -691,7 +694,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       </td>
                       <td className="px-6 py-4 font-medium text-foreground">{query.name}</td>
                       <td className="px-6 py-4 text-muted-foreground text-sm">{query.email}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{query.phone_number || '-'}</td>
                       <td className="px-6 py-4 text-muted-foreground text-sm max-w-xs truncate">{query.message}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{query.facebook_account || '-'}</td>
+                      <td className="px-6 py-4 text-muted-foreground text-sm">{query.tiktok_account || '-'}</td>
                       <td className="px-6 py-4">
                         <select
                           value={query.status}
