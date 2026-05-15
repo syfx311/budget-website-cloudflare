@@ -21,6 +21,8 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
     customerName: '',
     customerEmail: '',
     customerPhone: '',
+    facebookAccount: '',
+    tiktokAccount: '',
     binderType: '',
     colors: '' as string | string[],
     inserts: [] as string[],
@@ -97,6 +99,8 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
           customerName: '',
           customerEmail: '',
           customerPhone: '',
+          facebookAccount: '',
+          tiktokAccount: '',
           binderType: '',
           colors: '',
           inserts: [],
@@ -246,6 +250,32 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
                             value={formData.customerPhone}
                             onChange={handleInputChange}
                             placeholder="+63 9XX XXX XXXX"
+                            className="bg-card border-primary/20 rounded-xl"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">
+                            Facebook Account
+                          </label>
+                          <Input
+                            type="text"
+                            name="facebookAccount"
+                            value={formData.facebookAccount}
+                            onChange={handleInputChange}
+                            placeholder="your.facebook.handle"
+                            className="bg-card border-primary/20 rounded-xl"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">
+                            TikTok Account
+                          </label>
+                          <Input
+                            type="text"
+                            name="tiktokAccount"
+                            value={formData.tiktokAccount}
+                            onChange={handleInputChange}
+                            placeholder="@your.tiktok.handle"
                             className="bg-card border-primary/20 rounded-xl"
                           />
                         </div>
