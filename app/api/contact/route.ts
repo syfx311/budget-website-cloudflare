@@ -26,9 +26,6 @@ export async function POST(request: NextRequest) {
 
     // Store contact query in database
     if (!supabase) {
-      console.error('[v0] Supabase client not initialized')
-      console.error('[v0] Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Not set')
-      console.error('[v0] Supabase Key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'Set' : 'Not set')
       return NextResponse.json(
         { error: 'Database connection failed' },
         { status: 500 }
@@ -51,17 +48,9 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (error || !contact) {
-      console.error('[v0] Contact query creation error:', error)
-      console.error('[v0] Error details:', {
-        errorMessage: error?.message,
-        errorCode: error?.code,
-        errorDetails: error?.details,
-      })
+      console.error('Contact query creation error:', error)
       return NextResponse.json(
-        { 
-          error: 'Failed to save contact query',
-          details: error?.message || 'Unknown error'
-        },
+        { error: 'Failed to save contact query' },
         { status: 500 }
       )
     }
