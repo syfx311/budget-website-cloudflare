@@ -33,44 +33,30 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Store inquiry in database
-    if (!supabase) {
-      return NextResponse.json(
-        { error: 'Database connection failed' },
-        { status: 500 }
-      )
-    }
+    // Store inquiry in database (if Supabase is configured)
+    if (supabase) {
+      const { error } = await supabase
+        .from('inquiries')
+        .insert({
+          product_name: productName,
+          quantity,
+          customer_name: customerName,
+          customer_email: customerEmail,
+          customer_phone: customerPhone || null,
+          facebook_account: facebookAccount || null,
+          tiktok_account: tiktokAccount || null,
+          order_notes: orderNotes || null,
+          status: 'new',
+        })
+        .select('id')
+        .single()
 
-    const { data: inquiry, error } = await supabase
-      .from('inquiries')
-      .insert({
-        product_name: productName,
-        quantity,
-        customer_name: customerName,
-        customer_email: customerEmail,
-        customer_phone: customerPhone || null,
-        facebook_account: facebookAccount || null,
-        tiktok_account: tiktokAccount || null,
-        order_notes: orderNotes || null,
-        status: 'new',
-      })
-      .select('id')
-      .single()
-
-    if (error) {
-      console.error('Inquiry creation error:', error)
-      return NextResponse.json(
-        { error: 'Failed to save inquiry', details: error.message },
-        { status: 500 }
-      )
-    }
-
-    if (!inquiry) {
-      console.error('No inquiry returned from insert')
-      return NextResponse.json(
-        { error: 'Failed to save inquiry - no response from database' },
-        { status: 500 }
-      )
+      if (error) {
+        console.error('Inquiry creation error:', error)
+        // Continue anyway - we can still send emails
+      }
+    } else {
+      console.log('[v0] Supabase not configured, skipping database storage for inquiry')
     }
 
     // Send email to admin

@@ -24,35 +24,29 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Store contact query in database
-    if (!supabase) {
-      return NextResponse.json(
-        { error: 'Database connection failed' },
-        { status: 500 }
-      )
-    }
+    // Store contact query in database (if Supabase is configured)
+    if (supabase) {
+      const { error } = await supabase
+        .from('contact_queries')
+        .insert({
+          name,
+          email,
+          message,
+          phone_number: phoneNumber || null,
+          facebook_account: facebookAccount || null,
+          tiktok_account: tiktokAccount || null,
+          status: 'new',
+          created_at: new Date().toISOString(),
+        })
+        .select('id')
+        .single()
 
-    const { data: contact, error } = await supabase
-      .from('contact_queries')
-      .insert({
-        name,
-        email,
-        message,
-        phone_number: phoneNumber || null,
-        facebook_account: facebookAccount || null,
-        tiktok_account: tiktokAccount || null,
-        status: 'new',
-        created_at: new Date().toISOString(),
-      })
-      .select('id')
-      .single()
-
-    if (error || !contact) {
-      console.error('Contact query creation error:', error)
-      return NextResponse.json(
-        { error: 'Failed to save contact query' },
-        { status: 500 }
-      )
+      if (error) {
+        console.error('Contact query creation error:', error)
+        // Continue anyway - we can still send emails
+      }
+    } else {
+      console.log('[v0] Supabase not configured, skipping database storage for contact form')
     }
 
     // Send email to admin

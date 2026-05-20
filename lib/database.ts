@@ -15,6 +15,9 @@ export interface OrderData {
   notes?: string
 }
 
+// In-memory order counter for fallback mode (resets on server restart)
+let inMemoryOrderCounter = Math.floor(Math.random() * 1000)
+
 // Generate a readable order number like ML-2026-000123
 function generateOrderNumber(sequence: number): string {
   const year = new Date().getFullYear()
@@ -26,8 +29,18 @@ export async function createOrder(
   data: OrderData
 ): Promise<{ success: boolean; orderId?: string; orderNumber?: string; error?: string }> {
   try {
+    // If Supabase is not configured, use fallback mode (email-only, no database storage)
     if (!supabase) {
-      return { success: false, error: 'Database connection failed' }
+      console.log('[v0] Supabase not configured, using fallback mode (email-only)')
+      inMemoryOrderCounter++
+      const orderNumber = generateOrderNumber(inMemoryOrderCounter)
+      const orderId = `fallback-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+      
+      return {
+        success: true,
+        orderId,
+        orderNumber,
+      }
     }
 
     // 1. Get or create customer
@@ -145,7 +158,11 @@ export async function logEmail(
   errorMessage?: string
 ) {
   try {
-    if (!supabase) return
+    // Skip if Supabase is not configured
+    if (!supabase) {
+      console.log(`[v0] Email log (no DB): ${emailType} to ${recipientEmail} - ${status}`)
+      return
+    }
 
     await supabase.from('email_logs').insert({
       order_id: orderId,
@@ -167,7 +184,11 @@ export async function updateEmailLog(
   errorMessage?: string
 ) {
   try {
-    if (!supabase) return
+    // Skip if Supabase is not configured
+    if (!supabase) {
+      console.log(`[v0] Email log update (no DB): ${recipientEmail} - ${status}`)
+      return
+    }
 
     const { error } = await supabase
       .from('email_logs')
@@ -188,7 +209,11 @@ export async function updateEmailLog(
 
 export async function getOrderByNumber(orderNumber: string) {
   try {
-    if (!supabase) return null
+    // Return null if Supabase is not configured
+    if (!supabase) {
+      console.log('[v0] getOrderByNumber: Supabase not configured')
+      return null
+    }
 
     const { data, error } = await supabase
       .from('orders')
@@ -215,7 +240,11 @@ export async function updateOrderStatus(
   adminNotes?: string
 ) {
   try {
-    if (!supabase) return { success: false }
+    // Return error if Supabase is not configured
+    if (!supabase) {
+      console.log('[v0] updateOrderStatus: Supabase not configured')
+      return { success: false, error: 'Database not configured' }
+    }
 
     const updateData: Record<string, any> = {
       order_status: orderStatus,
