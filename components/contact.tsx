@@ -70,14 +70,21 @@ export function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
     try {
+      console.error('[v0] Submitting contact form with data:', formData)
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
 
+      console.error('[v0] Response status:', response.status)
+      console.error('[v0] Response headers:', response.headers)
+      
+      const responseData = await response.json()
+      console.error('[v0] Response body:', responseData)
+
       if (!response.ok) {
-        throw new Error('Failed to submit contact form')
+        throw new Error(`Failed to submit contact form: ${responseData.error || response.statusText}`)
       }
 
       setSubmitted(true)
@@ -94,7 +101,7 @@ export function Contact() {
       }, 3000)
     } catch (error) {
       console.error('Contact submission error:', error)
-      alert('Failed to submit contact form. Please try again.')
+      alert(`Failed to submit contact form. ${error instanceof Error ? error.message : 'Please try again.'}`)
     } finally {
       setIsSubmitting(false)
     }
