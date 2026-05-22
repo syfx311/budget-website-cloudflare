@@ -174,8 +174,8 @@ function PremiumPackageImage() {
   return (
     <div className="premium-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F2ed6502fa9814452944e4c6aa119e796?format=webp&width=800&height=1200"
-        alt="Premium Package"
+        src="/images/budget-accessories.jpg"
+        alt="Premium Package - Budget Accessories"
         width={280}
         height={420}
         className="premium-package-img"
