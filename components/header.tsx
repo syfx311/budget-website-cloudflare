@@ -12,9 +12,20 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
+  const handleGetStarted = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === '/products') {
+      e.preventDefault()
+      const contactSection = document.getElementById('contact')
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' })
+        setMobileMenuOpen(false)
+      }
+    }
+  }
+
   const getNavLink = (hash: string) => {
     if (pathname === '/products') {
-      return `/?${hash.slice(1)}`
+      return '#contact'
     }
     return hash
   }
@@ -60,7 +71,7 @@ export function Header() {
               Gallery
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-              <Link href={getNavLink('#contact')}>Get Started</Link>
+              <Link href={getNavLink('#contact')} onClick={handleGetStarted}>Get Started</Link>
             </Button>
           </div>
 
@@ -111,7 +122,7 @@ export function Header() {
                   transition={{ delay: 0.4 }}
                 >
                   <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground w-fit rounded-full">
-                    <Link href={getNavLink('#contact')} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+                    <Link href={getNavLink('#contact')} onClick={handleGetStarted}>Get Started</Link>
                   </Button>
                 </motion.div>
               </div>
