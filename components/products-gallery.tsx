@@ -97,7 +97,7 @@ const products = [
     title: 'Desk Organizer Bundle',
     description: 'Complete home office setup with budget planning essentials',
     category: 'essentials',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc455b93c553b40a384752fa000208e62?format=webp&width=800&height=1200',
+    image: '/images/desk-organizer-bundle.jpg',
     features: ['Multi-Piece Set', 'Storage Included', 'Aesthetic Design'],
     badge: 'Value Set',
     fullDescription: 'Complete desk organization bundle including pen holder, note pads, and sticky notes in coordinated soft colors.',
