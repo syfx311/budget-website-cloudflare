@@ -3,9 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { Sparkles, Heart, ShoppingBag, X, CheckCircle, Loader2 } from 'lucide-react'
+import { Sparkles, Heart, X, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 
 const CATEGORIES = [
@@ -152,25 +151,122 @@ interface SelectedProduct {
 }
 
 function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedProduct | null; isOpen: boolean; onClose: () => void }) {
-  const [quantity, setQuantity] = useState(1)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [submitError, setSubmitError] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    customerName: '',
-    customerEmail: '',
-    customerPhone: '',
-    facebookAccount: '',
-    tiktokAccount: '',
-    orderNotes: '',
-  })
-
   if (!product) return null
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-background rounded-3xl max-w-2xl w-full overflow-y-auto max-h-[90vh]"
+          >
+            <div className="sticky top-0 right-0 flex justify-end p-4 bg-background border-b border-border/20 z-10">
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-secondary rounded-full transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="p-6 md:p-8">
+              {/* Product Image */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-primary/5 to-accent/5">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  className="object-cover"
+                />
+                {product.badge && (
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-1 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+                      <Sparkles className="w-4 h-4" />
+                      {product.badge}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Product Details */}
+              <h2 className="font-noto-sans text-3xl md:text-4xl text-foreground mb-4">
+                {product.title}
+              </h2>
+
+              <p className="text-muted-foreground mb-6 text-lg">
+                {product.fullDescription}
+              </p>
+
+              {/* Features */}
+              <div className="mb-6">
+                <h3 className="font-semibold text-foreground mb-3">Features</h3>
+                <div className="flex flex-wrap gap-2">
+                  {product.features.map((feature) => (
+                    <span
+                      key={feature}
+                      className="inline-flex items-center gap-1 text-sm bg-primary/10 text-primary px-3 py-1 rounded-full"
+                    >
+                      <Heart className="w-3 h-3 fill-primary" />
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Colors */}
+              <div className="mb-8">
+                <h3 className="font-semibold text-foreground mb-3">Available Colors</h3>
+                <div className="flex flex-wrap gap-2">
+                  {product.colors.map((color) => (
+                    <span key={color} className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm">
+                      {color}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Facebook Link */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-center"
+              >
+                <p className="text-muted-foreground mb-4">
+                  Interested in this product? Message me on Facebook to inquire or place an order!
+                </p>
+                <Button
+                  asChild
+                  className="w-full bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full py-6 text-lg font-semibold"
+                >
+                  <a 
+                    href="https://www.facebook.com/profile.php?id=100087797289721" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    <Facebook className="w-5 h-5" />
+                    Message Me on Facebook
+                  </a>
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
