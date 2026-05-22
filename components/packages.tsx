@@ -204,8 +204,8 @@ function ElegancePackageImage() {
   return (
     <div className="elegance-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1373a388724947b3bdcef125b1240bad?format=webp&width=800&height=1200"
-        alt="Elegance Package"
+        src="/images/budget-binder-elegance.jpg"
+        alt="Elegance Package - Budget Binder"
         width={280}
         height={420}
         className="elegance-package-img"
