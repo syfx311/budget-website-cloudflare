@@ -267,7 +267,6 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
     </AnimatePresence>
   )
 }
-}
 
 export function ProductsGallery() {
   const [activeCategory, setActiveCategory] = useState('all')
