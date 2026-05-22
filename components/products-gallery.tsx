@@ -3,9 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { Sparkles, Heart, ShoppingBag, X, CheckCircle, Loader2 } from 'lucide-react'
+import { Sparkles, Heart, X, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 
 const CATEGORIES = [
@@ -152,77 +151,7 @@ interface SelectedProduct {
 }
 
 function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedProduct | null; isOpen: boolean; onClose: () => void }) {
-  const [quantity, setQuantity] = useState(1)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [submitError, setSubmitError] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    customerName: '',
-    customerEmail: '',
-    customerPhone: '',
-    facebookAccount: '',
-    tiktokAccount: '',
-    orderNotes: '',
-  })
-
   if (!product) return null
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitError(null)
-    try {
-      const payload = {
-        productName: product.title,
-        quantity,
-        customerName: formData.customerName,
-        customerEmail: formData.customerEmail,
-        customerPhone: formData.customerPhone,
-        facebookAccount: formData.facebookAccount,
-        tiktokAccount: formData.tiktokAccount,
-        orderNotes: formData.orderNotes,
-      }
-
-      const response = await fetch('/api/inquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || data.details || 'Failed to submit inquiry')
-      }
-
-      setSubmitSuccess(true)
-      setTimeout(() => {
-        onClose()
-        setSubmitSuccess(false)
-        setSubmitError(null)
-        setQuantity(1)
-        setFormData({
-          customerName: '',
-          customerEmail: '',
-          customerPhone: '',
-          facebookAccount: '',
-          tiktokAccount: '',
-          orderNotes: '',
-        })
-      }, 2000)
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to submit inquiry. Please try again.'
-      console.error('Inquiry submission error:', error)
-      setSubmitError(errorMessage)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   return (
     <AnimatePresence>
@@ -239,7 +168,7 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-background rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-background rounded-3xl max-w-2xl w-full overflow-y-auto max-h-[90vh]"
           >
             <div className="sticky top-0 right-0 flex justify-end p-4 bg-background border-b border-border/20 z-10">
               <button
@@ -295,7 +224,7 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
               </div>
 
               {/* Colors */}
-              <div className="mb-6">
+              <div className="mb-8">
                 <h3 className="font-semibold text-foreground mb-3">Available Colors</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.colors.map((color) => (
@@ -306,179 +235,31 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                 </div>
               </div>
 
-              {submitError && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-lg flex items-start gap-3"
+              {/* Facebook Link */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-center"
+              >
+                <p className="text-muted-foreground mb-4">
+                  Interested in this product? Message me on Facebook to inquire or place an order!
+                </p>
+                <Button
+                  asChild
+                  className="w-full bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full py-6 text-lg font-semibold"
                 >
-                  <div className="text-red-700 font-bold text-lg">!</div>
-                  <div>
-                    <p className="text-sm font-semibold text-red-900">Error Submitting Inquiry</p>
-                    <p className="text-sm text-red-800 mt-1">{submitError}</p>
-                  </div>
-                </motion.div>
-              )}
-
-              <AnimatePresence mode="wait">
-                {submitSuccess ? (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="text-center py-12"
+                  <a 
+                    href="https://www.facebook.com/profile.php?id=100087797289721" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
                   >
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.1, type: 'spring' }}
-                    >
-                      <CheckCircle className="w-16 h-16 text-primary mx-auto mb-4" />
-                    </motion.div>
-                    <h3 className="text-2xl font-bold text-foreground mb-2">
-                      Inquiry Submitted!
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Thank you! We'll review your inquiry and contact you soon.
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    {/* Quantity */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Quantity
-                      </label>
-                      <div className="flex items-center border border-border rounded-lg">
-                        <button
-                          type="button"
-                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                          className="px-4 py-2 hover:bg-secondary transition-colors"
-                        >
-                          −
-                        </button>
-                        <span className="px-4 py-2 flex-1 text-center">{quantity}</span>
-                        <button
-                          type="button"
-                          onClick={() => setQuantity(quantity + 1)}
-                          className="px-4 py-2 hover:bg-secondary transition-colors"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Name */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Full Name *
-                      </label>
-                      <Input
-                        type="text"
-                        name="customerName"
-                        value={formData.customerName}
-                        onChange={handleInputChange}
-                        placeholder="Maria Santos"
-                        required
-                        className="bg-card border-primary/20 rounded-xl"
-                      />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Email *
-                      </label>
-                      <Input
-                        type="email"
-                        name="customerEmail"
-                        value={formData.customerEmail}
-                        onChange={handleInputChange}
-                        placeholder="maria@example.com"
-                        required
-                        className="bg-card border-primary/20 rounded-xl"
-                      />
-                    </div>
-
-                    {/* Phone Number */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Phone Number
-                      </label>
-                      <Input
-                        type="tel"
-                        name="customerPhone"
-                        value={formData.customerPhone}
-                        onChange={handleInputChange}
-                        placeholder="+63 9XX XXX XXXX"
-                        className="bg-card border-primary/20 rounded-xl"
-                      />
-                    </div>
-
-                    {/* Facebook */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Facebook Account
-                      </label>
-                      <Input
-                        type="text"
-                        name="facebookAccount"
-                        value={formData.facebookAccount}
-                        onChange={handleInputChange}
-                        placeholder="your.facebook.handle"
-                        className="bg-card border-primary/20 rounded-xl"
-                      />
-                    </div>
-
-                    {/* TikTok */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        TikTok Account
-                      </label>
-                      <Input
-                        type="text"
-                        name="tiktokAccount"
-                        value={formData.tiktokAccount}
-                        onChange={handleInputChange}
-                        placeholder="@your.tiktok.handle"
-                        className="bg-card border-primary/20 rounded-xl"
-                      />
-                    </div>
-
-                    {/* Order Notes */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Order Notes (Optional)
-                      </label>
-                      <textarea
-                        name="orderNotes"
-                        value={formData.orderNotes}
-                        onChange={handleInputChange}
-                        placeholder="Add any special requests or details..."
-                        className="w-full rounded-lg border border-border p-3 text-foreground placeholder:text-muted-foreground resize-none"
-                        rows={3}
-                      />
-                    </div>
-
-                    {/* Submit Button */}
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-6 text-lg"
-                    >
-                      {isSubmitting ? (
-                        <span className="flex items-center gap-2">
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          Submitting...
-                        </span>
-                      ) : (
-                        'Send Inquiry'
-                      )}
-                    </Button>
-                  </form>
-                )}
-              </AnimatePresence>
+                    <Facebook className="w-5 h-5" />
+                    Message Me on Facebook
+                  </a>
+                </Button>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>

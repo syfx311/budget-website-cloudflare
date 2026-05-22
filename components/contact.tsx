@@ -1,11 +1,9 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
-import { Send, CheckCircle, Facebook, Youtube } from 'lucide-react'
+import { Facebook, Youtube } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -55,51 +53,6 @@ function TikTokLogo({ className = '' }: { className?: string }) {
 }
 
 export function Contact() {
-  const [submitted, setSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phoneNumber: '',
-    message: '',
-    facebookAccount: '',
-    tiktokAccount: '',
-  })
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to submit contact form')
-      }
-
-      setSubmitted(true)
-      setTimeout(() => {
-        setSubmitted(false)
-        setFormData({
-          name: '',
-          email: '',
-          phoneNumber: '',
-          message: '',
-          facebookAccount: '',
-          tiktokAccount: '',
-        })
-      }, 3000)
-    } catch (error) {
-      console.error('Contact submission error:', error)
-      alert('Failed to submit contact form. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
     <section id="contact" className="py-20 md:py-28 bg-card relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 222, 222, 1)' }}>
       {/* Decorative elements */}
@@ -129,204 +82,64 @@ export function Contact() {
               Ready to Transform Your Finances?
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Let&apos;s create your personalized budget templates. Fill out the form below and 
+              Let&apos;s create your personalized budget templates. Connect with us on Facebook and 
               I&apos;ll help you get started on your cash stuffing journey.
             </p>
           </motion.div>
 
-          <AnimatePresence mode="wait">
-            {submitted ? (
-              <motion.div 
-                key="success"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, type: 'spring' }}
-                className="gingham-pattern rounded-2xl p-8 text-center border-2 border-primary/20"
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2, type: 'spring' }}
+            className="gingham-pattern rounded-2xl p-8 text-center border-2 border-primary/20"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+              className="mb-6"
+            >
+              <Facebook className="h-12 w-12 text-primary mx-auto" />
+            </motion.div>
+            <motion.h3 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-2xl font-semibold text-foreground mb-4"
+            >
+              Connect with Me on Facebook
+            </motion.h3>
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-muted-foreground mb-8"
+            >
+              Send me a message with your budget goals and preferences, and I&apos;ll help you create 
+              the perfect personalized budget templates for your cash stuffing journey.
+            </motion.p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Button
+                asChild
+                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
+                size="lg"
               >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+                <a 
+                  href="https://www.facebook.com/profile.php?id=100087797289721" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
                 >
-                  <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-                </motion.div>
-                <motion.h3 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-xl font-semibold text-foreground mb-2"
-                >
-                  Thank You!
-                </motion.h3>
-                <motion.p 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-muted-foreground"
-                >
-                  Your message has been received. I&apos;ll get back to you within 24-48 hours 
-                  to discuss your personalized budget templates.
-                </motion.p>
-              </motion.div>
-            ) : (
-              <motion.form 
-                key="form"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                onSubmit={handleSubmit} 
-                className="bg-background rounded-2xl p-6 md:p-8 border-2 border-primary/20 shadow-sm"
-              >
-                <div className="space-y-6">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Your Name
-                    </label>
-                    <Input
-                      id="name"
-                      type="text"
-                      required
-                      placeholder="Maria Santos"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      placeholder="maria@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.45 }}
-                  >
-                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-foreground mb-2">
-                      Phone Number
-                    </label>
-                    <Input
-                      id="phoneNumber"
-                      type="tel"
-                      placeholder="+63 9XX XXX XXXX"
-                      value={formData.phoneNumber}
-                      onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                      Tell me about your budget goals
-                    </label>
-                    <textarea
-                      id="message"
-                      required
-                      rows={4}
-                      placeholder="I want to save for... My budget categories include..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full rounded-xl border-2 border-primary/20 bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all focus:scale-[1.01]"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.55 }}
-                  >
-                    <label htmlFor="facebookAccount" className="block text-sm font-medium text-foreground mb-2">
-                      Facebook Account
-                    </label>
-                    <Input
-                      id="facebookAccount"
-                      type="text"
-                      placeholder="your.facebook.handle"
-                      value={formData.facebookAccount}
-                      onChange={(e) => setFormData({ ...formData, facebookAccount: e.target.value })}
-                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.57 }}
-                  >
-                    <label htmlFor="tiktokAccount" className="block text-sm font-medium text-foreground mb-2">
-                      TikTok Account
-                    </label>
-                    <Input
-                      id="tiktokAccount"
-                      type="text"
-                      placeholder="@your.tiktok.handle"
-                      value={formData.tiktokAccount}
-                      onChange={(e) => setFormData({ ...formData, tiktokAccount: e.target.value })}
-                      className="bg-card border-primary/20 rounded-xl transition-all focus:scale-[1.01] focus:border-primary"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full"
-                      size="lg"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <span className="inline-block animate-spin mr-2">⏳</span>
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="h-4 w-4 mr-2" />
-                          Start My Budget Journey
-                        </>
-                      )}
-                    </Button>
-                  </motion.div>
-                </div>
-              </motion.form>
-            )}
-          </AnimatePresence>
+                  <Facebook className="h-5 w-5" />
+                  Message Me on Facebook
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
