@@ -174,8 +174,8 @@ function PremiumPackageImage() {
   return (
     <div className="premium-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F2ed6502fa9814452944e4c6aa119e796?format=webp&width=800&height=1200"
-        alt="Premium Package"
+        src="/images/budget-accessories.jpg"
+        alt="Premium Package - Budget Accessories"
         width={280}
         height={420}
         className="premium-package-img"
@@ -189,8 +189,8 @@ function SophiePackageImage() {
   return (
     <div className="sophie-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3060276967c449fcba661dc39b4142d9?format=webp&width=800&height=1200"
-        alt="Sophie Package"
+        src="/images/budget-wallet-sophie.jpg"
+        alt="Sophie Package - Budget Wallet"
         width={280}
         height={420}
         className="sophie-package-img"
@@ -204,8 +204,8 @@ function ElegancePackageImage() {
   return (
     <div className="elegance-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F1373a388724947b3bdcef125b1240bad?format=webp&width=800&height=1200"
-        alt="Elegance Package"
+        src="/images/budget-binder-elegance.jpg"
+        alt="Elegance Package - Budget Binder"
         width={280}
         height={420}
         className="elegance-package-img"
@@ -219,8 +219,8 @@ function MysticPackageImage() {
   return (
     <div className="mystic-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F580f45d62d4c4d9f95b5b8a5e2cf5eb7?format=webp&width=800&height=1200"
-        alt="Mystic Package"
+        src="/images/budget-planner-mystic.jpg"
+        alt="Mystic Package - Budget Planner"
         width={280}
         height={420}
         className="mystic-package-img"
