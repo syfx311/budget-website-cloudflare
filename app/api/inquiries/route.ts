@@ -41,19 +41,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const inquiryData: any = {
+      product_name: productName,
+      quantity,
+      customer_name: customerName,
+      customer_email: customerEmail,
+      customer_phone: customerPhone || null,
+      facebook_account: facebookAccount || null,
+      tiktok_account: tiktokAccount || null,
+      order_notes: orderNotes || null,
+      status: 'new',
+    }
+
+    // @ts-ignore - Supabase typing issue
     const { data: inquiry, error } = await supabase
       .from('inquiries')
-      .insert({
-        product_name: productName,
-        quantity,
-        customer_name: customerName,
-        customer_email: customerEmail,
-        customer_phone: customerPhone || null,
-        facebook_account: facebookAccount || null,
-        tiktok_account: tiktokAccount || null,
-        order_notes: orderNotes || null,
-        status: 'new',
-      })
+      .insert(inquiryData)
       .select('id')
       .single()
 

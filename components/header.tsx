@@ -51,6 +51,9 @@ export function Header() {
                 width={60}
                 height={60}
                 className="rounded-full border-2 border-primary/30"
+                loading="eager"
+                quality={80}
+                sizes="60px"
               />
             </motion.div>
             <div>

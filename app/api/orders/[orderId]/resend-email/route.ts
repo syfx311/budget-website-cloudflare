@@ -27,6 +27,7 @@ export async function POST(
     }
 
     // Fetch order details
+    // @ts-ignore - Supabase typing issue
     const { data: order, error: orderError } = await supabase
       .from('orders')
       .select('*')
@@ -41,10 +42,12 @@ export async function POST(
     }
 
     // Fetch customer details
+    // @ts-ignore - Supabase typing issue
     const { data: customer, error: customerError } = await supabase
       .from('customers')
       .select('id, name, email, phone')
-      .eq('id', order.customer_id)
+      // @ts-ignore
+      .eq('id', (order as any).customer_id)
       .single()
 
     if (customerError || !customer) {
@@ -57,24 +60,26 @@ export async function POST(
     let recipientEmail: string
     let subject: string
     let htmlContent: string
+    const typedCustomer = customer as any
+    const typedOrder = order as any
 
     if (emailType === 'customer_confirmation') {
-      recipientEmail = customer.email
+      recipientEmail = typedCustomer.email
 
       htmlContent = emailTemplates.customerConfirmation(
-        customer.name,
-        order.order_number,
-        order.package_name,
+        typedCustomer.name,
+        typedOrder.order_number,
+        typedOrder.package_name,
         {
-          binderType: order.binder_type,
-          colors: order.colors,
-          inserts: order.inserts,
-          challenges: order.challenges,
-          specialRequests: order.special_requests,
+          binderType: typedOrder.binder_type,
+          colors: typedOrder.colors,
+          inserts: typedOrder.inserts,
+          challenges: typedOrder.challenges,
+          specialRequests: typedOrder.special_requests,
         }
       )
 
-      subject = `Thank You for Your Order - ${order.order_number}`
+      subject = `Thank You for Your Order - ${typedOrder.order_number}`
     } else {
       // admin_notification
       recipientEmail = process.env.ADMIN_EMAIL || ''
@@ -87,21 +92,21 @@ export async function POST(
       }
 
       htmlContent = emailTemplates.adminNotification(
-        customer.name,
-        customer.email,
-        customer.phone || undefined,
-        order.order_number,
-        order.package_name,
+        typedCustomer.name,
+        typedCustomer.email,
+        typedCustomer.phone || undefined,
+        typedOrder.order_number,
+        typedOrder.package_name,
         {
-          binderType: order.binder_type,
-          colors: order.colors,
-          inserts: order.inserts,
-          challenges: order.challenges,
-          specialRequests: order.special_requests,
+          binderType: typedOrder.binder_type,
+          colors: typedOrder.colors,
+          inserts: typedOrder.inserts,
+          challenges: typedOrder.challenges,
+          specialRequests: typedOrder.special_requests,
         }
       )
 
-      subject = `New Order: ${order.order_number} from ${customer.name}`
+      subject = `New Order: ${typedOrder.order_number} from ${typedCustomer.name}`
     }
 
     // Send email

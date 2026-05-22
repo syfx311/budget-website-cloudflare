@@ -186,6 +186,9 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                   alt={product.title}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
+                  quality={80}
                 />
                 {product.badge && (
                   <div className="absolute top-4 left-4">
@@ -386,6 +389,9 @@ export function ProductsGallery() {
                         alt={product.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        quality={80}
                       />
                       {product.badge && (
                         <div className="absolute top-3 left-3">
@@ -448,6 +454,9 @@ export function ProductsGallery() {
                       alt={product.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                      quality={80}
                     />
                     {product.badge && (
                       <div className="absolute top-3 left-3">

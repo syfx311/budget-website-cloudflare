@@ -32,18 +32,21 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const contactData: any = {
+      name,
+      email,
+      message,
+      phone_number: phoneNumber || null,
+      facebook_account: facebookAccount || null,
+      tiktok_account: tiktokAccount || null,
+      status: 'new',
+      created_at: new Date().toISOString(),
+    }
+
+    // @ts-ignore - Supabase typing issue
     const { data: contact, error } = await supabase
       .from('contact_queries')
-      .insert({
-        name,
-        email,
-        message,
-        phone_number: phoneNumber || null,
-        facebook_account: facebookAccount || null,
-        tiktok_account: tiktokAccount || null,
-        status: 'new',
-        created_at: new Date().toISOString(),
-      })
+      .insert(contactData)
       .select('id')
       .single()
 

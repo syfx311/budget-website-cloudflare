@@ -76,6 +76,10 @@ export function AutoRotatingProductImage({
             alt={rotatingImages[currentImageIndex].alt}
             fill
             className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={false}
+            loading="lazy"
+            quality={80}
           />
         </motion.div>
       </AnimatePresence>

@@ -105,7 +105,9 @@ export function BinderCollectionPreview() {
                   alt="Premium Budget Binder"
                   fill
                   className="object-cover transition-all duration-500 group-hover:scale-110"
-                  priority
+                  priority={true}
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-card/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -154,6 +156,9 @@ export function BinderCollectionPreview() {
                     alt={`Binder view ${index + 1}`}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 16vw, 10vw"
+                    loading="lazy"
+                    quality={75}
                   />
                 </motion.button>
               ))}

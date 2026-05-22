@@ -53,6 +53,9 @@ function ProductCardShowcase({ products }: { products: any[] }) {
               alt={currentProduct.alt}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              loading="lazy"
+              quality={80}
             />
           </div>
         </motion.div>
@@ -89,6 +92,9 @@ function ProductCardShowcase({ products }: { products: any[] }) {
                   alt={product.alt}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 640px) 22vw, (max-width: 1024px) 20vw, 15vw"
+                  loading="lazy"
+                  quality={75}
                 />
               </motion.button>
             ))}
@@ -278,6 +284,9 @@ export function GalleryShowcase() {
                     alt={item.alt}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    loading="lazy"
+                    quality={75}
                   />
                 </div>
               </motion.div>

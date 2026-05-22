@@ -204,7 +204,9 @@ export function Hero() {
                 width={400}
                 height={400}
                 className="relative z-10 rounded-2xl shadow-2xl"
-                priority
+                priority={true}
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 400px"
               />
             </div>
           </motion.div>

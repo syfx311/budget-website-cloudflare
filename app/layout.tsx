@@ -54,6 +54,14 @@ export const metadata: Metadata = {
     title: 'Mommy Louise Budget | Cash Stuffing & Budget Templates',
     description: 'Take control of your money with beautiful cash stuffing templates and budget envelopes.',
     type: 'website',
+    images: [
+      {
+        url: '/images/logo.png',
+        width: 400,
+        height: 400,
+        alt: "Mommy Louise's Budget",
+      },
+    ],
   },
   icons: {
     icon: [
@@ -70,6 +78,8 @@ export const viewport: Viewport = {
   themeColor: '#e85a8f',
   width: 'device-width',
   initialScale: 1,
+  colorScheme: 'light',
+  interactiveWidget: 'resizes-content',
 }
 
 export default function RootLayout({
@@ -79,6 +89,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
+      <head>
+        {/* Preconnect to external image CDN for faster loading */}
+        <link rel="preconnect" href="https://cdn.builder.io" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.builder.io" />
+      </head>
       <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} ${allura.variable} ${grandHotel.variable} font-sans antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
