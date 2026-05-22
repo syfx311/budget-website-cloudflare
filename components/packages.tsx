@@ -189,8 +189,8 @@ function SophiePackageImage() {
   return (
     <div className="sophie-package-img-wrapper">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3060276967c449fcba661dc39b4142d9?format=webp&width=800&height=1200"
-        alt="Sophie Package"
+        src="/images/budget-wallet-sophie.jpg"
+        alt="Sophie Package - Budget Wallet"
         width={280}
         height={420}
         className="sophie-package-img"
