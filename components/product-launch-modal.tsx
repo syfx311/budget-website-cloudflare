@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Sparkles, Facebook } from 'lucide-react'
+import { X, Sparkles, Facebook, ZoomIn } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 
 export function ProductLaunchModal() {
   const [isOpen, setIsOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [enlargedImage, setEnlargedImage] = useState<string | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -24,6 +25,23 @@ export function ProductLaunchModal() {
   const handleClose = () => {
     setIsOpen(false)
   }
+
+  const handleEscapeKey = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      if (enlargedImage) {
+        setEnlargedImage(null)
+      } else {
+        handleClose()
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (isOpen || enlargedImage) {
+      window.addEventListener('keydown', handleEscapeKey)
+      return () => window.removeEventListener('keydown', handleEscapeKey)
+    }
+  }, [isOpen, enlargedImage])
 
   if (!mounted) return null
 
@@ -51,7 +69,7 @@ export function ProductLaunchModal() {
             key="modal"
           >
             <div
-              className="relative w-full max-w-2xl bg-card rounded-3xl shadow-2xl overflow-hidden border border-border/50"
+              className="relative w-full max-w-2xl h-[90vh] bg-card rounded-3xl shadow-2xl overflow-hidden border border-border/50 flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -63,8 +81,8 @@ export function ProductLaunchModal() {
                 <X className="w-6 h-6 text-foreground" />
               </button>
 
-              {/* Content */}
-              <div className="p-6 sm:p-8 pt-12">
+              {/* Scrollable Content */}
+              <div className="overflow-y-auto flex-1 p-6 sm:p-8 pt-12">
                 {/* Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -114,24 +132,36 @@ export function ProductLaunchModal() {
                   transition={{ delay: 0.3 }}
                   className="grid grid-cols-2 gap-4 mb-8"
                 >
-                  <div className="relative aspect-square overflow-hidden rounded-2xl shadow-lg border border-border/50">
+                  <button
+                    onClick={() => setEnlargedImage('/images/wallet-1.jpg')}
+                    className="relative aspect-square overflow-hidden rounded-2xl shadow-lg border border-border/50 group cursor-pointer"
+                  >
                     <Image
                       src="/images/wallet-1.jpg"
                       alt="Mommy Louise Budgeting Wallet - Closed View"
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
                       priority
                     />
-                  </div>
-                  <div className="relative aspect-square overflow-hidden rounded-2xl shadow-lg border border-border/50">
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                      <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setEnlargedImage('/images/wallet-2.jpg')}
+                    className="relative aspect-square overflow-hidden rounded-2xl shadow-lg border border-border/50 group cursor-pointer"
+                  >
                     <Image
                       src="/images/wallet-2.jpg"
                       alt="Mommy Louise Budgeting Wallet - Interior with Dividers"
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
                       priority
                     />
-                  </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                      <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </button>
                 </motion.div>
 
                 {/* Features */}
@@ -170,6 +200,48 @@ export function ProductLaunchModal() {
               </div>
             </div>
           </motion.div>
+
+          {/* Enlarged Image Lightbox */}
+          <AnimatePresence>
+            {enlargedImage && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setEnlargedImage(null)}
+                  className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60]"
+                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="fixed inset-0 flex items-center justify-center z-[70] p-4"
+                  onClick={() => setEnlargedImage(null)}
+                >
+                  <button
+                    onClick={() => setEnlargedImage(null)}
+                    className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition-colors z-20"
+                    aria-label="Close image"
+                  >
+                    <X className="w-8 h-8 text-white" />
+                  </button>
+                  <div className="relative w-full h-full max-w-4xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+                    <Image
+                      src={enlargedImage}
+                      alt="Enlarged wallet image"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                  <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+                    Press ESC or click X to close
+                  </p>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </>
       )}
     </AnimatePresence>
