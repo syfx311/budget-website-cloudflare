@@ -69,7 +69,7 @@ export function ProductLaunchModal() {
             key="modal"
           >
             <div
-              className="relative w-full max-w-2xl h-[90vh] bg-card rounded-3xl shadow-2xl overflow-hidden border border-border/50 flex flex-col"
+              className="relative w-full max-w-2xl bg-card rounded-3xl shadow-2xl overflow-hidden border border-border/50"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -81,8 +81,8 @@ export function ProductLaunchModal() {
                 <X className="w-6 h-6 text-foreground" />
               </button>
 
-              {/* Scrollable Content */}
-              <div className="overflow-y-auto flex-1 p-6 sm:p-8 pt-12">
+              {/* Content */}
+              <div className="p-6 sm:p-8 pt-12">
                 {/* Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
