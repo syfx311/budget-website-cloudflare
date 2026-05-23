@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Sparkles } from 'lucide-react'
+import { X, Sparkles, Facebook } from 'lucide-react'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 export function ProductLaunchModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -36,58 +37,84 @@ export function ProductLaunchModal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
             key="backdrop"
           />
 
           {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ type: 'spring', duration: 0.4 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             className="fixed inset-0 flex items-center justify-center z-50 p-4"
             key="modal"
           >
             <div
-              className="relative w-full max-w-2xl bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 rounded-2xl shadow-2xl overflow-hidden"
+              className="relative w-full max-w-2xl bg-card rounded-3xl shadow-2xl overflow-hidden border border-border/50"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 onClick={handleClose}
-                className="absolute top-4 right-4 p-2 hover:bg-white/50 rounded-full transition-colors z-10"
+                className="absolute top-4 right-4 p-2 hover:bg-secondary rounded-full transition-colors z-10"
                 aria-label="Close modal"
               >
-                <X className="w-5 h-5 text-gray-600" />
+                <X className="w-6 h-6 text-foreground" />
               </button>
 
               {/* Content */}
-              <div className="p-6 sm:p-8">
+              <div className="p-6 sm:p-8 pt-12">
                 {/* Badge */}
-                <div className="flex items-center justify-center mb-4">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/80 rounded-full text-sm font-medium text-amber-700 shadow-sm">
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="flex items-center justify-center mb-4"
+                >
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-semibold text-primary border border-primary/20">
                     <Sparkles className="w-4 h-4" />
-                    Just Released
+                    Coming Soon
                   </span>
-                </div>
+                </motion.div>
 
                 {/* Headline */}
-                <h2 className="text-3xl sm:text-4xl font-bold text-center mb-2 text-gray-900">
-                  NEW Budgeting Wallet
-                </h2>
-                <p className="text-center text-lg text-amber-600 mb-6 font-semibold flex items-center justify-center gap-1">
-                  Collection <span className="text-2xl">✨</span>
-                </p>
+                <motion.h2
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  className="font-signature text-5xl md:text-6xl text-center mb-1 text-foreground"
+                >
+                  Mommy Louise
+                </motion.h2>
+
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-center text-lg font-noto-sans text-primary mb-6 font-semibold"
+                >
+                  Budget Wallet Collection
+                </motion.p>
 
                 {/* Subheadline */}
-                <p className="text-center text-gray-700 mb-8 text-lg leading-relaxed">
-                  Stay organized in style with our custom-designed budgeting wallets.
-                </p>
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 }}
+                  className="text-center text-foreground/80 mb-8 text-base leading-relaxed font-noto-sans"
+                >
+                  Beautifully crafted wallets with premium materials and elegant design. Perfect for organizing your budget categories in style.
+                </motion.p>
 
                 {/* Product Images */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  <div className="relative aspect-square overflow-hidden rounded-lg shadow-md">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="grid grid-cols-2 gap-4 mb-8"
+                >
+                  <div className="relative aspect-square overflow-hidden rounded-2xl shadow-lg border border-border/50">
                     <Image
                       src="/images/wallet-1.jpg"
                       alt="Mommy Louise Budgeting Wallet - Closed View"
@@ -96,7 +123,7 @@ export function ProductLaunchModal() {
                       priority
                     />
                   </div>
-                  <div className="relative aspect-square overflow-hidden rounded-lg shadow-md">
+                  <div className="relative aspect-square overflow-hidden rounded-2xl shadow-lg border border-border/50">
                     <Image
                       src="/images/wallet-2.jpg"
                       alt="Mommy Louise Budgeting Wallet - Interior with Dividers"
@@ -105,38 +132,41 @@ export function ProductLaunchModal() {
                       priority
                     />
                   </div>
-                </div>
+                </motion.div>
 
-                {/* Feature Bullets */}
-                <div className="space-y-3 mb-8">
-                  <FeatureBullet text="Cash envelope budgeting system" />
-                  <FeatureBullet text="Custom-designed by Mommy Louise" />
-                  <FeatureBullet text="Stylish, compact, and practical" />
-                  <FeatureBullet text="Perfect for saving goals & daily budgeting" />
-                </div>
+                {/* Features */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                  className="space-y-2 mb-8"
+                >
+                  <FeatureBullet text="Premium textured materials" />
+                  <FeatureBullet text="Custom budget categories" />
+                  <FeatureBullet text="Compact & stylish design" />
+                  <FeatureBullet text="Perfect for cash envelope method" />
+                </motion.div>
 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href="https://www.facebook.com/messages/t/123456789"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 text-center shadow-md hover:shadow-lg transform hover:scale-105"
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <Button
+                    asChild
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-6 text-lg font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all"
                   >
-                    Send Inquiry on Facebook
-                  </a>
-                  <button
-                    onClick={handleClose}
-                    className="flex-1 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-lg transition-colors border border-gray-200"
-                  >
-                    Maybe Later
-                  </button>
-                </div>
-
-                {/* Coming Soon Badge */}
-                <p className="text-center text-sm text-gray-600 mt-6 font-medium">
-                  🚀 Product Coming Soon
-                </p>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100087797289721"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Facebook className="w-5 h-5" />
+                      Send Inquiry via Facebook
+                    </a>
+                  </Button>
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -148,11 +178,11 @@ export function ProductLaunchModal() {
 
 function FeatureBullet({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-3 text-gray-700">
-      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-200/50 flex items-center justify-center">
-        <span className="w-2 h-2 bg-amber-600 rounded-full" />
+    <div className="flex items-center gap-3 text-foreground/80">
+      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+        <span className="w-2 h-2 bg-primary rounded-full" />
       </span>
-      <span className="text-base">{text}</span>
+      <span className="text-sm font-noto-sans">{text}</span>
     </div>
   )
 }
