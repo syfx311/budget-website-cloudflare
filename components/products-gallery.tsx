@@ -93,14 +93,14 @@ const products = [
   },
   {
     id: 6,
-    title: 'Desk Organizer Bundle',
-    description: 'Complete home office setup with budget planning essentials',
+    title: 'Quilted Basket Budget Bundle',
+    description: 'Beautiful white quilted basket filled with premium budget planning essentials',
     category: 'essentials',
     image: '/images/desk-organizer-bundle.jpg',
-    features: ['Multi-Piece Set', 'Storage Included', 'Aesthetic Design'],
+    features: ['Pearl Beaded Handles', 'Multiple Budget Items', 'Luxury Basket'],
     badge: 'Value Set',
-    fullDescription: 'Complete desk organization bundle including pen holder, note pads, and sticky notes in coordinated soft colors.',
-    colors: ['Pink & Cream', 'Purple & Beige'],
+    fullDescription: 'Stunning white quilted basket bundle featuring pearl beaded handles, silk ribbon bow, and filled with coordinated budget planning essentials including envelopes, cards, and organizational materials in soft pinks and purples.',
+    colors: ['White', 'Pink & Purple', 'Rose Gold'],
   },
 ]
 
