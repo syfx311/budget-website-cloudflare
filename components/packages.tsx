@@ -174,8 +174,8 @@ function PremiumPackageImage() {
   return (
     <div className="premium-package-img-wrapper">
       <Image
-        src="/images/budget-accessories.jpg"
-        alt="Premium Package - Budget Accessories"
+        src="/images/budget-mystic-wallet.jpg"
+        alt="Premium Package - Budget Wallet"
         width={280}
         height={420}
         className="premium-package-img"
