@@ -22,6 +22,17 @@ export function ProductLaunchModal() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Auto-close modal after 20 seconds
+  useEffect(() => {
+    if (!isOpen) return
+
+    const autoCloseTimer = setTimeout(() => {
+      setIsOpen(false)
+    }, 20000)
+
+    return () => clearTimeout(autoCloseTimer)
+  }, [isOpen])
+
   const handleClose = () => {
     setIsOpen(false)
   }
@@ -82,7 +93,7 @@ export function ProductLaunchModal() {
               </button>
 
               {/* Content */}
-              <div className="p-6 sm:p-8 pt-12">
+              <div className="p-6 sm:p-8 pt-12 max-h-[90vh] overflow-y-auto">
                 {/* Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
