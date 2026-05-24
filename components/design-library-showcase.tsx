@@ -100,9 +100,9 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
         {/* Image Grid Container - 5 tiles auto-rotating */}
         <div className="relative aspect-[20/6] md:aspect-[25/6] overflow-hidden">
           <div className="w-full h-full grid grid-cols-5 gap-0">
-            {currentImageIndices.map((imageIndex) => (
+            {currentImageIndices.map((imageIndex, position) => (
               <motion.div
-                key={imageIndex}
+                key={`${position}-${imageIndex}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
@@ -114,6 +114,8 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
                   alt={images[imageIndex].alt}
                   fill
                   className="object-cover"
+                  priority={position < 2}
+                  sizes="(max-width: 768px) 20vw, 20vw"
                 />
               </motion.div>
             ))}
