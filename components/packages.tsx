@@ -140,7 +140,7 @@ function PackageCard({
         <ul className="space-y-2 mb-6 flex-grow">
           {features.map((feature, index) => (
             <motion.li
-              key={index}
+              key={`${index}-${feature}`}
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.05 }}
