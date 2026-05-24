@@ -114,6 +114,8 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
                   alt={images[imageIndex].alt}
                   fill
                   className="object-cover"
+                  priority={position < 2}
+                  sizes="(max-width: 768px) 20vw, 20vw"
                 />
               </motion.div>
             ))}

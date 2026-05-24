@@ -53,6 +53,8 @@ function ProductCardShowcase({ products }: { products: any[] }) {
               alt={currentProduct.alt}
               fill
               className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </motion.div>
@@ -89,6 +91,8 @@ function ProductCardShowcase({ products }: { products: any[] }) {
                   alt={product.alt}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 25vw, 15vw"
+                  loading={index < 4 ? 'eager' : 'lazy'}
                 />
               </motion.button>
             ))}
@@ -278,6 +282,7 @@ export function GalleryShowcase() {
                     alt={item.alt}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   />
                 </div>
               </motion.div>
