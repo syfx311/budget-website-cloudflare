@@ -246,6 +246,17 @@ export function Packages() {
 
   const packages = [
     {
+      title: 'Mystic Package',
+      features: [
+        'A7 transparent looseleaf binder',
+        '10 envelopes',
+        '10 inserts',
+        '2 dashboards',
+        'Effortless elegance for your budget journey'
+      ],
+      image: <MysticPackageImage />
+    },
+    {
       title: 'Premium Package',
       badge: 'Most Popular',
       features: [
@@ -282,17 +293,6 @@ export function Packages() {
         'Hand-matched to your order'
       ],
       image: <ElegancePackageImage />
-    },
-    {
-      title: 'Mystic Package',
-      features: [
-        'A7 transparent looseleaf binder',
-        '10 envelopes',
-        '10 inserts',
-        '2 dashboards',
-        'Effortless elegance for your budget journey'
-      ],
-      image: <MysticPackageImage />
     }
   ]
 

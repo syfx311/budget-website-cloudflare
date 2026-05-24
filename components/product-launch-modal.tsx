@@ -114,7 +114,7 @@ export function ProductLaunchModal() {
                   transition={{ delay: 0.15 }}
                   className="font-signature text-5xl md:text-6xl text-center mb-1 text-foreground"
                 >
-                  Mommy Louise
+                  mommy louise
                 </motion.h2>
 
                 <motion.p

@@ -35,12 +35,12 @@ export function ImageModal({ image, isOpen, onClose }: ImageModalProps) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none overflow-y-auto"
           >
-            <div className="relative max-w-4xl w-full pointer-events-auto">
+            <div className="relative max-w-4xl w-full pointer-events-auto my-auto">
               <button
                 onClick={onClose}
-                className="absolute -top-12 right-0 text-white hover:text-primary transition-colors z-50"
+                className="absolute -top-12 right-0 text-white hover:text-primary transition-colors z-50 md:relative md:top-0 md:mb-4"
                 aria-label="Close modal"
               >
                 <X size={32} />

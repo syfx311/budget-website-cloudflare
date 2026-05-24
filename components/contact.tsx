@@ -170,7 +170,7 @@ export function Footer() {
               className="rounded-full border-2 border-primary/30"
             />
             <div>
-              <span className="font-serif text-foreground block leading-tight" style={{ fontFamily: 'Grand Hotel, sans-serif', fontSize: '27px' }}>Mommy Louise&apos;s</span>
+              <span className="font-serif text-foreground block leading-tight" style={{ fontFamily: 'Grand Hotel, sans-serif', fontSize: '27px' }}>mommy louise&apos;s</span>
               <span className="text-xs text-primary font-medium tracking-wider uppercase">Budget PH</span>
             </div>
           </motion.div>
