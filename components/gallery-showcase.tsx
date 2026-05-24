@@ -228,7 +228,7 @@ export function GalleryShowcase() {
         >
           <div className="text-center mb-12">
             <h2 className="font-noto-sans text-2xl md:text-3xl text-foreground mb-2">
-              Binder <span className="font-signature text-3xl md:text-4xl text-primary">Color Collection</span>
+              Binder <span className="font-signature text-3xl md:text-4xl text-primary">Collection</span>
             </h2>
             <p className="text-muted-foreground">
               Beautiful colors and finishes to match your style
