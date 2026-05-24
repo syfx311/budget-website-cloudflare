@@ -52,7 +52,7 @@ const products = [
     title: 'Premium Budget Binders',
     description: 'High-quality binders designed for comprehensive budget planning',
     category: 'planners',
-    image: '/images/product-premium-binders.jpg',
+    image: '/images/best-seller-product-2.jpg',
     features: ['Gold Hardware', 'Premium Materials', 'Organized Sections'],
     badge: 'Best Seller',
     fullDescription: 'Luxe textured budget binders with premium gold binding and complete organizational system for monthly budget planning.',
