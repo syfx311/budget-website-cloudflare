@@ -219,8 +219,8 @@ function MysticPackageImage() {
   return (
     <div className="mystic-package-img-wrapper">
       <Image
-        src="/images/budget-mystic-wallet.jpg"
-        alt="Mystic Package - Budget Wallet"
+        src="/images/budget-mystic-planner.jpg"
+        alt="Mystic Package - Budget Planner"
         width={280}
         height={420}
         className="mystic-package-img"
