@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { DesignLibraryShowcase } from '@/components/design-library-showcase'
+import { getRandomTileSize } from '@/lib/masonry-utils'
 
 function ProductCardShowcase({ products }: { products: any[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -235,7 +236,7 @@ export function GalleryShowcase() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 auto-rows-max gap-4" style={{ gridAutoFlow: 'dense' }}>
             {[
               { id: 1, src: '/images/color-pink-quilted.jpg', alt: 'Pink Quilted Binder' },
               { id: 2, src: '/images/color-lavender-closed.jpg', alt: 'Lavender Binder' },
@@ -274,15 +275,15 @@ export function GalleryShowcase() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ y: -4 }}
-                className="relative group overflow-hidden rounded-2xl bg-card border border-primary/10 hover:border-primary/30 transition-all duration-300"
+                className={`relative group overflow-hidden rounded-2xl bg-card border border-primary/10 hover:border-primary/30 transition-all duration-300 ${getRandomTileSize(index)}`}
               >
-                <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
+                <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
                   <Image
                     src={item.src}
                     alt={item.alt}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                   />
                 </div>
               </motion.div>
