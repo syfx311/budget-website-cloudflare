@@ -189,7 +189,7 @@ function SophiePackageImage() {
   return (
     <div className="sophie-package-img-wrapper">
       <Image
-        src="/images/budget-wallet-sophie.jpg"
+        src="/images/budget-sophie-wallet.jpg"
         alt="Sophie Package - Budget Wallet"
         width={280}
         height={420}
