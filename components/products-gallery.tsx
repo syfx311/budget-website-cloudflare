@@ -37,15 +37,15 @@ const binderTiles = [
 const products = [
   {
     id: 1,
-    title: 'Budget Envelope Inserts',
-    description: 'Beautiful pink gingham cash envelopes with custom categories',
+    title: 'Transparent Pink Planner Case',
+    description: 'Premium transparent planner with elegant gold accessories and pearl details',
     category: 'stationery',
     image: '/images/best-seller-product.jpg',
     tiles: envelopeInsertTiles,
-    features: ['Customizable Categories', 'Premium Cardstock', 'Gingham Design'],
+    features: ['Transparent Design', 'Gold Accessories Included', 'Pearl Beaded Details'],
     badge: 'Best Seller',
-    fullDescription: 'Handcrafted budget envelope inserts designed to organize your cash stuffing method. Features soft pink gingham pattern with clearly labeled budget categories.',
-    colors: ['Pink', 'Beige', 'Purple'],
+    fullDescription: 'Luxury transparent pink planner case featuring elegant gold eyeglass keychains, pearl beaded charms, and sophisticated pink silk bow. Perfect for stylish budget management with included coordinating accessories.',
+    colors: ['Rose Pink', 'Gold', 'Pearl White'],
   },
   {
     id: 2,
