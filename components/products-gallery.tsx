@@ -366,7 +366,7 @@ export function ProductsGallery() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {bestSellers.map((product, index) => (
                 <motion.div
-                  key={product.id}
+                  key={`bestseller-${product.title}-${index}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -386,6 +386,8 @@ export function ProductsGallery() {
                         alt={product.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading={index < 2 ? 'eager' : 'lazy'}
                       />
                       {product.badge && (
                         <div className="absolute top-3 left-3">
@@ -427,7 +429,7 @@ export function ProductsGallery() {
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product, index) => (
               <motion.div
-                key={product.id}
+                key={`product-${product.title}-${index}`}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -448,6 +450,8 @@ export function ProductsGallery() {
                       alt={product.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading={index < 3 ? 'eager' : 'lazy'}
                     />
                     {product.badge && (
                       <div className="absolute top-3 left-3">
