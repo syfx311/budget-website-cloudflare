@@ -129,10 +129,7 @@ export function BinderCollectionPreview() {
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
-              {/* Image Counter */}
-              <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 bg-background/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-foreground">
-                {mainImageIndex + 1} / {binderImages.length}
-              </div>
+
             </div>
 
             {/* Thumbnail Gallery */}
