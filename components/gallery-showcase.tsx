@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { DesignLibraryShowcase } from '@/components/design-library-showcase'
+import { GalleryItem } from '@/components/masonry-gallery-item'
+import { FilterBar } from '@/components/masonry-filter-bar'
+import { ImageModal } from '@/components/masonry-image-modal'
 
 function ProductCardShowcase({ products }: { products: any[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -181,6 +184,65 @@ const designImages = [
   { id: 52, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F5400618744fc403fb12e91029cb56a4f?format=webp&width=800&height=1200', alt: 'Complete Collection' },
 ]
 
+function BinderCollectionMasonry() {
+  const [activeFilter, setActiveFilter] = useState('All')
+  const [selectedImage, setSelectedImage] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const binderImages = [
+    { id: 1, src: '/images/binder-pink-pebbled-wallet.jpg', alt: 'Pink Pebbled Textured Wallet', category: 'pink' },
+    { id: 2, src: '/images/binder-rose-pink-rippled-planner.jpg', alt: 'Rose Pink Rippled Planner', category: 'pink' },
+    { id: 3, src: '/images/binder-complete-collection-set.png', alt: 'Complete Budget Collection Set', category: 'neutral' },
+    { id: 4, src: '/images/binder-elope-savings-challenge.png', alt: 'Pink Elope Savings Challenge Planner', category: 'pink' },
+    { id: 5, src: '/images/binder-pink-diamond-quilted.jpg', alt: 'Pink Diamond Quilted Wallet', category: 'pink' },
+    { id: 6, src: '/images/binder-pink-crocodile-embossed.png', alt: 'Pink Crocodile Embossed Wallet', category: 'pink' },
+    { id: 7, src: '/images/binder-pink-personalized-wallet.png', alt: 'Pink Personalized Textured Wallet', category: 'pink' },
+    { id: 8, src: '/images/binder-planner-flatlay-collection.png', alt: 'Budget Planner Collection Flat Lay', category: 'neutral' },
+    { id: 9, src: '/images/binder-elope-challenge-accessories.png', alt: 'Pink Elope Savings Challenge with Accessories', category: 'pink' },
+    { id: 10, src: '/images/binder-wallet-collection-lineup.jpg', alt: 'Pink Wallet Collection Showcase', category: 'pink' },
+  ]
+
+  const filters = ['All', 'Pink', 'Neutral']
+
+  const filteredImages = activeFilter === 'All'
+    ? binderImages
+    : binderImages.filter(img => img.category === activeFilter.toLowerCase())
+
+  return (
+    <>
+      <FilterBar
+        filters={filters}
+        activeFilter={activeFilter}
+        onFilterChange={setActiveFilter}
+      />
+
+      <motion.div
+        layout
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+        style={{ gridAutoFlow: 'dense' }}
+      >
+        {filteredImages.map((image, index) => (
+          <GalleryItem
+            key={`${image.id}-${activeFilter}`}
+            item={image}
+            index={index}
+            onImageClick={(item) => {
+              setSelectedImage(item)
+              setIsModalOpen(true)
+            }}
+          />
+        ))}
+      </motion.div>
+
+      <ImageModal
+        image={selectedImage}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </>
+  )
+}
+
 export function GalleryShowcase() {
   return (
     <section className="py-20 md:py-28 relative overflow-hidden">
@@ -218,7 +280,7 @@ export function GalleryShowcase() {
         {/* Product Card Showcase */}
         <ProductCardShowcase products={productImages} />
 
-        {/* Binder Color Gallery */}
+        {/* Binder Color Gallery - Masonry */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -226,68 +288,16 @@ export function GalleryShowcase() {
           transition={{ duration: 0.6 }}
           className="mt-20"
         >
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="font-noto-sans text-2xl md:text-3xl text-foreground mb-2">
-              Binder <span className="font-signature text-3xl md:text-4xl text-primary">Color Collection</span>
+              Binder <span className="font-signature text-3xl md:text-4xl text-primary">Collection</span>
             </h2>
             <p className="text-muted-foreground">
               Beautiful colors and finishes to match your style
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[
-              { id: 1, src: '/images/color-pink-quilted.jpg', alt: 'Pink Quilted Binder' },
-              { id: 2, src: '/images/color-lavender-closed.jpg', alt: 'Lavender Binder' },
-              { id: 3, src: '/images/color-beige-crosshatch.jpg', alt: 'Beige Crosshatch Binder' },
-              { id: 4, src: '/images/color-cream-open.jpg', alt: 'Cream Textured Binder' },
-              { id: 5, src: '/images/color-brown-open.jpg', alt: 'Brown Textured Binder' },
-              { id: 6, src: '/images/color-brown-closed.jpg', alt: 'Brown Closed Binder' },
-              { id: 7, src: '/images/color-cream-detail.jpg', alt: 'Cream Detail Binder' },
-              { id: 8, src: '/images/color-lavender-open.jpg', alt: 'Lavender Open Binder' },
-              { id: 9, src: '/images/color-lavender-pearl.jpg', alt: 'Lavender Pearl Binder' },
-              { id: 10, src: '/images/color-cream-wallet.jpg', alt: 'Cream Wallet' },
-              { id: 11, src: '/images/color-cream-copper.jpg', alt: 'Cream Copper Binder' },
-              { id: 12, src: '/images/color-pink-mauve.jpg', alt: 'Pink Mauve Binder' },
-              { id: 13, src: '/images/color-pink-weekly.jpg', alt: 'Pink Weekly Budget' },
-              { id: 14, src: '/images/color-cream-envelope.jpg', alt: 'Cream Envelope' },
-              { id: 15, src: '/images/color-lavender-envelope.jpg', alt: 'Lavender Envelope' },
-              { id: 16, src: '/images/color-pink-envelope.jpg', alt: 'Pink Envelope' },
-              { id: 17, src: '/images/color-taupe-binder.jpg', alt: 'Taupe Binder' },
-              { id: 18, src: '/images/color-cream-gold.jpg', alt: 'Cream Gold Binder' },
-              { id: 19, src: '/images/color-pink-quilted.jpg', alt: 'Pink Quilted Binder Variation' },
-              { id: 20, src: '/images/color-lavender-open.jpg', alt: 'Lavender Open Detail' },
-              { id: 21, src: '/images/color-brown-closed.jpg', alt: 'Brown Textured Detail' },
-              { id: 22, src: '/images/color-cream-detail.jpg', alt: 'Cream Binder Interior' },
-              { id: 23, src: '/images/color-pink-mauve.jpg', alt: 'Pink Mauve Detail' },
-              { id: 24, src: '/images/color-lavender-pearl.jpg', alt: 'Lavender Pearl Detail' },
-              { id: 25, src: '/images/color-cream-wallet.jpg', alt: 'Cream Wallet Detail' },
-              { id: 27, src: '/images/color-pink-weekly.jpg', alt: 'Weekly Budget Planning' },
-              { id: 28, src: '/images/color-cream-copper.jpg', alt: 'Cream Copper Detail' },
-              { id: 29, src: '/images/color-taupe-binder.jpg', alt: 'Taupe Binder Detail' },
-              { id: 30, src: '/images/color-lavender-envelope.jpg', alt: 'Lavender Envelope Detail' },
-            ].map((item, index) => (
-              <motion.div
-                key={`color-${index}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ y: -4 }}
-                className="relative group overflow-hidden rounded-2xl bg-card border border-primary/10 hover:border-primary/30 transition-all duration-300"
-              >
-                <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <BinderCollectionMasonry />
         </motion.div>
 
         {/* Stats */}

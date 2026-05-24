@@ -92,7 +92,7 @@ export function DesignLibraryShowcase({ images }: DesignLibraryShowcaseProps) {
           <h3 className="font-noto-sans text-2xl md:text-3xl text-foreground">
             Browse Our{' '}
             <span className="font-signature text-3xl md:text-4xl text-primary">
-              Complete Design Library
+              Design Library
             </span>
           </h3>
         </div>

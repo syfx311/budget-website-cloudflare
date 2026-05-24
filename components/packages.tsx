@@ -174,8 +174,8 @@ function PremiumPackageImage() {
   return (
     <div className="premium-package-img-wrapper">
       <Image
-        src="/images/budget-accessories.jpg"
-        alt="Premium Package - Budget Accessories"
+        src="/images/budget-mystic-wallet.jpg"
+        alt="Premium Package - Budget Wallet"
         width={280}
         height={420}
         className="premium-package-img"
@@ -189,7 +189,7 @@ function SophiePackageImage() {
   return (
     <div className="sophie-package-img-wrapper">
       <Image
-        src="/images/budget-wallet-sophie.jpg"
+        src="/images/budget-sophie-wallet.jpg"
         alt="Sophie Package - Budget Wallet"
         width={280}
         height={420}
@@ -204,8 +204,8 @@ function ElegancePackageImage() {
   return (
     <div className="elegance-package-img-wrapper">
       <Image
-        src="/images/budget-binder-elegance.jpg"
-        alt="Elegance Package - Budget Binder"
+        src="/images/budget-elegance-planner.jpg"
+        alt="Elegance Package - Budget Planner"
         width={280}
         height={420}
         className="elegance-package-img"
@@ -219,7 +219,7 @@ function MysticPackageImage() {
   return (
     <div className="mystic-package-img-wrapper">
       <Image
-        src="/images/budget-planner-mystic.jpg"
+        src="/images/budget-mystic-planner.jpg"
         alt="Mystic Package - Budget Planner"
         width={280}
         height={420}
