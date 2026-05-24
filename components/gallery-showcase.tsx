@@ -190,39 +190,19 @@ function BinderCollectionMasonry() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const binderImages = [
-    { id: 1, src: '/images/color-pink-quilted.jpg', alt: 'Pink Quilted Binder', category: 'pink' },
-    { id: 2, src: '/images/color-lavender-closed.jpg', alt: 'Lavender Binder', category: 'lavender' },
-    { id: 3, src: '/images/color-beige-crosshatch.jpg', alt: 'Beige Crosshatch Binder', category: 'neutral' },
-    { id: 4, src: '/images/color-cream-open.jpg', alt: 'Cream Textured Binder', category: 'neutral' },
-    { id: 5, src: '/images/color-brown-open.jpg', alt: 'Brown Textured Binder', category: 'brown' },
-    { id: 6, src: '/images/color-brown-closed.jpg', alt: 'Brown Closed Binder', category: 'brown' },
-    { id: 7, src: '/images/color-cream-detail.jpg', alt: 'Cream Detail Binder', category: 'neutral' },
-    { id: 8, src: '/images/color-lavender-open.jpg', alt: 'Lavender Open Binder', category: 'lavender' },
-    { id: 9, src: '/images/color-lavender-pearl.jpg', alt: 'Lavender Pearl Binder', category: 'lavender' },
-    { id: 10, src: '/images/color-cream-wallet.jpg', alt: 'Cream Wallet', category: 'neutral' },
-    { id: 11, src: '/images/color-cream-copper.jpg', alt: 'Cream Copper Binder', category: 'neutral' },
-    { id: 12, src: '/images/color-pink-mauve.jpg', alt: 'Pink Mauve Binder', category: 'pink' },
-    { id: 13, src: '/images/color-pink-weekly.jpg', alt: 'Pink Weekly Budget', category: 'pink' },
-    { id: 14, src: '/images/color-cream-envelope.jpg', alt: 'Cream Envelope', category: 'neutral' },
-    { id: 15, src: '/images/color-lavender-envelope.jpg', alt: 'Lavender Envelope', category: 'lavender' },
-    { id: 16, src: '/images/color-pink-envelope.jpg', alt: 'Pink Envelope', category: 'pink' },
-    { id: 17, src: '/images/color-taupe-binder.jpg', alt: 'Taupe Binder', category: 'neutral' },
-    { id: 18, src: '/images/color-cream-gold.jpg', alt: 'Cream Gold Binder', category: 'neutral' },
-    { id: 19, src: '/images/color-pink-quilted.jpg', alt: 'Pink Quilted Variation', category: 'pink' },
-    { id: 20, src: '/images/color-lavender-open.jpg', alt: 'Lavender Open Detail', category: 'lavender' },
-    { id: 21, src: '/images/color-brown-closed.jpg', alt: 'Brown Textured Detail', category: 'brown' },
-    { id: 22, src: '/images/color-cream-detail.jpg', alt: 'Cream Binder Interior', category: 'neutral' },
-    { id: 23, src: '/images/color-pink-mauve.jpg', alt: 'Pink Mauve Detail', category: 'pink' },
-    { id: 24, src: '/images/color-lavender-pearl.jpg', alt: 'Lavender Pearl Detail', category: 'lavender' },
-    { id: 25, src: '/images/color-cream-wallet.jpg', alt: 'Cream Wallet Detail', category: 'neutral' },
-    { id: 26, src: '/images/color-pink-weekly.jpg', alt: 'Weekly Budget Planning', category: 'pink' },
-    { id: 27, src: '/images/color-cream-copper.jpg', alt: 'Cream Copper Detail', category: 'neutral' },
-    { id: 28, src: '/images/color-taupe-binder.jpg', alt: 'Taupe Binder Detail', category: 'neutral' },
-    { id: 29, src: '/images/color-lavender-envelope.jpg', alt: 'Lavender Envelope Detail', category: 'lavender' },
-    { id: 30, src: '/images/color-brown-open.jpg', alt: 'Brown Binder Collection', category: 'brown' },
+    { id: 1, src: '/images/binder-pink-pebbled-wallet.jpg', alt: 'Pink Pebbled Textured Wallet', category: 'pink' },
+    { id: 2, src: '/images/binder-rose-pink-rippled-planner.jpg', alt: 'Rose Pink Rippled Planner', category: 'pink' },
+    { id: 3, src: '/images/binder-complete-collection-set.png', alt: 'Complete Budget Collection Set', category: 'neutral' },
+    { id: 4, src: '/images/binder-elope-savings-challenge.png', alt: 'Pink Elope Savings Challenge Planner', category: 'pink' },
+    { id: 5, src: '/images/binder-pink-diamond-quilted.jpg', alt: 'Pink Diamond Quilted Wallet', category: 'pink' },
+    { id: 6, src: '/images/binder-pink-crocodile-embossed.png', alt: 'Pink Crocodile Embossed Wallet', category: 'pink' },
+    { id: 7, src: '/images/binder-pink-personalized-wallet.png', alt: 'Pink Personalized Textured Wallet', category: 'pink' },
+    { id: 8, src: '/images/binder-planner-flatlay-collection.png', alt: 'Budget Planner Collection Flat Lay', category: 'neutral' },
+    { id: 9, src: '/images/binder-elope-challenge-accessories.png', alt: 'Pink Elope Savings Challenge with Accessories', category: 'pink' },
+    { id: 10, src: '/images/binder-wallet-collection-lineup.jpg', alt: 'Pink Wallet Collection Showcase', category: 'pink' },
   ]
 
-  const filters = ['All', 'Pink', 'Lavender', 'Brown', 'Neutral']
+  const filters = ['All', 'Pink', 'Neutral']
 
   const filteredImages = activeFilter === 'All'
     ? binderImages
