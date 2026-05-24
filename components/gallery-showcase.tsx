@@ -268,7 +268,7 @@ export function GalleryShowcase() {
               { id: 30, src: '/images/color-lavender-envelope.jpg', alt: 'Lavender Envelope Detail' },
             ].map((item, index) => (
               <motion.div
-                key={item.id}
+                key={`color-${index}`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
