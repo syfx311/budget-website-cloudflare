@@ -204,8 +204,8 @@ function ElegancePackageImage() {
   return (
     <div className="elegance-package-img-wrapper">
       <Image
-        src="/images/budget-binder-elegance.jpg"
-        alt="Elegance Package - Budget Binder"
+        src="/images/budget-elegance-planner.jpg"
+        alt="Elegance Package - Budget Planner"
         width={280}
         height={420}
         className="elegance-package-img"
