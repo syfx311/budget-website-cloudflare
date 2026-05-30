@@ -57,9 +57,14 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden gingham-pattern-lg" style={{ backgroundColor: 'rgba(255, 241, 241, 1)' }}>
-      {/* Full-width frosted glass overlay */}
-      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm pointer-events-none" />
+    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden" style={{
+      backgroundImage: 'url(/images/hero-background.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed'
+    }}>
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-xs pointer-events-none" />
 
       {/* Decorative bows */}
       <motion.div
