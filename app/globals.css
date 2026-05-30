@@ -210,6 +210,10 @@
     font-style: normal;
   }
 
+  .hero-headline {
+    text-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+
   .premium-package-img-wrapper {
     @apply relative w-full h-full flex items-center justify-center;
     perspective: 1000px;

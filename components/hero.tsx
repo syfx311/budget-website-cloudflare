@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
@@ -57,9 +56,21 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden gingham-pattern-lg" style={{ backgroundColor: 'rgba(255, 241, 241, 1)' }}>
-      {/* Full-width frosted glass overlay */}
-      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm pointer-events-none" />
+    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden" style={{
+      backgroundImage: 'url(/images/hero-background.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed'
+    }}>
+      {/* Light cream overlay gradient for text readability */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.82) 0%, rgba(255,248,242,0.72) 20%, rgba(255,248,242,0.45) 40%, rgba(255,248,242,0.15) 60%, rgba(255,248,242,0) 100%)',
+          media: '(max-width: 768px)',
+          backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,248,242,0.78) 20%, rgba(255,248,242,0.5) 40%, rgba(255,248,242,0.2) 60%, rgba(255,248,242,0) 100%)'
+        }}
+      />
 
       {/* Decorative bows */}
       <motion.div
@@ -113,16 +124,16 @@ export function Hero() {
             {/* Heading */}
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance"
+              className="text-4xl md:text-5xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance drop-shadow-lg hero-headline"
             >
               Take Control of Your Money with{' '}
-              <span className="text-primary font-signature text-5xl md:text-6xl lg:text-7xl">Cash Stuffing</span>
+              <span className="text-primary font-signature text-5xl md:text-6xl lg:text-7xl drop-shadow-md">Cash Stuffing</span>
             </motion.h1>
 
             {/* Subheading */}
             <motion.p 
               variants={fadeInUp}
-              className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-foreground mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-md"
             >
               Simple, visual, and satisfying. Learn how to budget with beautiful cash envelopes 
               and watch your savings grow every single month.
@@ -184,30 +195,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Logo/Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
-            className="flex-shrink-0"
-          >
-            <div className="relative">
-              {/* Decorative circle behind */}
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20 scale-110"
-              />
-              <Image
-                src="/images/logo.png"
-                alt="Mommy Louise's Budget PH"
-                width={400}
-                height={400}
-                className="relative z-10 rounded-2xl shadow-2xl"
-                priority
-              />
-            </div>
-          </motion.div>
+
         </div>
       </div>
     </section>
