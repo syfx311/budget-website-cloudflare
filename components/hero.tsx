@@ -63,7 +63,7 @@ export function Hero() {
       backgroundAttachment: 'fixed'
     }}>
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/35 to-black/45 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/15 pointer-events-none" />
 
       {/* Decorative bows */}
       <motion.div
@@ -117,16 +117,16 @@ export function Hero() {
             {/* Heading */}
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance"
+              className="text-4xl md:text-5xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance drop-shadow-lg"
             >
               Take Control of Your Money with{' '}
-              <span className="text-primary font-signature text-5xl md:text-6xl lg:text-7xl">Cash Stuffing</span>
+              <span className="text-primary font-signature text-5xl md:text-6xl lg:text-7xl drop-shadow-md">Cash Stuffing</span>
             </motion.h1>
 
             {/* Subheading */}
             <motion.p 
               variants={fadeInUp}
-              className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-md"
             >
               Simple, visual, and satisfying. Learn how to budget with beautiful cash envelopes 
               and watch your savings grow every single month.
