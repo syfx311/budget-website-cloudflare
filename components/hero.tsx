@@ -126,7 +126,7 @@ export function Hero() {
             {/* Subheading */}
             <motion.p 
               variants={fadeInUp}
-              className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-md"
+              className="text-lg md:text-xl text-foreground mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-md"
             >
               Simple, visual, and satisfying. Learn how to budget with beautiful cash envelopes 
               and watch your savings grow every single month.
