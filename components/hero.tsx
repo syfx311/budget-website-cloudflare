@@ -64,7 +64,7 @@ export function Hero() {
       backgroundAttachment: 'fixed'
     }}>
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/20 backdrop-blur-xs pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/35 to-black/45 pointer-events-none" />
 
       {/* Decorative bows */}
       <motion.div
