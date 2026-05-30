@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
@@ -189,30 +188,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Logo/Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
-            className="flex-shrink-0"
-          >
-            <div className="relative">
-              {/* Decorative circle behind */}
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20 scale-110"
-              />
-              <Image
-                src="/images/logo.png"
-                alt="Mommy Louise's Budget PH"
-                width={400}
-                height={400}
-                className="relative z-10 rounded-2xl shadow-2xl"
-                priority
-              />
-            </div>
-          </motion.div>
+
         </div>
       </div>
     </section>
