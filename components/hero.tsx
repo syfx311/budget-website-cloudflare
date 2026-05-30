@@ -62,8 +62,15 @@ export function Hero() {
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed'
     }}>
-      {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/5 pointer-events-none" />
+      {/* Light cream overlay gradient for text readability */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.82) 0%, rgba(255,248,242,0.72) 20%, rgba(255,248,242,0.45) 40%, rgba(255,248,242,0.15) 60%, rgba(255,248,242,0) 100%)',
+          media: '(max-width: 768px)',
+          backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,248,242,0.78) 20%, rgba(255,248,242,0.5) 40%, rgba(255,248,242,0.2) 60%, rgba(255,248,242,0) 100%)'
+        }}
+      />
 
       {/* Decorative bows */}
       <motion.div
@@ -117,7 +124,7 @@ export function Hero() {
             {/* Heading */}
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance drop-shadow-lg"
+              className="text-4xl md:text-5xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance drop-shadow-lg hero-headline"
             >
               Take Control of Your Money with{' '}
               <span className="text-primary font-signature text-5xl md:text-6xl lg:text-7xl drop-shadow-md">Cash Stuffing</span>
