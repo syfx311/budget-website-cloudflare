@@ -458,24 +458,7 @@ export function ProductsGallery() {
           </motion.div>
         )}
 
-        {/* Link to Gallery */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 mb-16 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl border border-primary/20 p-8 md:p-12 text-center"
-        >
-          <h2 className="font-noto-sans text-2xl md:text-3xl text-foreground mb-4">
-            Explore Our Complete <span className="text-primary">Design Gallery</span>
-          </h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            View our full collection of 50+ unique designs, color palettes, and custom templates
-          </p>
-          <Link href="/gallery" className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors font-medium">
-            Visit Gallery
-          </Link>
-        </motion.div>
+
 
         {/* Stats */}
         <motion.div
