@@ -17,6 +17,13 @@ const galleryImages = [
   { id: 8, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/710388363_1006710161823477_2473827541225585822_n-i4juMHjwwiqadaGuEMJimu1wMctNuK.jpg', alt: 'Pink Illustrated Budget Binder' },
   { id: 9, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/715216832_2300137997460738_5998579637912139122_n-iNC4p8oJexKhSPBm0a5dK1RMp8OxRz.jpg', alt: 'Aesthetic Budget Era Planner' },
   { id: 10, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719300983_2229962241136947_588258290332643950_n-qhHX980pLADI8d1Gs9BqvXp6skJj1Q.jpg', alt: 'Sinking Funds Budget Tracker' },
+  // New Accessories & Accessories
+  { id: 11, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718906627_1553259506409849_3044130603844716871_n-mGGgyQrbO80DZjhJ5j5rzb8pzAmgzu.jpg', alt: 'Pink Silk Bow Keychain with Pearl Beads' },
+  { id: 12, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718992680_2341959046333111_7678009458581102771_n-tY3HWjAHMZSTl6jrCTvv6M1d8V9Uye.jpg', alt: 'Mon Budget Planner Spiral Notebook' },
+  { id: 13, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719451576_994369263182244_9033156054942415693_n-TtSp6tPh5ZgqlvoCbElQbkzAv84LJq.jpg', alt: 'Pearl Beaded Keychains Collection' },
+  { id: 14, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718456581_3966619156965800_5687798835831382895_n-ekkOGjMXFi5ecpHtMBkXWqh8O9Z2zA.jpg', alt: 'Large Pink Silk Bow Charm' },
+  { id: 15, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/720971409_27940712228869890_8117391084618456357_n-aVKml0ztAjxbb5BqOVnR8XJE4CNcQ6.jpg', alt: 'Pearl Beaded Bracelet with Gold Accents' },
+  { id: 16, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718098610_2062578307942141_3691703592350910105_n-s93oC7azrkNczUfaHUXoJdT5YOrNue.jpg', alt: 'Pink Aesthetic Calculator' },
 ]
 
 export function GalleryShowcase() {
@@ -89,7 +96,7 @@ export function GalleryShowcase() {
           className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16"
         >
           <div className="bg-card border border-primary/20 rounded-xl p-6 text-center">
-            <div className="text-3xl font-bold text-primary mb-2">10+</div>
+            <div className="text-3xl font-bold text-primary mb-2">16+</div>
             <div className="text-sm text-muted-foreground">Unique Designs</div>
           </div>
           <div className="bg-card border border-primary/20 rounded-xl p-6 text-center">
