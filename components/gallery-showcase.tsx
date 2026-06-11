@@ -25,6 +25,21 @@ const galleryImages = [
   { id: 15, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/720971409_27940712228869890_8117391084618456357_n-aVKml0ztAjxbb5BqOVnR8XJE4CNcQ6.jpg', alt: 'Pearl Beaded Bracelet with Gold Accents' },
   { id: 16, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718098610_2062578307942141_3691703592350910105_n-s93oC7azrkNczUfaHUXoJdT5YOrNue.jpg', alt: 'Pink Aesthetic Calculator' },
   { id: 17, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2010%2C%202026%2C%2007_53_40%20PM-3t6QTqDm7uBszdhJFlF44CtfLEMP63.png', alt: 'Pastel Textured Wallets Collection' },
+  // Newly Added Images
+  { id: 18, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F402aaf28c01b4bf6be83e38d7f7e4ae4?format=webp&width=800&height=1200', alt: 'Pink Textured Wallet Design' },
+  { id: 19, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F665449fa542a45509c0f191ba0c5cd38?format=webp&width=800&height=1200', alt: 'Leather Pink Wallet with Closure' },
+  { id: 20, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fcc385440bb984f8fbdb3a102b53a1406?format=webp&width=800&height=1200', alt: 'Quilted Pink Wallet Collection' },
+  { id: 21, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F8f8fe401d209421c844e9b6645a31aee?format=webp&width=800&height=1200', alt: 'Pink Pleated Fabric Wallet' },
+  { id: 22, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64d449f5a8fe4430844af4488288b471?format=webp&width=800&height=1200', alt: 'Budget Planning Supplies Display' },
+  { id: 23, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc2fc22910a5f4a39bbe174dd65367d40?format=webp&width=800&height=1200', alt: 'Pink Flat Lay Product Showcase' },
+  { id: 24, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F9c174349f1d84fd9bd04944f8332728d?format=webp&width=800&height=1200', alt: 'Budget Planner Collection Display' },
+  { id: 25, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F06e78690d35e4eac939b300eb0e62b50?format=webp&width=800&height=1200', alt: 'Accessories and Supplies Collection' },
+  { id: 26, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F733f5d33b6ad47d7abdff42ef4fbffa3?format=webp&width=800&height=1200', alt: 'Budget Planner Product Line' },
+  { id: 27, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F589ccc20727c4a9aa1cf303161bcc4ae?format=webp&width=800&height=1200', alt: 'Styled Budget Planning Setup' },
+  { id: 28, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fbbaeda48357940b29d7fd72189e4a4f4?format=webp&width=800&height=1200', alt: 'Pink Wallet and Accessories Set' },
+  { id: 29, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ffade6e36d83a469dbf339f05a884c795?format=webp&width=800&height=1200', alt: 'Budget Binder Flat Lay' },
+  { id: 30, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ff453fcea7c444d04984ba7bc79bd8c75?format=webp&width=800&height=1200', alt: 'Pastel Budget Planner Components' },
+  { id: 31, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ff10588329d054c649ead706b8de1283e?format=webp&width=800&height=1200', alt: 'Budget Planning Aesthetic Setup' },
 ]
 
 export function GalleryShowcase() {
@@ -97,7 +112,7 @@ export function GalleryShowcase() {
           className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16"
         >
           <div className="bg-card border border-primary/20 rounded-xl p-6 text-center">
-            <div className="text-3xl font-bold text-primary mb-2">17+</div>
+            <div className="text-3xl font-bold text-primary mb-2">31+</div>
             <div className="text-sm text-muted-foreground">Unique Designs</div>
           </div>
           <div className="bg-card border border-primary/20 rounded-xl p-6 text-center">
