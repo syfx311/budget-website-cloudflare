@@ -224,7 +224,7 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
               </button>
             </div>
 
-            <div className="p-6 md:p-8">
+            <div className="p-4 md:p-6 lg:p-8">
               {/* Product Image */}
               <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-primary/5 to-accent/5">
                 <Image
@@ -354,8 +354,8 @@ export function ProductsGallery() {
             </span>
             <Bow className="w-12 h-8 text-primary transform scale-x-[-1]" />
           </div>
-          <h1 className="font-noto-sans text-4xl md:text-5xl lg:text-6xl text-foreground mb-3 text-balance">
-            Our <span className="font-signature text-5xl md:text-6xl lg:text-7xl text-primary">Products</span>
+          <h1 className="font-noto-sans text-3xl md:text-4xl lg:text-6xl text-foreground mb-3 text-balance">
+            Our <span className="font-signature text-4xl md:text-5xl lg:text-7xl text-primary">Products</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Affordable, aesthetic, and thoughtfully curated items for everyday use
@@ -367,7 +367,7 @@ export function ProductsGallery() {
         {/* Product Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {products.map((product, index) => (
