@@ -7,14 +7,7 @@ import { Sparkles, Heart, X, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-const CATEGORIES = [
-  { id: 'all', label: 'All Products' },
-  { id: 'stationery', label: 'Stationery' },
-  { id: 'planners', label: 'Budget Planners' },
-  { id: 'stickers', label: 'Stickers' },
-  { id: 'essentials', label: 'Home Essentials' },
-  { id: 'custom', label: 'Custom Orders' },
-]
+
 
 const envelopeInsertTiles = [
   'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F3f2dceb91f944d5db35fd45a0c0cde10?format=webp&width=800&height=1200',
@@ -39,7 +32,6 @@ const products = [
     id: 1,
     title: 'Transparent Pink Planner Case',
     description: 'Premium transparent planner with elegant gold accessories and pearl details',
-    category: 'stationery',
     image: '/images/best-seller-product.jpg',
     tiles: envelopeInsertTiles,
     features: ['Transparent Design', 'Gold Accessories Included', 'Pearl Beaded Details'],
@@ -51,7 +43,6 @@ const products = [
     id: 2,
     title: 'Premium Budget Binders',
     description: 'High-quality binders designed for comprehensive budget planning',
-    category: 'planners',
     image: '/images/best-seller-product-2.jpg',
     features: ['Gold Hardware', 'Premium Materials', 'Organized Sections'],
     badge: 'Best Seller',
@@ -62,7 +53,6 @@ const products = [
     id: 3,
     title: 'Quilted Budget Organizer',
     description: 'Premium quilted planner with rose gold hardware for organized budgeting',
-    category: 'planners',
     image: '/images/popular-product-planner.jpg',
     features: ['Diamond Quilted Design', 'Rose Gold Hardware', 'Multi-Section Organizer'],
     badge: 'Popular',
@@ -73,7 +63,6 @@ const products = [
     id: 4,
     title: 'Luxury Textured Wallet',
     description: 'Premium envelope-style wallet with elegant accessories included',
-    category: 'stationery',
     image: '/images/new-product-wallet.jpg',
     features: ['Textured Design', 'Multiple Compartments', 'Aesthetic Appeal'],
     badge: 'New',
@@ -84,7 +73,6 @@ const products = [
     id: 5,
     title: 'Custom Personalized Folding Wallet',
     description: 'Premium pink textured wallet with custom embroidered personalization',
-    category: 'custom',
     image: '/images/premium-personalized-wallet.jpg',
     features: ['Custom Embroidery', 'Textured Design', 'Personalized Touch'],
     badge: 'Premium',
@@ -95,12 +83,71 @@ const products = [
     id: 6,
     title: 'Quilted Basket Budget Bundle',
     description: 'Beautiful white quilted basket filled with premium budget planning essentials',
-    category: 'essentials',
     image: '/images/desk-organizer-bundle.jpg',
     features: ['Pearl Beaded Handles', 'Multiple Budget Items', 'Luxury Basket'],
     badge: 'Value Set',
     fullDescription: 'Stunning white quilted basket bundle featuring pearl beaded handles, silk ribbon bow, and filled with coordinated budget planning essentials including envelopes, cards, and organizational materials in soft pinks and purples.',
     colors: ['White', 'Pink & Purple', 'Rose Gold'],
+  },
+  {
+    id: 7,
+    title: 'Pink Aesthetic Calculator',
+    description: 'Charming rose gold calculator with elegant functionality for budgeting',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718098610_2062578307942141_3691703592350910105_n-ZUcymtOLiIvo32KpVoKZjLTkBiG0hx.jpg',
+    features: ['Aesthetic Design', 'Full Function Keys', 'Rose Gold Color'],
+    badge: '',
+    fullDescription: 'Beautiful rose gold calculator perfect for keeping track of your budget and calculations. Features a charming design with functional buttons and a clear display. Ideal for anyone who loves cute, aesthetic office supplies.',
+    colors: ['Rose Gold', 'White'],
+  },
+  {
+    id: 8,
+    title: 'Luxury Budget Planner Notebook',
+    description: 'Spiral-bound planner with beautiful aesthetic design and gold accents',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718992680_2341959046333111_7678009458581102771_n-DSR77isVR6sCcAdCUnKWEOcnmAqYav.jpg',
+    features: ['Spiral Binding', 'Aesthetic Design', 'Gold Accents', 'Multiple Sections'],
+    badge: '',
+    fullDescription: 'Gorgeous spiral-bound budget planner notebook with beautiful rose-themed aesthetic design and gold accents. Perfect for organizing your budget, expenses, and financial goals. Features quality paper and elegant organization sections.',
+    colors: ['Rose Pink', 'Gold', 'Cream'],
+  },
+  {
+    id: 9,
+    title: 'Pearl Bow Keychain',
+    description: 'Elegant pearl beaded keychain with pink silk bow and gold hardware',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718906627_1553259506409849_3044130603844716871_n-eVHiL1v33LHqFkGl6FRWTozKRtcY3D.jpg',
+    features: ['Pearl Beads', 'Pink Silk Bow', 'Gold Hardware', 'Luxury Design'],
+    badge: '',
+    fullDescription: 'Luxurious pearl beaded keychain featuring an elegant pink silk ribbon bow and premium gold hardware. Perfect for adding a touch of elegance to your keys or bag. A beautiful accessory that combines functionality with sophisticated style.',
+    colors: ['Pink', 'Pearl White', 'Gold'],
+  },
+  {
+    id: 10,
+    title: 'Pearl Beaded Keychains Collection',
+    description: 'Set of elegant pearl keychains with various decorative accents',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719451576_994369263182244_9033156054942415693_n-1qStN7Cm4jXQOezvKpXyrfaFXY265g.jpg',
+    features: ['Pearl Beads', 'Gold Hardware', 'Various Designs', 'Luxury Collection'],
+    badge: '',
+    fullDescription: 'Beautiful collection of pearl beaded keychains featuring luxury gold hardware and various decorative elements. Each keychain is uniquely designed with pearl beads and elegant accents. Perfect as gifts or personal accessories to add elegance to your daily carry.',
+    colors: ['Pearl White', 'Gold', 'Cream'],
+  },
+  {
+    id: 11,
+    title: 'Silk Bow Keychain Charm',
+    description: 'Elegant large pink silk bow with gold ring charm',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718456581_3966619156965800_5687798835831382895_n-63oMRswruDX491EMV4sNFPsHJEQSwc.jpg',
+    features: ['Silk Bow', 'Gold Ring', 'Elegant Design', 'Premium Material'],
+    badge: '',
+    fullDescription: 'Gorgeous large silk bow keychain charm with premium gold ring hardware. Perfect for bag accessories or key decoration. The luxurious pink silk and elegant design make it a statement accessory that elevates any everyday look.',
+    colors: ['Pink', 'Gold', 'Rose'],
+  },
+  {
+    id: 12,
+    title: 'Pearl Beaded Charm Bracelet',
+    description: 'Elegant pearl bracelet with luxury gold charms and accessories',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/720971409_27940712228869890_8117391084618456357_n-gFioN2lArFpztWPZ7TfQimny6mRpux.jpg',
+    features: ['Pearl Beads', 'Gold Charms', 'Luxury Design', 'Adjustable'],
+    badge: '',
+    fullDescription: 'Stunning pearl beaded charm bracelet featuring luxurious gold hardware and beautiful pearl accents. Perfect for everyday elegance or special occasions. Each pearl is carefully selected for quality, making this a timeless accessory.',
+    colors: ['Pearl White', 'Gold', 'Cream'],
   },
 ]
 
@@ -140,7 +187,6 @@ interface SelectedProduct {
   id: number
   title: string
   description: string
-  category: string
   image: string
   tiles?: string[]
   features: string[]
@@ -268,15 +314,8 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
 }
 
 export function ProductsGallery() {
-  const [activeCategory, setActiveCategory] = useState('all')
   const [selectedProduct, setSelectedProduct] = useState<SelectedProduct | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const filteredProducts = activeCategory === 'all'
-    ? products
-    : products.filter(p => p.category === activeCategory)
-
-  const bestSellers = products.filter(p => p.badge === 'Best Seller')
 
   return (
     <section id="products" className="py-20 md:py-28 relative overflow-hidden">
@@ -323,111 +362,15 @@ export function ProductsGallery() {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-2 mb-16"
-        >
-          {CATEGORIES.map((category) => (
-            <motion.button
-              key={category.id}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-2 rounded-full font-medium text-sm transition-all ${
-                activeCategory === category.id
-                  ? 'bg-primary text-primary-foreground shadow-lg'
-                  : 'bg-secondary text-foreground hover:bg-secondary/80 border border-primary/20'
-              }`}
-            >
-              {category.label}
-            </motion.button>
-          ))}
-        </motion.div>
 
-        {/* Best Sellers Carousel */}
-        {bestSellers.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="text-center mb-8">
-              <h2 className="font-noto-sans text-2xl md:text-3xl text-foreground mb-2">
-                ⭐ <span className="text-primary">Best Sellers</span>
-              </h2>
-              <p className="text-muted-foreground">Customer favorites and most loved items</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {bestSellers.map((product, index) => (
-                <motion.div
-                  key={`bestseller-${product.title}-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -8 }}
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setSelectedProduct(product)
-                    setIsModalOpen(true)
-                  }}
-                >
-                  <div className="bg-card rounded-2xl border border-primary/20 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                    {/* Image */}
-                    <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        fill
-                        className="object-cover object-bottom group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        loading={index < 2 ? 'eager' : 'lazy'}
-                      />
-                      {product.badge && (
-                        <div className="absolute top-3 left-3">
-                          <span className="inline-flex items-center gap-1 bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
-                            <Sparkles className="w-3 h-3" />
-                            {product.badge}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-4 flex flex-col h-full">
-                      <h3 className="font-noto-sans text-lg text-foreground mb-1 line-clamp-2">
-                        {product.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-3 line-clamp-1 flex-1">
-                        {product.description}
-                      </p>
-                      <Button
-                        size="sm"
-                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full"
-                      >
-                        Inquire
-                      </Button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
 
         {/* Product Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProducts.map((product, index) => (
+            {products.map((product, index) => (
               <motion.div
                 key={`product-${product.title}-${index}`}
                 layout
@@ -473,7 +416,7 @@ export function ProductsGallery() {
                     </p>
 
                     {/* Features - only show for featured products */}
-                    {filteredProducts.indexOf(product) < 3 && (
+                    {products.indexOf(product) < 3 && (
                       <div className="flex flex-wrap gap-1 mb-3">
                         {product.features.slice(0, 2).map((feature) => (
                           <span
@@ -502,7 +445,7 @@ export function ProductsGallery() {
         </motion.div>
 
         {/* Empty State */}
-        {filteredProducts.length === 0 && (
+        {products.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -510,15 +453,8 @@ export function ProductsGallery() {
             className="text-center py-12"
           >
             <p className="text-muted-foreground text-lg mb-4">
-              No products found in this category.
+              No products found.
             </p>
-            <Button
-              onClick={() => setActiveCategory('all')}
-              variant="outline"
-              className="border-primary/30 hover:bg-primary/10"
-            >
-              View All Products
-            </Button>
           </motion.div>
         )}
 
