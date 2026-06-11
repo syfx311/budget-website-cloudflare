@@ -1,13 +1,13 @@
 import { Header } from '@/components/header'
-import { ProductsGallery } from '@/components/products-gallery'
+import { ComingSoonContent } from '@/components/coming-soon-content'
 import { Contact, Footer } from '@/components/contact'
 
-export default function ProductsPage() {
+export default function ComingSoonPage() {
   return (
     <main className="min-h-screen">
       <Header />
       <div className="pt-20">
-        <ProductsGallery />
+        <ComingSoonContent />
         <Contact />
       </div>
       <Footer />
