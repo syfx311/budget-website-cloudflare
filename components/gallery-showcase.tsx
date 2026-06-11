@@ -118,7 +118,7 @@ export function GalleryShowcase() {
                 setSelectedImage(image)
                 setIsModalOpen(true)
               }}
-              className="relative aspect-square overflow-hidden rounded-2xl border border-primary/20 hover:border-primary/50 transition-all shadow-md hover:shadow-lg group"
+              className="relative aspect-square overflow-hidden rounded-2xl border border-primary/20 hover:border-primary/50 transition-all shadow-md hover:shadow-lg group bg-gradient-to-br from-rose-50 via-pink-50 to-amber-50"
             >
               <Image
                 src={image.src}
