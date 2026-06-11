@@ -33,7 +33,7 @@ export function ComingSoonContent() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="font-signature text-5xl md:text-6xl text-center mb-1 text-foreground"
+          className="font-signature text-4xl md:text-5xl lg:text-6xl text-center mb-1 text-foreground"
         >
           mommy louise
         </motion.h1>
@@ -140,6 +140,7 @@ export function ComingSoonContent() {
             exit={{ opacity: 0 }}
             onClick={() => setEnlargedImage(null)}
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60]"
+            key="lightbox-backdrop"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

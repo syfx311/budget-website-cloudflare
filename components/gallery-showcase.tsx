@@ -60,8 +60,8 @@ export function GalleryShowcase() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="font-noto-sans text-4xl md:text-5xl lg:text-6xl text-foreground mb-3 text-balance">
-            Design <span className="font-signature text-5xl md:text-6xl lg:text-7xl text-primary">Gallery</span>
+          <h1 className="font-noto-sans text-3xl md:text-4xl lg:text-6xl text-foreground mb-3 text-balance">
+            Design <span className="font-signature text-4xl md:text-5xl lg:text-7xl text-primary">Gallery</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Explore our beautiful collection of budget planner designs
@@ -74,7 +74,7 @@ export function GalleryShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           {galleryImages.map((image, index) => (
             <motion.button
