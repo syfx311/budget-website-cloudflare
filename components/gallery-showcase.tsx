@@ -23,7 +23,7 @@ const galleryImages = [
   { id: 13, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719451576_994369263182244_9033156054942415693_n-TtSp6tPh5ZgqlvoCbElQbkzAv84LJq.jpg', alt: 'Pearl Beaded Keychains Collection' },
   { id: 14, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718456581_3966619156965800_5687798835831382895_n-ekkOGjMXFi5ecpHtMBkXWqh8O9Z2zA.jpg', alt: 'Large Pink Silk Bow Charm' },
   { id: 15, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/720971409_27940712228869890_8117391084618456357_n-aVKml0ztAjxbb5BqOVnR8XJE4CNcQ6.jpg', alt: 'Pearl Beaded Bracelet with Gold Accents' },
-  { id: 16, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718098610_2062578307942141_3691703592350910105_n-s93oC7azrkNczUfaHUXoJdT5YOrNue.jpg', alt: 'Pink Aesthetic Calculator' },
+  { id: 17, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2010%2C%202026%2C%2007_53_40%20PM-3t6QTqDm7uBszdhJFlF44CtfLEMP63.png', alt: 'Pastel Textured Wallets Collection' },
 ]
 
 export function GalleryShowcase() {
@@ -96,7 +96,7 @@ export function GalleryShowcase() {
           className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16"
         >
           <div className="bg-card border border-primary/20 rounded-xl p-6 text-center">
-            <div className="text-3xl font-bold text-primary mb-2">16+</div>
+            <div className="text-3xl font-bold text-primary mb-2">17+</div>
             <div className="text-sm text-muted-foreground">Unique Designs</div>
           </div>
           <div className="bg-card border border-primary/20 rounded-xl p-6 text-center">
