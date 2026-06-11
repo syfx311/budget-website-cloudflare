@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { DesignLibraryShowcase } from '@/components/design-library-showcase'
 import { GalleryItem } from '@/components/masonry-gallery-item'
 import { FilterBar } from '@/components/masonry-filter-bar'
 import { ImageModal } from '@/components/masonry-image-modal'
@@ -267,16 +266,6 @@ export function GalleryShowcase() {
         </motion.div>
 
         {/* Main Design Gallery */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
-        >
-          <DesignLibraryShowcase images={designImages} />
-        </motion.div>
-
         {/* Product Card Showcase */}
         <ProductCardShowcase products={productImages} />
 
