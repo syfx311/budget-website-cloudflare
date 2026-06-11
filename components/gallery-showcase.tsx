@@ -38,7 +38,7 @@ const galleryImages = [
   { id: 27, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F589ccc20727c4a9aa1cf303161bcc4ae?format=webp&width=800&height=1200', alt: 'Styled Budget Planning Setup' },
   { id: 28, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fbbaeda48357940b29d7fd72189e4a4f4?format=webp&width=800&height=1200', alt: 'Pink Wallet and Accessories Set' },
   { id: 29, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ffade6e36d83a469dbf339f05a884c795?format=webp&width=800&height=1200', alt: 'Budget Binder Flat Lay' },
-  { id: 30, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ff453fcea7c444d04984ba7bc79bd8c75?format=webp&width=800&height=1200', alt: 'Pastel Budget Planner Components' },
+  { id: 30, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F25c50fd281f2421994a2f82b8a81f2c0?format=webp&width=800&height=1200', alt: 'White Quilted Storage Organizer Basket' },
   { id: 31, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ff10588329d054c649ead706b8de1283e?format=webp&width=800&height=1200', alt: 'Budget Planning Aesthetic Setup' },
 ]
 
