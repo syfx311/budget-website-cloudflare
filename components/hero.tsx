@@ -56,11 +56,10 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden" style={{
+    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden hero-section" style={{
       backgroundImage: 'url(/images/hero-background.jpg)',
       backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed'
+      backgroundPosition: 'center'
     }}>
       {/* Light cream overlay gradient for text readability */}
       <div 
