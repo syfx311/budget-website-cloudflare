@@ -357,9 +357,24 @@ export function ProductsGallery() {
           <h1 className="font-noto-sans text-3xl md:text-4xl lg:text-6xl text-foreground mb-3 text-balance">
             Our <span className="font-signature text-4xl md:text-5xl lg:text-7xl text-primary">Products</span>
           </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-4">
             Affordable, aesthetic, and thoughtfully curated items for everyday use
           </p>
+          <p className="text-muted-foreground max-w-3xl mx-auto text-base leading-relaxed mb-6">
+            Our complete collection of budget planners, custom envelopes, and complementary accessories
+            are designed to make your cash stuffing journey beautiful and organized. From premium binders
+            and personalized templates to aesthetic accessories, we have everything you need to manage
+            your family budget with style. Each product is carefully selected to support your financial goals
+            and help you build healthy money habits.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/gallery" className="text-primary hover:text-primary/80 font-medium transition-colors underline">
+              View design gallery →
+            </Link>
+            <Link href="/#about" className="text-primary hover:text-primary/80 font-medium transition-colors underline">
+              Learn about cash stuffing →
+            </Link>
+          </div>
         </motion.div>
 
 

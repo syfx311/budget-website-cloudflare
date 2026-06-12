@@ -13,19 +13,28 @@ export function Header() {
   const pathname = usePathname()
 
   const handleGetStarted = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === '/products') {
+    if (pathname === '/products' || pathname === '/gallery' || pathname === '/coming-soon') {
       e.preventDefault()
       const contactSection = document.getElementById('contact')
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' })
         setMobileMenuOpen(false)
       }
+    } else if (pathname === '/app') {
+      e.preventDefault()
+      const facebookCta = document.getElementById('facebook-cta')
+      if (facebookCta) {
+        facebookCta.scrollIntoView({ behavior: 'smooth' })
+        setMobileMenuOpen(false)
+      }
     }
   }
 
   const getNavLink = (hash: string) => {
-    if (pathname === '/products') {
+    if (pathname === '/products' || pathname === '/gallery' || pathname === '/coming-soon') {
       return '#contact'
+    } else if (pathname === '/app') {
+      return '#facebook-cta'
     }
     return hash
   }
@@ -73,6 +82,9 @@ export function Header() {
             <Link href="/gallery" className="text-muted-foreground hover:text-primary transition-colors">
               Gallery
             </Link>
+            <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+              Blog
+            </Link>
             <Link href="/coming-soon" className="text-muted-foreground hover:text-primary transition-colors">
               Coming Soon
             </Link>
@@ -107,6 +119,7 @@ export function Header() {
                   { label: 'App', href: '/app' },
                   { label: 'Products', href: '/products' },
                   { label: 'Gallery', href: '/gallery' },
+                  { label: 'Blog', href: '/blog' },
                   { label: 'Coming Soon', href: '/coming-soon' }
                 ].map((item, index) => (
                   <motion.div
