@@ -113,7 +113,7 @@ export function AppHero() {
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex-1 text-center lg:text-left relative z-20 backdrop-blur-sm bg-white/20 rounded-2xl px-6 md:px-8 py-8 md:py-12 lg:bg-transparent lg:backdrop-blur-none lg:p-0"
+            className="flex-1 text-center lg:text-left relative z-20 backdrop-blur-md bg-white/25 rounded-2xl px-6 md:px-8 py-8 md:py-12"
           >
             {/* Badge */}
             <motion.div 
