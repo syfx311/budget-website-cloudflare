@@ -13,30 +13,28 @@ export function Header() {
   const pathname = usePathname()
 
   const handleGetStarted = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === '/products' || pathname === '/gallery' || pathname === '/coming-soon') {
-      e.preventDefault()
-      const contactSection = document.getElementById('contact')
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' })
-        setMobileMenuOpen(false)
-      }
-    } else if (pathname === '/app') {
+    if (pathname === '/app') {
       e.preventDefault()
       const facebookCta = document.getElementById('facebook-cta')
       if (facebookCta) {
         facebookCta.scrollIntoView({ behavior: 'smooth' })
         setMobileMenuOpen(false)
       }
+    } else {
+      e.preventDefault()
+      const contactSection = document.getElementById('contact')
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' })
+        setMobileMenuOpen(false)
+      }
     }
   }
 
   const getNavLink = (hash: string) => {
-    if (pathname === '/products' || pathname === '/gallery' || pathname === '/coming-soon') {
-      return '#contact'
-    } else if (pathname === '/app') {
+    if (pathname === '/app') {
       return '#facebook-cta'
     }
-    return hash
+    return '#contact'
   }
 
   return (

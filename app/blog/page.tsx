@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { BlogHome } from '@/components/blog-home'
-import { Footer } from '@/components/contact'
+import { Contact, Footer } from '@/components/contact'
 import { getAllBlogPosts } from '@/lib/blog-posts'
 
 export const metadata: Metadata = {
@@ -36,6 +36,7 @@ export default function BlogPage() {
       <Header />
       <div className="pt-20">
         <BlogHome posts={posts} />
+        <Contact />
       </div>
       <Footer />
     </main>
