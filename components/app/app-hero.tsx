@@ -112,9 +112,9 @@ export function AppHero() {
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex-1 text-center lg:text-left relative z-20 rounded-2xl px-6 md:px-8 py-8 md:py-12"
+            className="flex-1 text-center lg:text-left relative z-20 rounded-2xl px-6 md:px-8 py-8 md:py-12 backdrop-blur-md"
             style={{
-              background: 'linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.05) 100%)'
+              background: 'linear-gradient(90deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.08) 100%)'
             }}
           >
             {/* Badge */}
