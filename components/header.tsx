@@ -82,6 +82,9 @@ export function Header() {
             <Link href="/gallery" className="text-muted-foreground hover:text-primary transition-colors">
               Gallery
             </Link>
+            <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+              Blog
+            </Link>
             <Link href="/coming-soon" className="text-muted-foreground hover:text-primary transition-colors">
               Coming Soon
             </Link>
@@ -116,6 +119,7 @@ export function Header() {
                   { label: 'App', href: '/app' },
                   { label: 'Products', href: '/products' },
                   { label: 'Gallery', href: '/gallery' },
+                  { label: 'Blog', href: '/blog' },
                   { label: 'Coming Soon', href: '/coming-soon' }
                 ].map((item, index) => (
                   <motion.div
