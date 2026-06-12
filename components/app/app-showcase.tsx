@@ -98,12 +98,12 @@ export function AppShowcase() {
               className="relative overflow-hidden rounded-2xl shadow-lg"
             >
               <Image
-                src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F35996ab0b05341159cc5ee44f61b4191?format=webp&width=1400&height=1680"
+                src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F35996ab0b05341159cc5ee44f61b4191?format=webp&width=2000&height=2400"
                 alt="Louise ExpenseDesk App - Complete Feature Showcase with Analytics Dashboard and Cash Envelopes"
-                width={1200}
-                height={1440}
+                width={1600}
+                height={1920}
                 priority
-                quality={95}
+                quality={100}
                 className="w-full h-auto"
               />
             </motion.div>
