@@ -58,7 +58,7 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 export function AppHero() {
   return (
     <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden hero-section" style={{
-      backgroundImage: 'url(/images/hero-background.jpg)',
+      backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64760a9914d14ea2ab9d9fb5e2717772?format=webp&width=800&height=1200)',
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
