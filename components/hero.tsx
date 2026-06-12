@@ -150,9 +150,9 @@ export function Hero() {
                   size="lg" 
                   className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 rounded-full"
                 >
-                  <Link href="#contact" className="flex items-center gap-2">
+                  <Link href="/app" className="flex items-center gap-2">
                     <Sparkles className="h-4 w-4" />
-                    Start Your Journey
+                    New App Launch
                   </Link>
                 </Button>
               </motion.div>
