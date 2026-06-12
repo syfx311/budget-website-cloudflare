@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { ArrowLeft, Calendar, Clock, User, Share2, Facebook, Twitter } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { BlogPost } from '@/lib/blog-posts'
+import { formatBlogDate } from '@/lib/date-utils'
 
 interface BlogPostLayoutProps {
   post: BlogPost
@@ -54,11 +55,7 @@ export function BlogPostLayout({
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 <span>
-                  {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                  {formatBlogDate(post.publishedAt, 'long')}
                 </span>
               </div>
               <div className="flex items-center gap-2">

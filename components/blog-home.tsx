@@ -6,6 +6,7 @@ import { Clock, ArrowRight, Search } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { BlogPost, getAllBlogPosts } from '@/lib/blog-posts'
+import { formatBlogDate } from '@/lib/date-utils'
 
 interface BlogHomeProps {
   posts?: BlogPost[]
@@ -133,14 +134,7 @@ export function BlogHome({ posts: initialPosts }: BlogHomeProps) {
                               {post.category}
                             </span>
                             <span className="text-xs text-muted-foreground">
-                              {new Date(post.publishedAt).toLocaleDateString(
-                                'en-US',
-                                {
-                                  month: 'short',
-                                  day: 'numeric',
-                                  year: 'numeric',
-                                }
-                              )}
+                              {formatBlogDate(post.publishedAt, 'short')}
                             </span>
                           </div>
                           <h2 className="text-xl md:text-2xl font-noto-sans font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-3">
