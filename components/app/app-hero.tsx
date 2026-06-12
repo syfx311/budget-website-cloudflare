@@ -58,15 +58,15 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 export function AppHero() {
   return (
     <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden hero-section" style={{
-      backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64760a9914d14ea2ab9d9fb5e2717772?format=webp&width=800&height=1200)',
+      backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64760a9914d14ea2ab9d9fb5e2717772?format=webp&width=1200&height=1800)',
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
-      {/* Light cream overlay gradient for text readability */}
-      <div 
+      {/* Subtle overlay gradient for text readability */}
+      <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(90deg, rgba(255,255,255,0.82) 0%, rgba(255,248,242,0.72) 20%, rgba(255,248,242,0.45) 40%, rgba(255,248,242,0.15) 60%, rgba(255,248,242,0) 100%)'
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,248,242,0.35) 20%, rgba(255,248,242,0.2) 40%, rgba(255,248,242,0.05) 60%, rgba(255,248,242,0) 100%)'
         }}
       />
 
