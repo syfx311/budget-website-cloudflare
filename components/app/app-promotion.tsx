@@ -20,59 +20,94 @@ const staggerContainer = {
   }
 }
 
+// Bow SVG component
+function DecorativeBow({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 60 50" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path 
+        d="M30 25C30 25 15 15 10 20C5 25 10 35 15 35C20 35 30 25 30 25Z" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        fill="none"
+      />
+      <path 
+        d="M30 25C30 25 45 15 50 20C55 25 50 35 45 35C40 35 30 25 30 25Z" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        fill="none"
+      />
+      <path 
+        d="M30 25C30 25 25 35 27 45" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        fill="none"
+      />
+      <path 
+        d="M30 25C30 25 35 35 33 45" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        fill="none"
+      />
+      <circle cx="30" cy="25" r="3" fill="currentColor" />
+    </svg>
+  )
+}
+
 export function AppPromotion() {
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-background to-orange-50 pointer-events-none" />
+    <section className="py-20 md:py-28 bg-background relative overflow-hidden">
+      {/* Decorative bows */}
+      <div className="absolute top-10 right-10 opacity-10">
+        <DecorativeBow className="w-24 h-24 text-primary" />
+      </div>
+      <div className="absolute bottom-10 left-10 opacity-10">
+        <DecorativeBow className="w-20 h-20 text-primary" />
+      </div>
 
-      {/* Decorative elements */}
-      <motion.div
-        animate={{ opacity: [0.1, 0.2, 0.1] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        className="absolute top-10 right-10 text-6xl opacity-10"
-      >
-        🎉
-      </motion.div>
-
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
           variants={staggerContainer}
-          className="text-center"
+          className="text-center max-w-2xl mx-auto"
         >
-          {/* Badge */}
-          <motion.div variants={fadeInUp} className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <span className="text-sm font-semibold text-primary">🎉 Launch Promotion</span>
+          <motion.div variants={fadeInUp} className="flex items-center justify-center gap-4 mb-4">
+            <DecorativeBow className="w-8 h-8 text-primary opacity-50" />
+            <p className="text-primary font-medium">Launch Promotion</p>
+            <DecorativeBow className="w-8 h-8 text-primary opacity-50 scale-x-[-1]" />
           </motion.div>
 
-          {/* Headline */}
-          <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-8">
+          <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl lg:text-4xl font-noto-sans font-bold text-foreground mb-8 text-balance">
             Louise ExpenseDesk Launch Promotion
           </motion.h2>
 
-          {/* Content */}
           <motion.div variants={staggerContainer} className="space-y-6 mb-10">
-            <motion.p variants={fadeInUp} className="text-lg text-muted-foreground leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-base text-foreground leading-relaxed">
               We're excited to officially launch Louise ExpenseDesk to the Mommy Louise Budget PH community.
             </motion.p>
 
-            <motion.p variants={fadeInUp} className="text-lg text-muted-foreground leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-base text-foreground leading-relaxed">
               For a limited time, we're offering FREE access links to users who would like to explore the platform and experience its budgeting features.
             </motion.p>
 
-            <motion.p variants={fadeInUp} className="text-base text-foreground font-medium">
+            <motion.p variants={fadeInUp} className="text-base text-foreground leading-relaxed font-medium">
               Whether you're managing your home budget, running a business, or leading a team, Louise ExpenseDesk can help you stay financially organized and in control.
             </motion.p>
           </motion.div>
 
           {/* CTA Button */}
           <motion.div variants={fadeInUp}>
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8">
-              <a href="#facebook-cta">Claim My Free Access Link</a>
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button 
+                asChild 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 rounded-full"
+              >
+                <a href="#facebook-cta">Claim My Free Access Link</a>
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
