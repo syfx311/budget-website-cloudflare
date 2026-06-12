@@ -70,13 +70,12 @@ export function AppHero() {
         }}
       />
 
-      {/* Fading glass effect container for text area - fades left to right */}
+      {/* Fading white transparency mask - fades left to right */}
       <div
         className="absolute left-0 top-0 bottom-0 pointer-events-none"
         style={{
           width: '100%',
-          background: 'linear-gradient(90deg, rgba(255,248,242,0.7) 0%, rgba(255,248,242,0.5) 25%, rgba(255,248,242,0.25) 50%, rgba(255,248,242,0.05) 75%, transparent 100%)',
-          backdropFilter: 'blur(1px)'
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.05) 75%, transparent 100%)'
         }}
       />
 
@@ -113,7 +112,7 @@ export function AppHero() {
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex-1 text-center lg:text-left relative z-20 backdrop-blur-md bg-white/25 rounded-2xl px-6 md:px-8 py-8 md:py-12"
+            className="flex-1 text-center lg:text-left relative z-20 bg-white/40 rounded-2xl px-6 md:px-8 py-8 md:py-12"
           >
             {/* Badge */}
             <motion.div 
