@@ -19,12 +19,42 @@ const staggerContainer = {
 }
 
 const screenshots = [
-  { title: 'Analytics Dashboard', color: 'from-pink-300 to-pink-400' },
-  { title: 'Cash Envelopes', color: 'from-orange-300 to-orange-400' },
-  { title: 'Income Tracking', color: 'from-green-300 to-green-400' },
-  { title: 'Expense Tracking', color: 'from-blue-300 to-blue-400' },
-  { title: 'Budget Reports', color: 'from-purple-300 to-purple-400' },
-  { title: 'Goal Tracking', color: 'from-rose-300 to-rose-400' }
+  {
+    title: 'Analytics Dashboard',
+    description: 'Visual insights and comprehensive spending analysis',
+    color: 'from-pink-300 to-pink-400',
+    icon: '📊'
+  },
+  {
+    title: 'Cash Envelopes',
+    description: 'Digital envelope budgeting system',
+    color: 'from-orange-300 to-orange-400',
+    icon: '💰'
+  },
+  {
+    title: 'Income Tracking',
+    description: 'Monitor all income sources',
+    color: 'from-green-300 to-green-400',
+    icon: '💵'
+  },
+  {
+    title: 'Expense Tracking',
+    description: 'Quick and easy expense logging',
+    color: 'from-blue-300 to-blue-400',
+    icon: '💳'
+  },
+  {
+    title: 'Budget Reports',
+    description: 'Detailed financial summaries',
+    color: 'from-purple-300 to-purple-400',
+    icon: '📋'
+  },
+  {
+    title: 'Goal Tracking',
+    description: 'Monitor your financial goals',
+    color: 'from-rose-300 to-rose-400',
+    icon: '🎯'
+  }
 ]
 
 export function AppScreenshots() {
@@ -58,36 +88,35 @@ export function AppScreenshots() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                whileHover={{ y: -12, scale: 1.02 }}
+                whileHover={{ y: -12 }}
                 className="relative overflow-hidden rounded-2xl aspect-[9/16] cursor-pointer group"
               >
-                {/* Phone frame */}
-                <div className="absolute inset-0 bg-white rounded-2xl shadow-lg border-8 border-gray-800 z-20 pointer-events-none" />
-                
                 {/* Screen content */}
                 <div className={`bg-gradient-to-br ${screenshot.color} w-full h-full flex flex-col items-center justify-center relative`}>
                   {/* Screen gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
-                  
+
                   {/* Content */}
                   <div className="relative z-10 flex flex-col items-center justify-center h-full gap-4 px-6 text-center">
-                    <div className="text-white text-sm font-bold opacity-80">{screenshot.title}</div>
-                    <div className="w-16 h-16 bg-white/20 rounded-lg backdrop-blur-sm" />
-                    <div className="space-y-2 w-full">
-                      <div className="h-2 bg-white/30 rounded w-2/3 mx-auto" />
-                      <div className="h-2 bg-white/20 rounded w-1/2 mx-auto" />
-                    </div>
+                    <div className="text-4xl">{screenshot.icon}</div>
+                    <div className="text-white text-lg font-bold">{screenshot.title}</div>
+                    <p className="text-white/90 text-sm leading-relaxed max-w-xs">
+                      {screenshot.description}
+                    </p>
                   </div>
                 </div>
+
+                {/* Phone frame border */}
+                <div className="absolute inset-0 rounded-2xl shadow-lg border-8 border-gray-800/20 pointer-events-none" />
 
                 {/* Hover effect */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
-                  className="absolute inset-0 bg-black/40 flex items-center justify-center z-30 rounded-2xl"
+                  className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/40 flex items-center justify-center z-20 rounded-2xl backdrop-blur-sm"
                 >
                   <div className="text-white text-center">
-                    <p className="text-sm font-semibold">{screenshot.title}</p>
+                    <p className="text-base font-semibold">{screenshot.title}</p>
                   </div>
                 </motion.div>
               </motion.div>
