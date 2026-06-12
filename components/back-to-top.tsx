@@ -37,7 +37,7 @@ export function BackToTop() {
           transition={{ duration: 0.2 }}
           onClick={scrollToTop}
           aria-label="Back to Top"
-          className="fixed z-40 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-shadow"
+          className="fixed z-40 bg-primary text-primary-foreground rounded-full shadow-lg transition-all duration-200 hover:shadow-2xl"
           style={{
             right: 'clamp(16px, 5vw, 24px)',
             bottom: 'clamp(16px, 5vw, 24px)',
@@ -48,11 +48,17 @@ export function BackToTop() {
             maxWidth: '56px',
             maxHeight: '56px'
           }}
-          whileHover={{ 
-            scale: 1.1,
-            backgroundColor: 'var(--primary-darker)'
+          whileHover={{
+            scale: 1.12,
+            boxShadow: '0 20px 40px rgba(232, 90, 143, 0.4)'
           }}
           whileTap={{ scale: 0.95 }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.filter = 'brightness(0.9)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.filter = 'brightness(1)'
+          }}
         >
           <ArrowUp className="w-5 h-5 md:w-6 md:h-6 mx-auto" />
         </motion.button>
