@@ -62,11 +62,21 @@ export function AppHero() {
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
-      {/* Subtle overlay gradient for text readability */}
+      {/* Enhanced overlay gradient with fading mask for text readability */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,248,242,0.35) 20%, rgba(255,248,242,0.2) 40%, rgba(255,248,242,0.05) 60%, rgba(255,248,242,0) 100%)'
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,248,242,0.45) 15%, rgba(255,248,242,0.3) 30%, rgba(255,248,242,0.1) 50%, rgba(255,248,242,0) 80%)'
+        }}
+      />
+
+      {/* Fading glass effect container for text area */}
+      <div
+        className="absolute left-0 top-0 bottom-0 pointer-events-none"
+        style={{
+          width: '50%',
+          background: 'linear-gradient(90deg, rgba(255,248,242,0.65) 0%, rgba(255,248,242,0.4) 40%, transparent 100%)',
+          backdropFilter: 'blur(2px)'
         }}
       />
 
@@ -103,7 +113,7 @@ export function AppHero() {
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex-1 text-center lg:text-left relative z-10"
+            className="flex-1 text-center lg:text-left relative z-20 backdrop-blur-sm bg-white/20 rounded-2xl px-6 md:px-8 py-8 md:py-12 lg:bg-transparent lg:backdrop-blur-none lg:p-0"
           >
             {/* Badge */}
             <motion.div 
