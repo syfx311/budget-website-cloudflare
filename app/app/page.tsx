@@ -4,7 +4,6 @@ import { AppAbout } from '@/components/app/app-about'
 import { AppWhyCreated } from '@/components/app/app-why-created'
 import { AppUseCase } from '@/components/app/app-use-cases'
 import { AppFeatures } from '@/components/app/app-features'
-import { AppScreenshots } from '@/components/app/app-screenshots'
 import { AppBenefits } from '@/components/app/app-benefits'
 import { AppPromotion } from '@/components/app/app-promotion'
 import { AppFacebook } from '@/components/app/app-facebook'
@@ -27,7 +26,6 @@ export default function AppPage() {
       <AppWhyCreated />
       <AppUseCase />
       <AppFeatures />
-      <AppScreenshots />
       <AppBenefits />
       <AppPromotion />
       <AppFacebook />
