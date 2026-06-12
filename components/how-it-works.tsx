@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const steps = [
@@ -91,10 +92,19 @@ export function HowItWorks() {
           <h2 className="text-3xl md:text-4xl font-noto-sans text-foreground mb-4 text-balance">
             How Cash Stuffing Works
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            A simple four-step process to transform your relationship with money and 
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            A simple four-step process to transform your relationship with money and
             build lasting financial habits for your family.
           </p>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            The cash stuffing method is designed to make budgeting easy, visual, and effective.
+            Whether you're saving for a goal, managing household expenses, or teaching your family
+            about money, this proven system works for Filipino families of all sizes. Let's walk through
+            how to get started and take control of your finances today.
+          </p>
+          <Link href="/products" className="text-primary hover:text-primary/80 font-medium transition-colors underline">
+            Get your personalized budget templates →
+          </Link>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

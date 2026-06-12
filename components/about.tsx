@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Heart, Wallet, PiggyBank, TrendingUp } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -96,11 +97,26 @@ export function About() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-noto-sans text-foreground mb-4 text-balance">
             Why Cash Stuffing Works
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Cash stuffing is a hands-on budgeting method where you allocate physical cash into 
-            labeled envelopes for different spending categories. It makes budgeting tangible, 
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Cash stuffing is a hands-on budgeting method where you allocate physical cash into
+            labeled envelopes for different spending categories. It makes budgeting tangible,
             visual, and incredibly satisfying.
           </p>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Unlike digital budgeting apps, the cash stuffing method gives you immediate visual feedback
+            on your spending. When your envelope is empty, you stop spending. It's a proven technique
+            that helps thousands of Filipino families take control of their household finances and build
+            lasting money habits. By physically handling cash, you become more intentional with every
+            peso you spend, leading to better financial decisions and faster progress toward your savings goals.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/gallery" className="text-primary hover:text-primary/80 font-medium transition-colors underline">
+              Explore design templates →
+            </Link>
+            <Link href="/products" className="text-primary hover:text-primary/80 font-medium transition-colors underline">
+              Shop budget envelopes →
+            </Link>
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
