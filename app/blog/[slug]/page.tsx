@@ -8,7 +8,7 @@ import { getBlogPostBySlug, getRelatedPosts } from '@/lib/blog-posts'
 import { blogPostContent } from '@/lib/blog-content'
 
 // Generate static pages for all blog posts
-export function generateStaticParams() {
+export async function generateStaticParams() {
   // This will be populated as we add more posts
   return [
     { slug: 'cash-stuffing-for-beginners-guide' },
@@ -24,7 +24,8 @@ interface BlogPostPageProps {
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
-  const post = getBlogPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getBlogPostBySlug(slug)
 
   if (!post) {
     return {
@@ -60,14 +61,15 @@ export async function generateMetadata({
   }
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = getBlogPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  const post = getBlogPostBySlug(slug)
 
   if (!post) {
     notFound()
   }
 
-  const relatedPosts = getRelatedPosts(params.slug)
+  const relatedPosts = getRelatedPosts(slug)
 
   const blogPostingSchema = {
     '@context': 'https://schema.org',
