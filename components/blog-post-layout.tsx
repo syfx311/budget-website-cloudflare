@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar, Clock, User, Share2, Facebook, Twitter } from 'luc
 import { motion } from 'framer-motion'
 import { BlogPost } from '@/lib/blog-posts'
 import { formatBlogDate } from '@/lib/date-utils'
+import { ReadingProgressBar } from './blog/reading-progress-bar'
 
 interface BlogPostLayoutProps {
   post: BlogPost
@@ -23,6 +24,7 @@ export function BlogPostLayout({
 
   return (
     <>
+      <ReadingProgressBar />
       {/* Hero Section */}
       <section className="py-12 md:py-16 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -93,24 +95,26 @@ export function BlogPostLayout({
       </section>
 
       {/* Content */}
-      <article className="py-12 md:py-16">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <article className="py-16 md:py-20 bg-gradient-to-b from-transparent via-primary/2 to-transparent">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '720px' }}>
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="prose prose-sm md:prose-base max-w-none
-              prose-headings:font-noto-sans prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-8 prose-h2:mb-4
-              prose-h3:text-lg md:prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
-              prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-4
+            className="prose prose-lg max-w-none
+              prose-headings:font-noto-sans prose-headings:font-bold
+              prose-h2:text-3xl md:prose-h2:text-4xl lg:prose-h2:text-5xl prose-h2:mt-20 md:prose-h2:mt-24 prose-h2:mb-6 md:prose-h2:mb-8 prose-h2:text-foreground
+              prose-h3:text-2xl md:prose-h3:text-3xl prose-h3:mt-16 md:prose-h3:mt-20 prose-h3:mb-5 md:prose-h3:mb-6 prose-h3:text-foreground prose-h3:font-semibold
+              prose-p:text-lg md:prose-p:text-xl prose-p:text-foreground/85 prose-p:leading-relaxed md:prose-p:leading-loose prose-p:mb-6 md:prose-p:mb-8
               prose-strong:text-foreground prose-strong:font-semibold
-              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-li:text-muted-foreground prose-li:leading-relaxed
-              prose-ul:my-4 prose-ol:my-4
-              prose-code:bg-card prose-code:px-2 prose-code:py-1 prose-code:rounded
-              prose-pre:bg-card prose-pre:border prose-pre:border-primary/10 prose-pre:p-4 prose-pre:rounded-lg
-              prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-muted-foreground
-              prose-img:rounded-lg prose-img:shadow-md"
+              prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline
+              prose-li:text-foreground/85 prose-li:leading-relaxed md:prose-li:leading-loose prose-li:mb-3
+              prose-ul:my-8 prose-ol:my-8 prose-ul:space-y-3 prose-ol:space-y-3
+              prose-code:bg-primary/10 prose-code:text-primary prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
+              prose-pre:bg-slate-900 prose-pre:text-slate-50 prose-pre:border prose-pre:border-primary/20 prose-pre:p-6 prose-pre:rounded-lg prose-pre:overflow-x-auto
+              prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-foreground/75 prose-blockquote:my-8
+              prose-img:rounded-2xl prose-img:shadow-lg prose-img:my-8 md:prose-img:my-10
+              prose-hr:my-12 md:prose-hr:my-16 prose-hr:border-primary/10"
           >
             {children}
           </motion.div>
