@@ -136,7 +136,8 @@ export function AppHero() {
               variants={fadeInUp}
               className="text-3xl md:text-4xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance drop-shadow-lg"
             >
-              Budget Smarter with<br />
+              Budget Smarter<br />
+              with<br />
               <span className="text-primary font-signature text-4xl md:text-5xl lg:text-7xl drop-shadow-md">Louise ExpenseDesk</span>
             </motion.h1>
 
