@@ -64,6 +64,9 @@ export function Header() {
             <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
               Home
             </Link>
+            <Link href="/app" className="text-muted-foreground hover:text-primary transition-colors">
+              App
+            </Link>
             <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
               Products
             </Link>
@@ -101,6 +104,7 @@ export function Header() {
               <div className="flex flex-col gap-4">
                 {[
                   { label: 'Home', href: '/' },
+                  { label: 'App', href: '/app' },
                   { label: 'Products', href: '/products' },
                   { label: 'Gallery', href: '/gallery' },
                   { label: 'Coming Soon', href: '/coming-soon' }
