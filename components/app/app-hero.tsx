@@ -104,18 +104,19 @@ export function AppHero() {
           <div className="absolute inset-0 rounded-3xl border-2 border-primary/20 shadow-2xl" />
 
           {/* Image container with padding and rounded corners */}
-          <div className="relative p-4 md:p-6 rounded-3xl bg-white/30 backdrop-blur-sm">
+          <div className="relative p-4 md:p-6 rounded-3xl bg-white/50">
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative overflow-hidden rounded-2xl"
+              className="relative overflow-hidden rounded-2xl shadow-lg"
             >
               <Image
-                src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F35996ab0b05341159cc5ee44f61b4191?format=webp&width=1000&height=1200"
+                src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F35996ab0b05341159cc5ee44f61b4191?format=webp&width=1400&height=1680"
                 alt="Louise ExpenseDesk App - Complete Feature Showcase"
-                width={900}
-                height={1080}
+                width={1200}
+                height={1440}
                 priority
+                quality={95}
                 className="w-full h-auto"
               />
 
