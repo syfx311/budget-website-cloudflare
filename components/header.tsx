@@ -87,7 +87,7 @@ export function Header() {
               Coming Soon
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-              <Link href={getNavLink('#contact')} onClick={handleGetStarted}>Get Started</Link>
+              <a href={getNavLink('#contact')} onClick={handleGetStarted}>Get Started</a>
             </Button>
           </div>
 
@@ -141,7 +141,7 @@ export function Header() {
                   transition={{ delay: 0.4 }}
                 >
                   <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground w-fit rounded-full">
-                    <Link href={getNavLink('#contact')} onClick={handleGetStarted}>Get Started</Link>
+                    <a href={getNavLink('#contact')} onClick={handleGetStarted}>Get Started</a>
                   </Button>
                 </motion.div>
               </div>
