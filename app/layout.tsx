@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Playfair_Display, Noto_Sans_Adlam, Noto_Sans, DM_Sans, Allura, Grand_Hotel } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { BackToTop } from '@/components/back-to-top'
 import './globals.css'
 
 const geist = Geist({
@@ -80,6 +81,7 @@ export default function RootLayout({
     <html lang="en" className="bg-background">
       <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} ${allura.variable} ${grandHotel.variable} font-sans antialiased`}>
         {children}
+        <BackToTop />
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <SpeedInsights />
       </body>
