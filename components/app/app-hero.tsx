@@ -62,20 +62,20 @@ export function AppHero() {
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
-      {/* Enhanced overlay gradient with fading mask for text readability */}
+      {/* Strong fading white transparency mask across entire hero */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,248,242,0.45) 15%, rgba(255,248,242,0.3) 30%, rgba(255,248,242,0.1) 50%, rgba(255,248,242,0) 80%)'
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.6) 20%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.15) 60%, rgba(255,255,255,0.02) 85%, transparent 100%)'
         }}
       />
 
-      {/* Fading white transparency mask - fades left to right */}
+      {/* Extended fading white transparency mask - stronger left, fades right */}
       <div
         className="absolute left-0 top-0 bottom-0 pointer-events-none"
         style={{
           width: '100%',
-          background: 'linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.05) 75%, transparent 100%)'
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.65) 20%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.08) 70%, transparent 100%)'
         }}
       />
 
