@@ -105,10 +105,10 @@ export function AppFacebook() {
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mb-6">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 rounded-full w-full sm:w-auto"
+              <Button
+                asChild
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 rounded-full w-full sm:w-auto"
               >
                 <a href="https://www.facebook.com/mommylouisebudgetph" target="_blank" rel="noopener noreferrer">
                   Message Us on Facebook
