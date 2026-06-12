@@ -126,7 +126,7 @@ export function Hero() {
               className="text-3xl md:text-4xl lg:text-6xl font-noto-adlam text-foreground leading-tight mb-6 text-balance drop-shadow-lg hero-headline"
             >
               Take Control of<br />
-              Your Money with{' '}
+              Your Money with<br />
               <span className="text-primary font-signature text-4xl md:text-5xl lg:text-7xl drop-shadow-md">Cash Stuffing</span>
             </motion.h1>
 
