@@ -129,7 +129,7 @@ export function AppHero() {
               >
                 <Sparkles className="h-4 w-4 text-primary" />
               </motion.div>
-              <span className="text-sm text-primary font-medium">✨ NEW APP LAUNCH</span>
+              <span className="text-sm text-primary font-medium">New App Launch</span>
             </motion.div>
 
             {/* Heading - using font-noto-adlam like Home page */}
