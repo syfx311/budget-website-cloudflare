@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['cash stuffing', 'budgeting', 'money management', 'family finances', 'personal finance Philippines'],
     author: 'Mommy Louise',
     authorImage: '/images/mommy-louise.jpg',
-    featuredImage: '/images/blog-cash-stuffing-beginners.jpg',
+    featuredImage: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F46357f548a264ba5a729604c058e5f6d?format=webp&width=800&height=1200',
     readingTime: 14,
     wordCount: 3000,
     primaryKeyword: 'cash stuffing method',
