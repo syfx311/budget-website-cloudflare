@@ -1,5 +1,6 @@
 import { Header } from '@/components/header'
 import { AppHero } from '@/components/app/app-hero'
+import { AppShowcase } from '@/components/app/app-showcase'
 import { AppAbout } from '@/components/app/app-about'
 import { AppWhyCreated } from '@/components/app/app-why-created'
 import { AppUseCase } from '@/components/app/app-use-cases'
@@ -22,6 +23,7 @@ export default function AppPage() {
     <main className="min-h-screen">
       <Header />
       <AppHero />
+      <AppShowcase />
       <AppAbout />
       <AppWhyCreated />
       <AppUseCase />

@@ -172,29 +172,6 @@ export function AppHero() {
               </motion.div>
             </motion.div>
           </motion.div>
-
-          {/* App Image - Right side */}
-          <motion.div
-            variants={fadeInUp}
-            className="flex-1 relative min-h-[500px] md:min-h-[600px] flex items-center justify-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="relative w-full max-w-sm"
-            >
-              <Image
-                src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F35996ab0b05341159cc5ee44f61b4191?format=webp&width=1400&height=1680"
-                alt="Louise ExpenseDesk App - Complete Feature Showcase with Analytics Dashboard and Cash Envelopes"
-                width={500}
-                height={750}
-                priority
-                quality={95}
-                className="w-full h-auto drop-shadow-2xl"
-              />
-            </motion.div>
-          </motion.div>
         </div>
       </div>
     </section>
