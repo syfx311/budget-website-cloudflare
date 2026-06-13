@@ -185,6 +185,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Scroll margin for fixed header (80px = header height) */
+  #contact,
+  #facebook-cta {
+    scroll-margin-top: 100px;
+  }
 }
 
 @layer components {

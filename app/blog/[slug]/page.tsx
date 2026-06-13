@@ -3,7 +3,7 @@ import Script from 'next/script'
 import { notFound } from 'next/navigation'
 import { Header } from '@/components/header'
 import { BlogPostLayout } from '@/components/blog-post-layout'
-import { Footer } from '@/components/contact'
+import { Contact, Footer } from '@/components/contact'
 import { getBlogPostBySlug, getRelatedPosts } from '@/lib/blog-posts'
 import { blogPostContent } from '@/lib/blog-content'
 
@@ -119,6 +119,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               }}
             />
           </BlogPostLayout>
+          <Contact />
         </div>
         <Footer />
       </main>
