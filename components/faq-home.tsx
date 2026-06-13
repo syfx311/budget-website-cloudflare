@@ -7,28 +7,36 @@ import Link from 'next/link'
 
 const faqs = [
   {
-    question: 'What is the cash stuffing method?',
-    answer: 'Cash stuffing is a hands-on budgeting technique where you allocate physical cash into labeled envelopes for different spending categories. This visual, tangible approach helps you see exactly where your money goes, control spending impulses, and build better money habits. It\'s especially effective for families managing household budgets.'
+    question: 'What is cash stuffing?',
+    answer: 'Cash stuffing is a hands-on budgeting technique where you allocate physical cash into labeled envelopes for different spending categories. This visual, tangible approach helps you see exactly where your money goes, control spending impulses, and build better money habits. It\'s especially effective for families managing household budgets and is the foundation of the envelope budgeting system.'
   },
   {
-    question: 'How do I get started with cash stuffing?',
-    answer: 'Getting started is simple: Choose your budget categories (groceries, utilities, savings, etc.), get your budget templates or envelopes, divide your monthly income according to your plan, and stuff the cash into labeled envelopes. Our personalized templates make this process easy and organized. Check out our products page for ready-made envelope sets.'
+    question: 'How does cash stuffing work in the Philippines?',
+    answer: 'In the Philippines, cash stuffing leverages our strong cash-based economy. You divide your monthly income into budget categories, withdraw cash, and organize it into labeled envelopes for each category. This approach aligns with Filipino money management traditions and helps families avoid debt while building emergency funds and achieving financial goals.'
   },
   {
-    question: 'Is cash stuffing better than digital budgeting apps?',
-    answer: 'Both have benefits! Cash stuffing gives you immediate visual feedback and makes you more intentional with spending since you physically handle cash. Digital apps offer convenience and detailed tracking. Many people use a combination of both approaches. The cash stuffing method is particularly effective for families wanting to change their spending behavior.'
+    question: 'What is a budget binder and do I need one?',
+    answer: 'A budget binder is a centralized organization system for managing household finances with templates for budgeting, expense tracking, and savings planning. While not strictly necessary, it makes cash stuffing significantly more effective by providing organization and helping you track progress. Our premium budget binders are designed specifically for Filipino families.'
   },
   {
-    question: 'How can I customize my budget categories?',
-    answer: 'Every family\'s budget is unique. You can create categories based on your specific needs: groceries, utilities, LPG, internet, school allowance, savings, self-care, transportation, and more. Our customizable templates let you choose which categories matter most to your household. Browse our design gallery to find templates that match your lifestyle.'
+    question: 'How do budget envelopes help with savings?',
+    answer: 'Budget envelopes create physical boundaries for spending. By allocating specific amounts and seeing cash deplete visually, you become more conscious of expenses. This prevents overspending, eliminates impulse purchases, and ensures money allocated for savings stays protected. The envelope budgeting system is proven to help families save 30-40% more.'
   },
   {
-    question: 'Can I use cash stuffing for multiple income sources?',
-    answer: 'Absolutely! Cash stuffing works great for irregular income, side hustles, and multiple income earners. Simply allocate your total income across your categories each period, then track and adjust as needed. The visual nature of the envelopes helps you see exactly how much flexibility you have when income varies.'
+    question: 'How do savings challenges work?',
+    answer: 'Savings challenges are structured systems to build wealth gradually. Our 52-week challenge, 30-day sprints, and monthly challenges break large savings goals into manageable, achievable targets. With visual tracking and milestone celebrations, families maintain motivation and typically save ₱10,000-₱50,000+ in a single challenge period.'
   },
   {
-    question: 'How long does it take to see results?',
-    answer: 'Most families notice results within the first month of consistent cash stuffing. You\'ll immediately see better spending awareness, and within 2-3 months, you\'ll have built solid money habits. By month 6, many families report significantly increased savings and improved financial confidence.'
+    question: 'What budget categories should I create?',
+    answer: 'Common categories for Filipino families: Groceries & Food (30-35%), Utilities & Bills (15-20%), Transportation (10-15%), Entertainment (5-10%), Personal Care (5-10%), Savings (10-20%), and Miscellaneous (5-10%). Customize based on your family\'s unique needs and priorities. Our templates provide flexible category options.'
+  },
+  {
+    question: 'Can I use budget binders and cash stuffing together?',
+    answer: 'Absolutely! They work perfectly together. Use cash envelopes for daily spending control and your budget binder for tracking, analysis, and planning. This combination creates a complete financial system: physical envelopes control immediate spending while the binder provides strategic oversight and goal tracking.'
+  },
+  {
+    question: 'How quickly will I see results from cash stuffing?',
+    answer: 'Most families notice spending awareness improvements within days and savings growth within one month. Within 2-3 months of consistent cash stuffing, you\'ll have built solid money habits. By month 6, many families report significantly increased savings, eliminated credit card debt, and improved financial confidence.'
   },
 ]
 

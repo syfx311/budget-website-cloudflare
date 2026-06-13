@@ -69,8 +69,8 @@ export function Header() {
             <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">
               Blog
             </Link>
-            <Link href="/coming-soon" className="text-muted-foreground hover:text-primary transition-colors">
-              Coming Soon
+            <Link href="/about-mommy-louise" className="text-muted-foreground hover:text-primary transition-colors">
+              About
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
               <a href={getNavLink()} onClick={handleGetStarted}>Get Started</a>
@@ -104,7 +104,7 @@ export function Header() {
                   { label: 'Products', href: '/products' },
                   { label: 'Gallery', href: '/gallery' },
                   { label: 'Blog', href: '/blog' },
-                  { label: 'Coming Soon', href: '/coming-soon' }
+                  { label: 'About', href: '/about-mommy-louise' }
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}

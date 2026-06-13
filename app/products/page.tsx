@@ -4,26 +4,27 @@ import { ProductsGallery } from '@/components/products-gallery'
 import { Contact, Footer } from '@/components/contact'
 
 export const metadata: Metadata = {
-  title: 'Budget Planners, Envelopes & Templates - Mommy Louise Shop',
-  description: 'Shop custom budget planners, aesthetic envelopes, and budget organizers. Personalized templates for your family budget style. Free delivery Philippines.',
-  keywords: ['budget planners', 'budget envelopes', 'budget templates', 'budget organizers', 'aesthetic planners'],
+  title: 'Premium Budget Planners & Envelopes | Mommy Louise Shop',
+  description: 'Shop custom budget binders, aesthetic envelopes, and personalized budgeting templates for Filipino families. Premium quality, free delivery Philippines.',
+  keywords: ['budget planners', 'budget binders', 'budget envelopes', 'budget templates', 'cash stuffing envelopes', 'aesthetic planners'],
   openGraph: {
-    title: 'Budget Planners, Envelopes & Templates - Mommy Louise Shop',
-    description: 'Shop custom budget planners, aesthetic envelopes, and budget organizers. Personalized templates for your family budget style. Free delivery Philippines.',
+    title: 'Premium Budget Planners & Envelopes | Mommy Louise Shop',
+    description: 'Shop custom budget binders, envelopes, and personalized budgeting templates for Filipino families.',
     type: 'website',
+    url: 'https://mommylouisebudgetph.com/products',
     images: [
       {
-        url: '/images/og-products.jpg',
+        url: 'https://mommylouisebudgetph.com/images/og-products.jpg',
         width: 1200,
         height: 630,
-        alt: 'Custom Budget Planners & Templates Shop - Mommy Louise',
+        alt: 'Premium Budget Binders & Templates - Mommy Louise Shop',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Budget Planners, Envelopes & Templates - Mommy Louise Shop',
-    description: 'Shop custom budget planners, aesthetic envelopes, and budget organizers. Personalized templates for your family budget style.',
+    title: 'Premium Budget Planners & Envelopes | Mommy Louise Shop',
+    description: 'Shop custom budget binders, envelopes, and budgeting templates for Filipino families.',
   },
 }
 
