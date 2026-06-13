@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Script from 'next/script'
 import Link from 'next/link'
 import { Header } from '@/components/header'
@@ -71,9 +72,16 @@ export default function AboutPage() {
               How one mother's financial challenge became a movement to help thousands of Filipino families achieve peace of mind and financial freedom.
             </p>
 
-            {/* Hero Image Placeholder */}
-            <div className="aspect-video rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-primary/10 to-primary/5 mb-12 flex items-center justify-center">
-              <p className="text-muted-foreground text-lg">Featured image of Mommy Louise</p>
+            {/* Hero Image */}
+            <div className="aspect-video rounded-lg overflow-hidden shadow-lg mb-12">
+              <Image
+                src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc004f790a7d541e78e49855898a5d267?format=webp&width=800&height=1200"
+                alt="Mommy Louise - Budget Expert & Financial Coach"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
 
             {/* Reading Time & Author Info */}
