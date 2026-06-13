@@ -441,7 +441,7 @@ export default function AboutPage() {
               </p>
 
               <div className="font-signature text-5xl text-primary mb-4">Mommy Louise</div>
-              <p className="text-foreground/70 italic">Budget Expert & Financial Coach</p>
+              <p className="text-foreground/70 italic">Founder & Creator</p>
             </div>
           </section>
 
