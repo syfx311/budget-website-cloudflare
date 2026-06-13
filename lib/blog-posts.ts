@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['savings challenge', '100k challenge', 'savings goal', 'savings plan', 'emergency fund', 'money goals'],
     author: 'Mommy Louise',
     authorImage: '/images/mommy-louise.jpg',
-    featuredImage: 'https://images.unsplash.com/photo-1460925895917-adf4e565db18?w=800&h=1200&fit=crop',
+    featuredImage: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F8a5286783a644c539143b94115dc171c?format=webp&width=800&height=1200',
     readingTime: 14,
     wordCount: 2900,
     primaryKeyword: 'savings challenge',
