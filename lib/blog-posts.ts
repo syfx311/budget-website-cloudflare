@@ -47,7 +47,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['budget planner', 'family budget', 'budget template', 'monthly budget', 'budget planning', 'financial planning'],
     author: 'Mommy Louise',
     authorImage: '/images/mommy-louise.jpg',
-    featuredImage: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=1200&fit=crop',
+    featuredImage: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ffea2c50759cf4c368a8e6725f40b2106?format=webp&width=800&height=1200',
     readingTime: 15,
     wordCount: 2800,
     primaryKeyword: 'family budget planner',
