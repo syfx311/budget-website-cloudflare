@@ -48,27 +48,30 @@ const grandHotel = Grand_Hotel({
 })
 
 export const metadata: Metadata = {
-  title: 'Cash Stuffing Method - Budget Envelopes & Templates for Filipino Families',
-  description: 'Learn the proven cash stuffing method with beautiful budget envelopes. Transform your family finances with our customizable budgeting system designed for Filipino households.',
-  keywords: ['cash stuffing', 'budget envelopes', 'family budget', 'money management', 'savings', 'personal finance Philippines', 'budget templates'],
+  metadataBase: new URL('https://mommylouisebudgetph.com'),
+  title: 'Cash Stuffing Budget Binders, Envelopes & Savings Challenges Philippines | Mommy Louise Budget PH',
+  description: 'Discover premium cash stuffing budget binders, envelopes, savings challenges, and budgeting tools designed for Filipino families. Master envelope budgeting with our proven system.',
+  keywords: ['cash stuffing', 'budget binders', 'budget envelopes', 'savings challenges', 'family budget', 'envelope budgeting', 'money management Philippines', 'budget templates', 'personal finance'],
   authors: [{ name: 'Mommy Louise' }],
   openGraph: {
-    title: 'Cash Stuffing Method - Budget Envelopes & Templates for Filipino Families',
-    description: 'Learn the proven cash stuffing method with beautiful budget envelopes. Transform your family finances with our customizable budgeting system designed for Filipino households.',
+    title: 'Cash Stuffing Budget Binders, Envelopes & Savings Challenges Philippines',
+    description: 'Discover premium cash stuffing budget binders, envelopes, savings challenges, and budgeting tools designed for Filipino families.',
     type: 'website',
+    url: 'https://mommylouisebudgetph.com',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: 'https://mommylouisebudgetph.com/images/og-home.jpg',
         width: 1200,
         height: 630,
-        alt: 'Cash Stuffing Budget Envelopes - Mommy Louise Budget PH',
+        alt: 'Cash Stuffing Budget Binders & Envelopes - Mommy Louise Budget PH',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cash Stuffing Method - Budget Envelopes & Templates for Filipino Families',
-    description: 'Learn the proven cash stuffing method with beautiful budget envelopes. Transform your family finances with our customizable budgeting system designed for Filipino households.',
+    title: 'Cash Stuffing Budget Binders, Envelopes & Savings Challenges Philippines',
+    description: 'Discover premium cash stuffing budget binders, envelopes, and budgeting tools for Filipino families.',
+    creator: '@mommylouiseee',
   },
   icons: {
     icon: [

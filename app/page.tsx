@@ -8,6 +8,7 @@ import { Portfolio } from '@/components/portfolio'
 import { Testimonials } from '@/components/testimonials'
 import { Packages } from '@/components/packages'
 import { HomeFAQ } from '@/components/faq-home'
+import { SeoContentSection } from '@/components/seo-content-section'
 import { Contact, Footer } from '@/components/contact'
 
 const faqSchema = {
@@ -49,6 +50,11 @@ const faqSchema = {
   ]
 }
 
+export const metadata: Metadata = {
+  title: 'Cash Stuffing Budget Binders, Envelopes & Savings Challenges Philippines | Mommy Louise Budget PH',
+  description: 'Discover premium cash stuffing budget binders, envelopes, savings challenges, and budgeting tools designed for Filipino families. Master envelope budgeting with our proven system.',
+}
+
 export default function Home() {
   return (
     <>
@@ -64,6 +70,7 @@ export default function Home() {
         <Portfolio />
         <Packages />
         <Testimonials />
+        <SeoContentSection />
         <HomeFAQ />
         <Contact />
         <Footer />

@@ -17,16 +17,17 @@ import { AppCTA } from '@/components/app/app-cta'
 import { Footer } from '@/components/contact'
 
 export const metadata: Metadata = {
-  title: 'Louise ExpenseDesk - Budget & Expense Tracking App for Families',
-  description: 'Free budgeting app for families, teams, and businesses. Track expenses, manage cash envelopes digitally, and build better financial habits with Louise ExpenseDesk.',
-  keywords: ['budgeting app', 'expense tracking app', 'budget management', 'family budget app', 'cash envelope app'],
+  title: 'Louise ExpenseDesk - Free Budget & Expense Tracking App Philippines',
+  description: 'Free digital budgeting app for Filipino families. Track expenses, manage cash envelopes, and master the cash stuffing method with Louise ExpenseDesk.',
+  keywords: ['budgeting app', 'expense tracking app', 'cash envelope app', 'budget management Philippines', 'family finance app', 'free budgeting tool'],
   openGraph: {
-    title: 'Louise ExpenseDesk - Budget & Expense Tracking App for Families',
-    description: 'Free budgeting app for families, teams, and businesses. Track expenses, manage cash envelopes digitally, and build better financial habits.',
+    title: 'Louise ExpenseDesk - Free Budget & Expense Tracking App Philippines',
+    description: 'Free digital budgeting app for Filipino families. Track expenses and manage cash envelopes with Louise ExpenseDesk.',
     type: 'website',
+    url: 'https://mommylouisebudgetph.com/app',
     images: [
       {
-        url: '/images/og-app.jpg',
+        url: 'https://mommylouisebudgetph.com/images/og-app.jpg',
         width: 1200,
         height: 630,
         alt: 'Louise ExpenseDesk - Budget & Expense Tracking App',
@@ -35,8 +36,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Louise ExpenseDesk - Budget & Expense Tracking App for Families',
-    description: 'Free budgeting app for families, teams, and businesses. Track expenses and manage cash envelopes digitally.',
+    title: 'Louise ExpenseDesk - Free Budget & Expense Tracking App Philippines',
+    description: 'Free digital budgeting app for Filipino families to track expenses and manage budgets.',
   },
 }
 

@@ -4,26 +4,27 @@ import { GalleryShowcase } from '@/components/gallery-showcase'
 import { Contact, Footer } from '@/components/contact'
 
 export const metadata: Metadata = {
-  title: 'Budget Planner Design Gallery - 30+ Aesthetic Templates',
-  description: 'Explore 30+ beautiful budget planner designs created for Filipino families. From minimalist to colorful templates, find the perfect design that matches your budgeting style.',
-  keywords: ['budget planner designs', 'aesthetic planners', 'budget templates', 'planner designs', 'financial planning'],
+  title: 'Budget Binder Designs & Templates | Mommy Louise Gallery',
+  description: 'Explore aesthetic budget binder designs and cash stuffing templates for Filipino families. Find your perfect budgeting style.',
+  keywords: ['budget binder designs', 'aesthetic budgeting templates', 'budget planner designs', 'cash stuffing templates', 'financial planning'],
   openGraph: {
-    title: 'Budget Planner Design Gallery - 30+ Aesthetic Templates',
-    description: 'Explore 30+ beautiful budget planner designs created for Filipino families. From minimalist to colorful templates, find the perfect design that matches your budgeting style.',
+    title: 'Budget Binder Designs & Templates | Mommy Louise Gallery',
+    description: 'Explore aesthetic budget binder designs and cash stuffing templates for Filipino families.',
     type: 'website',
+    url: 'https://mommylouisebudgetph.com/gallery',
     images: [
       {
-        url: '/images/og-gallery.jpg',
+        url: 'https://mommylouisebudgetph.com/images/og-gallery.jpg',
         width: 1200,
         height: 630,
-        alt: 'Budget Planner Design Gallery - Mommy Louise',
+        alt: 'Budget Binder Designs & Templates - Mommy Louise',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Budget Planner Design Gallery - 30+ Aesthetic Templates',
-    description: 'Explore 30+ beautiful budget planner designs for Filipino families. Find your perfect budgeting style.',
+    title: 'Budget Binder Designs & Templates | Mommy Louise Gallery',
+    description: 'Explore aesthetic budget binder designs and templates for Filipino families.',
   },
 }
 
