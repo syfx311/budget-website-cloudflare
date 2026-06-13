@@ -65,7 +65,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['budget categories', 'spending categories', 'budget allocation', 'personal finance', 'money management Philippines'],
     author: 'Mommy Louise',
     authorImage: '/images/mommy-louise.jpg',
-    featuredImage: 'https://images.unsplash.com/photo-1533028192348-6f242dd2b723?w=800&h=1200&fit=crop',
+    featuredImage: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F231150ace25048838aaff4ef77434ad2?format=webp&width=800&height=1200',
     readingTime: 14,
     wordCount: 2750,
     primaryKeyword: 'budget categories',
