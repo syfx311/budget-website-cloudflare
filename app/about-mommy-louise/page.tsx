@@ -234,12 +234,12 @@ export default function AboutPage() {
               <p className="text-lg text-foreground mb-6">
                 Join hundreds of Filipino families who are achieving financial freedom.
               </p>
-              <Link 
-                href="/products"
+              <a
+                href="#contact"
                 className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
               >
                 Get Started Today
-              </Link>
+              </a>
             </div>
           </div>
         </div>
