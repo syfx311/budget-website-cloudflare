@@ -1121,9 +1121,9 @@ export const blogPostContent: Record<string, string> = {
 <p>Want to dive deeper into specific aspects of cash stuffing? Check out our related articles:</p>
 
 <ul>
-<li><a href="/blog/family-budget-planner-guide">Create Your Family Budget Planner: Step-by-Step Guide</a></li>
+<li><a href="/blog/create-your-family-budget-planner-guide">Create Your Family Budget Planner: Step-by-Step Guide</a></li>
 <li><a href="/blog/budget-categories-custom-system">Budget Categories: Build Your Custom System</a></li>
-<li><a href="/blog/100k-savings-challenge">The 100k Savings Challenge: Complete Guide</a></li>
+<li><a href="/blog/100k-savings-challenge-complete-guide">The 100k Savings Challenge: Complete Guide</a></li>
 </ul>
 
 <p>And if you're ready to get beautiful, customizable budget templates designed for Filipino families, <a href="/products">shop our budget envelope collections</a> or <a href="/gallery">browse our design gallery</a> for inspiration.</p>
