@@ -209,15 +209,6 @@ export function BinderCollectionPreview() {
               </p>
             </div>
 
-            {/* Price */}
-            <div className="flex items-baseline gap-2 flex-wrap">
-              <span className="text-2xl md:text-4xl font-serif text-primary">$89.00</span>
-              <span className="text-base md:text-lg text-muted-foreground line-through">$120.00</span>
-              <span className="text-xs md:text-sm font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">
-                Save 26%
-              </span>
-            </div>
-
             {/* Color Selector */}
             <div className="space-y-2 md:space-y-3">
               <label className="text-xs md:text-sm font-medium text-foreground">
