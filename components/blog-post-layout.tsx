@@ -25,11 +25,11 @@ export function BlogPostLayout({
     <>
       <ReadingProgressBar />
       {/* Hero Section */}
-      <section className="pt-24 pb-8 md:pb-12 bg-white dark:bg-slate-950">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <section className="pt-24 pb-12 md:pb-16 bg-white dark:bg-slate-950 border-b border-border">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 font-medium"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 font-medium text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Blog
@@ -45,25 +45,25 @@ export function BlogPostLayout({
               <span className="text-xs font-medium text-primary/70 tracking-widest uppercase">{post.category}</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6 text-balance leading-tight">
+            <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance leading-tight">
               {post.title}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 text-balance leading-relaxed max-w-2xl">
+            <p className="text-xl md:text-2xl text-muted-foreground/90 mb-10 text-balance leading-relaxed max-w-2xl">
               {post.description}
             </p>
 
             {/* Meta Information */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-muted-foreground border-t border-border pt-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 text-sm text-muted-foreground border-t border-border/50 pt-6">
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
                 <span className="font-medium">{post.author}</span>
               </div>
-              <span className="hidden sm:block">•</span>
+              <span className="hidden sm:block text-border/50">•</span>
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 <span>{formatBlogDate(post.publishedAt, 'long')}</span>
               </div>
-              <span className="hidden sm:block">•</span>
+              <span className="hidden sm:block text-border/50">•</span>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
                 <span>{post.readingTime} min read</span>
@@ -74,8 +74,8 @@ export function BlogPostLayout({
       </section>
 
       {/* Featured Image */}
-      <section className="py-12 md:py-16 bg-background">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <section className="py-12 md:py-20 bg-background">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -100,25 +100,153 @@ export function BlogPostLayout({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:font-serif prose-headings:font-bold
-              prose-h2:text-4xl md:prose-h2:text-5xl prose-h2:mt-24 md:prose-h2:mt-32 prose-h2:mb-8 md:prose-h2:mb-10 prose-h2:text-foreground
-              prose-h3:text-2xl md:prose-h3:text-3xl prose-h3:mt-16 md:prose-h3:mt-20 prose-h3:mb-6 md:prose-h3:mb-8 prose-h3:text-foreground prose-h3:font-semibold
-              prose-p:text-lg md:prose-p:text-xl prose-p:text-foreground/85 prose-p:leading-relaxed md:prose-p:leading-loose prose-p:mb-6 md:prose-p:mb-8
-              prose-strong:text-foreground prose-strong:font-semibold
-              prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline
-              prose-li:text-foreground/85 prose-li:leading-relaxed md:prose-li:leading-loose prose-li:mb-3
-              prose-ul:my-8 prose-ol:my-8 prose-ul:space-y-3 prose-ol:space-y-3
-              prose-code:bg-primary/10 prose-code:text-primary prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
-              prose-pre:bg-slate-900 prose-pre:text-slate-50 prose-pre:border prose-pre:border-primary/20 prose-pre:p-6 prose-pre:rounded-lg prose-pre:overflow-x-auto
-              prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-foreground/75 prose-blockquote:my-8
-              prose-img:rounded-lg prose-img:shadow-lg prose-img:my-10 md:prose-img:my-12
-              prose-hr:my-16 md:prose-hr:my-20 prose-hr:border-border"
+            className="blog-editorial-content"
           >
             {children}
           </motion.div>
         </div>
       </article>
+
+      <style jsx>{`
+        :global(.blog-editorial-content) {
+          font-size: 1.125rem; /* 18px base */
+          line-height: 1.75;
+          color: var(--color-foreground);
+        }
+
+        :global(.blog-editorial-content h2) {
+          font-family: var(--font-serif);
+          font-size: 2.25rem;
+          font-weight: bold;
+          margin-top: 6rem;
+          margin-bottom: 2rem;
+          color: var(--color-foreground);
+          line-height: 1.2;
+          letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 768px) {
+          :global(.blog-editorial-content h2) {
+            font-size: 3rem;
+            margin-top: 8rem;
+            margin-bottom: 2.5rem;
+          }
+        }
+
+        :global(.blog-editorial-content h3) {
+          font-family: var(--font-serif);
+          font-size: 1.875rem;
+          font-weight: 600;
+          margin-top: 4rem;
+          margin-bottom: 1.5rem;
+          color: var(--color-foreground);
+          line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+          :global(.blog-editorial-content h3) {
+            font-size: 2.25rem;
+            margin-top: 5rem;
+            margin-bottom: 2rem;
+          }
+        }
+
+        :global(.blog-editorial-content h4) {
+          font-family: var(--font-serif);
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          color: var(--color-foreground);
+        }
+
+        :global(.blog-editorial-content p) {
+          font-size: 1.125rem;
+          line-height: 1.85;
+          margin-bottom: 1.5rem;
+          color: rgba(var(--color-foreground), 0.85);
+        }
+
+        @media (min-width: 768px) {
+          :global(.blog-editorial-content p) {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+          }
+        }
+
+        :global(.blog-editorial-content ul),
+        :global(.blog-editorial-content ol) {
+          margin: 2rem 0;
+          padding-left: 1.5rem;
+        }
+
+        :global(.blog-editorial-content li) {
+          margin-bottom: 0.75rem;
+          line-height: 1.75;
+          color: rgba(var(--color-foreground), 0.85);
+        }
+
+        :global(.blog-editorial-content strong) {
+          font-weight: 600;
+          color: var(--color-foreground);
+        }
+
+        :global(.blog-editorial-content a) {
+          color: var(--color-primary);
+          text-decoration: none;
+          font-weight: 500;
+        }
+
+        :global(.blog-editorial-content a:hover) {
+          text-decoration: underline;
+        }
+
+        :global(.blog-editorial-content blockquote) {
+          border-left: 4px solid var(--color-primary);
+          padding-left: 1.5rem;
+          padding-right: 1rem;
+          margin: 2rem 0;
+          font-style: italic;
+          color: rgba(var(--color-foreground), 0.75);
+        }
+
+        :global(.blog-editorial-content code) {
+          background-color: rgba(var(--color-primary), 0.1);
+          color: var(--color-primary);
+          padding: 0.25rem 0.5rem;
+          border-radius: 0.375rem;
+          font-size: 0.875rem;
+          font-family: monospace;
+        }
+
+        :global(.blog-editorial-content pre) {
+          background-color: rgb(15, 23, 42);
+          color: rgb(226, 232, 240);
+          padding: 1.5rem;
+          border-radius: 0.5rem;
+          overflow-x: auto;
+          margin: 2rem 0;
+        }
+
+        :global(.blog-editorial-content img) {
+          border-radius: 0.5rem;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+          margin: 2.5rem 0;
+        }
+
+        @media (min-width: 768px) {
+          :global(.blog-editorial-content img) {
+            margin: 3rem 0;
+          }
+        }
+
+        :global(.blog-editorial-content hr) {
+          margin: 4rem 0;
+          border: none;
+          border-top: 1px solid var(--color-border);
+        }
+      `}</style>
 
       {/* Social Share & Tags */}
       <section className="py-12 md:py-16 bg-white dark:bg-slate-950 border-t border-border">
