@@ -10,8 +10,8 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 }
 }
 
-const DEFAULT_IFRAME_HEIGHT = 5000
-const MIN_IFRAME_HEIGHT = 3000
+const DEFAULT_IFRAME_HEIGHT = 1500
+const MIN_IFRAME_HEIGHT = 1200
 
 export function OrdersForm() {
   const [iframeError, setIframeError] = useState(false)
