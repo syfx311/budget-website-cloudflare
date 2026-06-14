@@ -83,22 +83,41 @@ export default function SavingsChallengePagePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-background">
         <Header />
-        <div className="pt-24 pb-20">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            {/* Header */}
-            <div className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-noto-sans font-bold text-foreground mb-4">
-                Savings Challenge Philippines: Build Wealth Faster
-              </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                Transform your savings habits with our proven challenges. From 52-week challenges to 30-day sprints, build emergency funds and achieve financial goals while having fun.
-              </p>
+
+        {/* Magazine Hero Section */}
+        <section className="pt-24 pb-12 md:pb-20 bg-white dark:bg-slate-950 border-b border-border">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+            {/* Hero Breadcrumb */}
+            <div className="flex justify-center mb-8">
+              <span className="text-sm font-medium text-primary/70 tracking-widest uppercase">Guide</span>
             </div>
 
+            {/* Hero Headline */}
+            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground text-center mb-6 leading-tight">
+              Savings Challenge Philippines
+            </h1>
+
+            {/* Hero Subtitle */}
+            <p className="text-xl md:text-2xl text-center text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+              Build wealth faster. Transform your savings habits with our proven challenges and achieve your financial goals.
+            </p>
+
+            {/* Reading Meta */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground border-t border-border/50 pt-8">
+              <span>~7 min read</span>
+              <span className="hidden sm:block">•</span>
+              <span>Complete Guide for Filipino Families</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Editorial Content */}
+        <div className="bg-background">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-20 pb-20">
             {/* Main Content */}
-            <div className="prose prose-lg dark:prose-invert max-w-none mb-12 text-foreground">
+            <article className="editorial-guide-content mb-20">
               <h2>Why Savings Challenges Work</h2>
               <p>
                 Savings challenges make saving money exciting and achievable. Instead of vague goals like "save more," challenges provide specific, time-bound targets. They transform saving from a chore into a game with milestones and victories. The combination of clear goals, visual tracking, and community support increases success rates significantly.
@@ -212,11 +231,11 @@ export default function SavingsChallengePagePage() {
               <p>
                 Use our <Link href="/app" className="text-primary hover:underline">Louise ExpenseDesk app</Link> to automatically categorize savings and track challenge progress. Digital tracking adds convenience and provides detailed savings analytics.
               </p>
-            </div>
+            </article>
 
             {/* FAQ Section */}
-            <div className="bg-card rounded-lg p-8 mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <section className="py-16 md:py-20 border-t border-border mt-16 md:mt-24">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-12 text-center">Frequently Asked Questions</h2>
               
               <div className="space-y-6">
                 {[
@@ -247,21 +266,21 @@ export default function SavingsChallengePagePage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
 
             {/* CTA */}
-            <div className="bg-primary/10 border-2 border-primary/20 rounded-lg p-8 text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Ready to Start Your Savings Challenge?</h2>
-              <p className="text-lg text-foreground mb-6">
+            <section className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-8 md:p-12 text-center mt-16 md:mt-24">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Ready to Start Your Savings Challenge?</h2>
+              <p className="text-lg text-foreground/85 mb-8 leading-relaxed">
                 Get our budget binders with built-in savings challenge trackers and start building wealth today.
               </p>
-              <Link 
+              <Link
                 href="/products"
                 className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
               >
                 Shop Budget Binders with Challenge Trackers
               </Link>
-            </div>
+            </section>
           </div>
         </div>
         <Contact />

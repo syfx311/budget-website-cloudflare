@@ -83,22 +83,41 @@ export default function CashStuffingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-background">
         <Header />
-        <div className="pt-24 pb-20">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            {/* Header */}
-            <div className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-noto-sans font-bold text-foreground mb-4">
-                Cash Stuffing Method Philippines: Complete Guide
-              </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                Master the proven cash stuffing system designed for Filipino families. Learn to control spending, eliminate debt, and build wealth with physical envelopes and strategic budgeting.
-              </p>
+
+        {/* Magazine Hero Section */}
+        <section className="pt-24 pb-12 md:pb-20 bg-white dark:bg-slate-950 border-b border-border">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+            {/* Hero Breadcrumb */}
+            <div className="flex justify-center mb-8">
+              <span className="text-sm font-medium text-primary/70 tracking-widest uppercase">Guide</span>
             </div>
 
+            {/* Hero Headline */}
+            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground text-center mb-6 leading-tight">
+              Cash Stuffing for Filipino Families
+            </h1>
+
+            {/* Hero Subtitle */}
+            <p className="text-xl md:text-2xl text-center text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+              Master the proven cash stuffing system. Learn to control spending, eliminate debt, and build wealth with physical envelopes and strategic budgeting.
+            </p>
+
+            {/* Reading Meta */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground border-t border-border/50 pt-8">
+              <span>~10 min read</span>
+              <span className="hidden sm:block">•</span>
+              <span>Complete Guide for Filipino Families</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Editorial Content */}
+        <div className="bg-background">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-20 pb-20">
             {/* Main Content */}
-            <div className="prose prose-lg dark:prose-invert max-w-none mb-12 text-foreground">
+            <article className="editorial-guide-content mb-20">
               <h2>What is Cash Stuffing?</h2>
               <p>
                 Cash stuffing is a budgeting method where you allocate physical cash into labeled envelopes for different spending categories. Unlike digital banking, cash stuffing provides immediate visual and psychological feedback. When you stuff an envelope with cash, you commit to spending only that amount for that category.
@@ -177,11 +196,11 @@ export default function CashStuffingPage() {
                 <li>Our <Link href="/blog" className="text-primary hover:underline">blog</Link> for advanced strategies and tips</li>
                 <li><Link href="/savings-challenge-philippines" className="text-primary hover:underline">Savings challenges</Link> to accelerate wealth building</li>
               </ul>
-            </div>
+            </article>
 
             {/* FAQ Section */}
-            <div className="bg-card rounded-lg p-8 mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <section className="py-16 md:py-20 border-t border-border mt-16 md:mt-24">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-12 text-center">Frequently Asked Questions</h2>
               
               <div className="space-y-6">
                 {[
@@ -212,12 +231,12 @@ export default function CashStuffingPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
 
             {/* CTA */}
-            <div className="bg-primary/10 border-2 border-primary/20 rounded-lg p-8 text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Ready to Master Cash Stuffing?</h2>
-              <p className="text-lg text-foreground mb-6">
+            <section className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-8 md:p-12 text-center mt-16 md:mt-24">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Ready to Master Cash Stuffing?</h2>
+              <p className="text-lg text-foreground/85 mb-8 leading-relaxed">
                 Get started with our budget binders, beautiful envelopes, and proven system.
               </p>
               <Link 
@@ -226,7 +245,7 @@ export default function CashStuffingPage() {
               >
                 Shop Budget Binders & Envelopes
               </Link>
-            </div>
+            </section>
           </div>
         </div>
         <Contact />

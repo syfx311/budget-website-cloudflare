@@ -83,22 +83,41 @@ export default function BudgetEnvelopesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-background">
         <Header />
-        <div className="pt-24 pb-20">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            {/* Header */}
-            <div className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-noto-sans font-bold text-foreground mb-4">
-                Budget Envelopes Philippines: Master Envelope Budgeting
-              </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                Transform spending behavior with physical budget envelopes. Beautiful, functional envelopes designed to help Filipino families control expenses and build wealth through the cash stuffing method.
-              </p>
+
+        {/* Magazine Hero Section */}
+        <section className="pt-24 pb-12 md:pb-20 bg-white dark:bg-slate-950 border-b border-border">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+            {/* Hero Breadcrumb */}
+            <div className="flex justify-center mb-8">
+              <span className="text-sm font-medium text-primary/70 tracking-widest uppercase">Guide</span>
             </div>
 
+            {/* Hero Headline */}
+            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground text-center mb-6 leading-tight">
+              Budget Envelopes Philippines
+            </h1>
+
+            {/* Hero Subtitle */}
+            <p className="text-xl md:text-2xl text-center text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+              Master envelope budgeting. Beautiful, functional envelopes designed to help Filipino families control expenses and build wealth.
+            </p>
+
+            {/* Reading Meta */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground border-t border-border/50 pt-8">
+              <span>~9 min read</span>
+              <span className="hidden sm:block">•</span>
+              <span>Complete Guide for Filipino Families</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Editorial Content */}
+        <div className="bg-background">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-20 pb-20">
             {/* Main Content */}
-            <div className="prose prose-lg dark:prose-invert max-w-none mb-12 text-foreground">
+            <article className="editorial-guide-content mb-20">
               <h2>What Are Budget Envelopes?</h2>
               <p>
                 Budget envelopes are labeled containers filled with physical cash allocated for specific spending categories. Instead of spending money from your bank account or credit card, you withdraw cash and organize it into envelopes. Each envelope represents a budget category with a predetermined amount. When the envelope is empty, you stop spending in that category—simple, effective, and powerful.
@@ -248,11 +267,11 @@ export default function BudgetEnvelopesPage() {
               <p>
                 For maximum effectiveness, combine physical budget envelopes with our <Link href="/budget-binder-philippines" className="text-primary hover:underline">budget binders</Link>. Envelopes handle daily spending control while the binder provides strategic planning, expense analysis, and goal tracking. Together, they create a complete financial management system.
               </p>
-            </div>
+            </article>
 
             {/* FAQ Section */}
-            <div className="bg-card rounded-lg p-8 mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <section className="py-16 md:py-20 border-t border-border mt-16 md:mt-24">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-12 text-center">Frequently Asked Questions</h2>
               
               <div className="space-y-6">
                 {[
@@ -283,21 +302,21 @@ export default function BudgetEnvelopesPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
 
             {/* CTA */}
-            <div className="bg-primary/10 border-2 border-primary/20 rounded-lg p-8 text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Ready to Master Envelope Budgeting?</h2>
-              <p className="text-lg text-foreground mb-6">
+            <section className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-8 md:p-12 text-center mt-16 md:mt-24">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Ready to Master Envelope Budgeting?</h2>
+              <p className="text-lg text-foreground/85 mb-8 leading-relaxed">
                 Get our beautiful, durable budget envelopes and start your cash stuffing journey today.
               </p>
-              <Link 
+              <Link
                 href="/products"
                 className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
               >
                 Shop Budget Envelopes Now
               </Link>
-            </div>
+            </section>
           </div>
         </div>
         <Contact />
