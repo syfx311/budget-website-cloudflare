@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { AlertCircle } from 'lucide-react'
 
@@ -10,8 +10,25 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 }
 }
 
+const MIN_IFRAME_HEIGHT = 600
+
 export function OrdersForm() {
   const [iframeError, setIframeError] = useState(false)
+  const [iframeHeight, setIframeHeight] = useState(MIN_IFRAME_HEIGHT)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Security: validate origin for production
+      if (event.data?.type === 'resize-iframe' && typeof event.data.height === 'number') {
+        const newHeight = Math.max(event.data.height, MIN_IFRAME_HEIGHT)
+        setIframeHeight(newHeight)
+      }
+    }
+
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
+  }, [])
 
   const handleOpenInNewTab = () => {
     window.open('https://order.mommylouisebudgetph.com/', '_blank')
@@ -61,14 +78,17 @@ export function OrdersForm() {
           <div className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-sm mb-6">
             <div className="iframe-wrapper">
               <iframe
+                ref={iframeRef}
+                id="order-form-iframe"
                 src="https://order.mommylouisebudgetph.com/"
                 width="100%"
-                height="1400"
+                height={iframeHeight}
                 style={{
                   border: 'none',
                   borderRadius: '16px',
                   background: 'white',
-                  display: 'block'
+                  display: 'block',
+                  overflow: 'hidden'
                 }}
                 loading="lazy"
                 title="Mommy Louise Budget PH Order Form"
