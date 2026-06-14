@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
@@ -56,20 +57,35 @@ function DecorativeBow({ className = '' }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section className="relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden hero-section" style={{
-      backgroundImage: 'url(/images/hero-background.jpg)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }}>
+    <section className="hero-section relative pt-28 pb-20 md:pt-32 md:pb-32 overflow-hidden">
+      {/* Optimized hero background image with semantic HTML */}
+      <Image
+        src="/images/hero-background.jpg"
+        alt="Smart Money Mama Way - Cash Stuffing Budget Binders & Savings Challenges for Filipino Families"
+        fill
+        className="absolute inset-0 object-cover"
+        priority
+        fetchPriority="high"
+        quality={85}
+        sizes="100vw"
+      />
+
       {/* Light cream overlay gradient for text readability */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
+      <div
+        className="hero-overlay absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(90deg, rgba(255,255,255,0.82) 0%, rgba(255,248,242,0.72) 20%, rgba(255,248,242,0.45) 40%, rgba(255,248,242,0.15) 60%, rgba(255,248,242,0) 100%)',
-          media: '(max-width: 768px)',
-          backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,248,242,0.78) 20%, rgba(255,248,242,0.5) 40%, rgba(255,248,242,0.2) 60%, rgba(255,248,242,0) 100%)'
+          background: 'linear-gradient(90deg, rgba(255,255,255,0.82) 0%, rgba(255,248,242,0.72) 20%, rgba(255,248,242,0.45) 40%, rgba(255,248,242,0.15) 60%, rgba(255,248,242,0) 100%)'
         }}
       />
+
+      {/* Mobile overlay - adjusted gradient for smaller screens */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .hero-overlay {
+            background: linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,248,242,0.78) 20%, rgba(255,248,242,0.5) 40%, rgba(255,248,242,0.2) 60%, rgba(255,248,242,0) 100%) !important;
+          }
+        }
+      `}</style>
 
       {/* Decorative bows */}
       <motion.div
