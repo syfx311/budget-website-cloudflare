@@ -293,6 +293,22 @@ export function Packages() {
         'Hand-matched to your order'
       ],
       image: <ElegancePackageImage />
+    },
+    {
+      title: 'Ultimate Package',
+      features: [
+        'A premium, dreamy, handy caddy bag - perfect to organize your cash stuff essentials',
+        'A premium tri-fold A6 binder - perfect to organize and track your spending',
+        'A sophie pretty A6 binder - perfect for budget binder or savings binder',
+        '100 envelope A5 size savings challenge - perfect for thrilled savings journey',
+        'Premium SSC A7 binder - perfect for daily spending',
+        'Loose leaf binder for savings challenge',
+        'Aesthetic themed calculator - because your calculator must be pretty too',
+        'Acrylic cash dividers - to make it more organized and clean',
+        '100 pcs pad budget planner - high end cover to list all your spendings',
+        '4 beautiful themed charms for extra bling by The Budget Binder Life'
+      ],
+      image: <MysticPackageImage />
     }
   ]
 
