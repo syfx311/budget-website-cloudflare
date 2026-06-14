@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { appSchema } from '@/lib/schema'
+import { getCanonicalMetadata } from '@/lib/canonical'
 import { Header } from '@/components/header'
 import { AppHero } from '@/components/app/app-hero'
 import { AppShowcase } from '@/components/app/app-showcase'
@@ -17,6 +18,7 @@ import { AppCTA } from '@/components/app/app-cta'
 import { Footer } from '@/components/contact'
 
 export const metadata: Metadata = {
+  ...getCanonicalMetadata('/app'),
   title: 'Louise ExpenseDesk - Free Budget & Expense Tracking App Philippines',
   description: 'Free digital budgeting app for Filipino families. Track expenses, manage cash envelopes, and master the cash stuffing method with Louise ExpenseDesk.',
   keywords: ['budgeting app', 'expense tracking app', 'cash envelope app', 'budget management Philippines', 'family finance app', 'free budgeting tool'],

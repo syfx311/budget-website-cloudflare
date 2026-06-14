@@ -3,8 +3,10 @@ import Script from 'next/script'
 import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Contact, Footer } from '@/components/contact'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
+  ...getCanonicalMetadata('/budget-binder-philippines'),
   title: 'Budget Binder Philippines | Aesthetic Templates & Systems',
   description: 'Premium budget binders for Filipino families. Beautiful, organized templates for cash stuffing, expense tracking, and savings planning. Start your binder today.',
   keywords: ['budget binder Philippines', 'budget planner', 'budget templates', 'aesthetic binder', 'budget organization'],

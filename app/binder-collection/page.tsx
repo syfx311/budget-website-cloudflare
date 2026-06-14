@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { BinderCollectionPreview } from '@/components/binder-collection-preview'
 import { Contact, Footer } from '@/components/contact'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
+  ...getCanonicalMetadata('/binder-collection'),
   title: 'Budget Binder Collection | Premium Cash Stuffing System',
   description: 'Discover our premium budget binder collection for cash stuffing. Beautiful, functional designs for Filipino families.',
   openGraph: {

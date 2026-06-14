@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { BackToTop } from '@/components/back-to-top'
 import { organizationSchema, breadcrumbSchema, websiteSearchSchema } from '@/lib/schema'
+import { getCanonicalMetadata } from '@/lib/canonical'
 import './globals.css'
 
 const geist = Geist({
@@ -53,6 +54,7 @@ export const metadata: Metadata = {
   description: 'Discover premium cash stuffing budget binders, envelopes, savings challenges, and budgeting tools designed for Filipino families. Master envelope budgeting with our proven system.',
   keywords: ['cash stuffing', 'budget binders', 'budget envelopes', 'savings challenges', 'family budget', 'envelope budgeting', 'money management Philippines', 'budget templates', 'personal finance'],
   authors: [{ name: 'Mommy Louise' }],
+  ...getCanonicalMetadata('/'),
   openGraph: {
     title: 'Cash Stuffing Budget Binders, Envelopes & Savings Challenges Philippines',
     description: 'Discover premium cash stuffing budget binders, envelopes, savings challenges, and budgeting tools designed for Filipino families.',
@@ -97,6 +99,22 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <head>
+        {/* Preload critical fonts for performance */}
+        <link
+          rel="preload"
+          href="/fonts/playfair-display-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/noto-sans-adlam-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

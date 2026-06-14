@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { GalleryShowcase } from '@/components/gallery-showcase'
 import { Contact, Footer } from '@/components/contact'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
+  ...getCanonicalMetadata('/gallery'),
   title: 'Budget Binder Designs & Templates | Mommy Louise Gallery',
   description: 'Explore aesthetic budget binder designs and cash stuffing templates for Filipino families. Find your perfect budgeting style.',
   keywords: ['budget binder designs', 'aesthetic budgeting templates', 'budget planner designs', 'cash stuffing templates', 'financial planning'],

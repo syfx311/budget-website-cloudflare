@@ -4,8 +4,10 @@ import Script from 'next/script'
 import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Contact, Footer } from '@/components/contact'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
+  ...getCanonicalMetadata('/about-mommy-louise'),
   title: 'About Mommy Louise | Budget Expert & Financial Coach',
   description: 'Meet Mommy Louise. Learn about her budgeting journey, mission to help Filipino families achieve financial freedom, and the story behind Mommy Louise Budget PH.',
   keywords: ['about Mommy Louise', 'financial coach Philippines', 'budgeting expert', 'personal story'],

@@ -3,8 +3,10 @@ import Script from 'next/script'
 import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Contact, Footer } from '@/components/contact'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
+  ...getCanonicalMetadata('/budget-envelopes-philippines'),
   title: 'Budget Envelopes Philippines | Cash Stuffing System',
   description: 'Premium budget envelopes for cash stuffing. Beautiful, functional envelopes designed for Filipino families. Master envelope budgeting with our system.',
   keywords: ['budget envelopes', 'cash stuffing envelopes', 'envelope budgeting', 'budget system', 'cash envelopes Philippines'],

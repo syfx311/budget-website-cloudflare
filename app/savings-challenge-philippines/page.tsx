@@ -3,8 +3,10 @@ import Script from 'next/script'
 import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Contact, Footer } from '@/components/contact'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
+  ...getCanonicalMetadata('/savings-challenge-philippines'),
   title: 'Savings Challenge Philippines | 52-Week & Monthly Challenges',
   description: 'Achieve your savings goals with our proven savings challenges for Filipino families. Build emergency funds, pay off debt, and reach financial goals faster.',
   keywords: ['savings challenge', 'savings challenge Philippines', '52 week challenge', 'emergency fund challenge', 'money saving challenge'],

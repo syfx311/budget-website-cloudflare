@@ -6,6 +6,8 @@ import { BlogPostLayout } from '@/components/blog-post-layout'
 import { Contact, Footer } from '@/components/contact'
 import { getBlogPostBySlug, getRelatedPosts } from '@/lib/blog-posts'
 import { blogPostContent } from '@/lib/blog-content'
+import { getCanonicalMetadata } from '@/lib/canonical'
+import { blogBreadcrumbSchema } from '@/lib/schema'
 
 // Generate static pages for all blog posts
 export async function generateStaticParams() {
@@ -38,6 +40,7 @@ export async function generateMetadata({
     description: post.description,
     keywords: post.tags,
     authors: [{ name: post.author }],
+    ...getCanonicalMetadata(`/blog/${slug}`),
     openGraph: {
       title: post.title,
       description: post.description,
@@ -107,6 +110,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(blogPostingSchema),
+        }}
+      />
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogBreadcrumbSchema(slug, post.title)),
         }}
       />
       <main className="min-h-screen">

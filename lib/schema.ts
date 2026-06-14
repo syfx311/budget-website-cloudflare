@@ -50,23 +50,48 @@ export const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'App',
-      item: 'https://mommylouisebudgetph.com/app',
-    },
-    {
-      '@type': 'ListItem',
-      position: 3,
       name: 'Products',
       item: 'https://mommylouisebudgetph.com/products',
     },
     {
       '@type': 'ListItem',
+      position: 3,
+      name: 'Blog',
+      item: 'https://mommylouisebudgetph.com/blog',
+    },
+    {
+      '@type': 'ListItem',
       position: 4,
-      name: 'Gallery',
-      item: 'https://mommylouisebudgetph.com/gallery',
+      name: 'App',
+      item: 'https://mommylouisebudgetph.com/app',
     },
   ],
 }
+
+export const blogBreadcrumbSchema = (slug: string, title: string) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://mommylouisebudgetph.com',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: 'https://mommylouisebudgetph.com/blog',
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: title,
+      item: `https://mommylouisebudgetph.com/blog/${slug}`,
+    },
+  ],
+})
 
 export const appSchema = {
   '@context': 'https://schema.org/',
