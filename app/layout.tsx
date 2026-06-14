@@ -99,22 +99,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <head>
-        {/* Preload critical fonts for performance */}
-        <link
-          rel="preload"
-          href="/fonts/playfair-display-400.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/noto-sans-adlam-400.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
