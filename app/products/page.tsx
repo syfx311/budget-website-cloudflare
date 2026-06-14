@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Header } from '@/components/header'
 import { ProductsGallery } from '@/components/products-gallery'
 import { Contact, Footer } from '@/components/contact'
 import { getCanonicalMetadata } from '@/lib/canonical'
+import { breadcrumbSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
   title: 'Premium Budget Planners & Envelopes | Mommy Louise Shop',
@@ -32,13 +34,19 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <div className="pt-20">
-        <ProductsGallery />
-        <Contact />
-      </div>
-      <Footer />
-    </main>
+    <>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <main className="min-h-screen">
+        <Header />
+        <div className="pt-20">
+          <ProductsGallery />
+          <Contact />
+        </div>
+        <Footer />
+      </main>
+    </>
   )
 }

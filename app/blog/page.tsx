@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Header } from '@/components/header'
 import { BlogHome } from '@/components/blog-home'
 import { Contact, Footer } from '@/components/contact'
 import { getAllBlogPosts } from '@/lib/blog-posts'
 import { getCanonicalMetadata } from '@/lib/canonical'
+import { breadcrumbSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
   title: 'Budget Tips, Cash Stuffing & Money Management Blog | Mommy Louise',
@@ -35,13 +37,19 @@ export default function BlogPage() {
   const posts = getAllBlogPosts()
 
   return (
-    <main className="min-h-screen">
-      <Header />
-      <div className="pt-20">
-        <BlogHome posts={posts} />
-        <Contact />
-      </div>
-      <Footer />
-    </main>
+    <>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <main className="min-h-screen">
+        <Header />
+        <div className="pt-20">
+          <BlogHome posts={posts} />
+          <Contact />
+        </div>
+        <Footer />
+      </main>
+    </>
   )
 }
