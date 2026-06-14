@@ -230,6 +230,21 @@ function MysticPackageImage() {
   )
 }
 
+function UltimatePackageImage() {
+  return (
+    <div className="ultimate-package-img-wrapper">
+      <Image
+        src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F05f53f8a83e04aaba6efd7c56e80c9b2?format=webp&width=800&height=1200"
+        alt="Ultimate Package - Complete Collection"
+        width={280}
+        height={420}
+        className="ultimate-package-img"
+        priority
+      />
+    </div>
+  )
+}
+
 export function Packages() {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -308,7 +323,7 @@ export function Packages() {
         '100 pcs pad budget planner - high end cover to list all your spendings',
         '4 beautiful themed charms for extra bling by The Budget Binder Life'
       ],
-      image: <MysticPackageImage />
+      image: <UltimatePackageImage />
     }
   ]
 
