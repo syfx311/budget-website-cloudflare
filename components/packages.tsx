@@ -414,13 +414,31 @@ export function Packages() {
           {/* Promotional Banner */}
           <motion.div
             variants={fadeInUp}
-            className="lg:col-span-2 rounded-3xl overflow-hidden"
+            className="lg:col-span-2 rounded-3xl overflow-hidden relative"
             style={{
-              background: 'linear-gradient(135deg, rgba(232, 105, 171, 0.1) 0%, rgba(219, 123, 168, 0.15) 100%)',
               border: '2px solid rgba(232, 105, 171, 0.2)'
             }}
           >
-            <div className="h-full flex flex-col justify-center p-8 md:p-12">
+            {/* Blurred background image with pink mask */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F5f01be12ea0a44fda4ac405fbc124729?format=webp&width=800&height=1200)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: 'blur(8px)',
+                opacity: 1
+              }}
+            />
+            {/* Pink mask overlay */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(135deg, rgba(232, 105, 171, 0.6) 0%, rgba(219, 123, 168, 0.5) 100%)'
+              }}
+            />
+
+            <div className="relative z-10 h-full flex flex-col justify-center p-8 md:p-12">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
