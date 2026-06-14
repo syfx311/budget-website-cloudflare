@@ -308,27 +308,26 @@ export function Packages() {
         'Hand-matched to your order'
       ],
       image: <ElegancePackageImage />
+    },
+    {
+      title: 'Ultimate Package',
+      badge: 'Complete Collection',
+      features: [
+        'A premium, dreamy, handy caddy bag - perfect to organize your cash stuff essentials',
+        'A premium tri-fold A6 binder - perfect to organize and track your spending',
+        'A sophie pretty A6 binder - perfect for budget binder or savings binder',
+        '100 envelope A5 size savings challenge - perfect for thrilled savings journey',
+        'Premium SSC A7 binder - perfect for daily spending',
+        'Loose leaf binder for savings challenge',
+        'Aesthetic themed calculator - because your calculator must be pretty too',
+        'Acrylic cash dividers - to make it more organized and clean',
+        '100 pcs pad budget planner - high end cover to list all your spendings',
+        '4 beautiful themed charms for extra bling by The Budget Binder Life'
+      ],
+      image: <UltimatePackageImage />,
+      isPopular: true
     }
   ]
-
-  const ultimatePackage = {
-    title: 'Ultimate Package',
-    badge: 'Complete Collection',
-    features: [
-      'A premium, dreamy, handy caddy bag - perfect to organize your cash stuff essentials',
-      'A premium tri-fold A6 binder - perfect to organize and track your spending',
-      'A sophie pretty A6 binder - perfect for budget binder or savings binder',
-      '100 envelope A5 size savings challenge - perfect for thrilled savings journey',
-      'Premium SSC A7 binder - perfect for daily spending',
-      'Loose leaf binder for savings challenge',
-      'Aesthetic themed calculator - because your calculator must be pretty too',
-      'Acrylic cash dividers - to make it more organized and clean',
-      '100 pcs pad budget planner - high end cover to list all your spendings',
-      '4 beautiful themed charms for extra bling by The Budget Binder Life'
-    ],
-    image: <UltimatePackageImage />,
-    isPopular: true
-  }
 
   return (
     <section id="packages" className="relative py-20 md:py-32 overflow-hidden bg-white">
@@ -394,22 +393,6 @@ export function Packages() {
               />
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Ultimate Package - Full Width */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="mb-16"
-        >
-          <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
-            <PackageCard
-              {...ultimatePackage}
-              onOrderClick={() => openOrderModal(ultimatePackage.title)}
-            />
-          </div>
         </motion.div>
 
         {/* Order Modal */}
