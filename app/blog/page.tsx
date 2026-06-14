@@ -3,11 +3,13 @@ import { Header } from '@/components/header'
 import { BlogHome } from '@/components/blog-home'
 import { Contact, Footer } from '@/components/contact'
 import { getAllBlogPosts } from '@/lib/blog-posts'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
   title: 'Budget Tips, Cash Stuffing & Money Management Blog | Mommy Louise',
   description: 'Expert budgeting strategies, cash stuffing guides, and financial planning advice for Filipino families. Learn to save more with proven money management tips.',
   keywords: ['budget blog', 'cash stuffing guide', 'money management tips', 'budgeting advice', 'savings tips Philippines', 'personal finance'],
+  ...getCanonicalMetadata('/blog'),
   openGraph: {
     title: 'Budget Tips, Cash Stuffing & Money Management Blog | Mommy Louise',
     description: 'Expert budgeting strategies, cash stuffing guides, and financial planning advice for Filipino families.',

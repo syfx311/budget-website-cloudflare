@@ -6,6 +6,7 @@ import { BlogPostLayout } from '@/components/blog-post-layout'
 import { Contact, Footer } from '@/components/contact'
 import { getBlogPostBySlug, getRelatedPosts } from '@/lib/blog-posts'
 import { blogPostContent } from '@/lib/blog-content'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 // Generate static pages for all blog posts
 export async function generateStaticParams() {
@@ -38,6 +39,7 @@ export async function generateMetadata({
     description: post.description,
     keywords: post.tags,
     authors: [{ name: post.author }],
+    ...getCanonicalMetadata(`/blog/${slug}`),
     openGraph: {
       title: post.title,
       description: post.description,

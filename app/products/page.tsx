@@ -2,11 +2,13 @@ import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { ProductsGallery } from '@/components/products-gallery'
 import { Contact, Footer } from '@/components/contact'
+import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
   title: 'Premium Budget Planners & Envelopes | Mommy Louise Shop',
   description: 'Shop custom budget binders, aesthetic envelopes, and personalized budgeting templates for Filipino families. Premium quality, free delivery Philippines.',
   keywords: ['budget planners', 'budget binders', 'budget envelopes', 'budget templates', 'cash stuffing envelopes', 'aesthetic planners'],
+  ...getCanonicalMetadata('/products'),
   openGraph: {
     title: 'Premium Budget Planners & Envelopes | Mommy Louise Shop',
     description: 'Shop custom budget binders, envelopes, and personalized budgeting templates for Filipino families.',
