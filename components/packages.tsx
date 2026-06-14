@@ -322,7 +322,7 @@ export function Packages() {
         'Aesthetic themed calculator - because your calculator must be pretty too',
         'Acrylic cash dividers - to make it more organized and clean',
         '100 pcs pad budget planner - high end cover to list all your spendings',
-        '4 beautiful themed charms for extra bling by The Budget Binder Life'
+        '4 beautiful themed charms for extra bling '
       ],
       image: <UltimatePackageImage />,
       isPopular: true
