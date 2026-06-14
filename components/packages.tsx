@@ -430,11 +430,11 @@ export function Packages() {
                 opacity: 1
               }}
             />
-            {/* Pink mask overlay */}
+            {/* White mask overlay */}
             <div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(135deg, rgba(232, 105, 171, 0.6) 0%, rgba(219, 123, 168, 0.5) 100%)'
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.5) 100%)'
               }}
             />
 
