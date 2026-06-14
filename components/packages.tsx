@@ -385,7 +385,7 @@ export function Packages() {
           viewport={{ once: true, margin: '-100px' }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
-          {packages.map((pkg, index) => (
+          {packages.slice(0, 4).map((pkg, index) => (
             <motion.div key={pkg.title} variants={fadeInUp}>
               <PackageCard
                 {...pkg}
@@ -393,6 +393,101 @@ export function Packages() {
               />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Ultimate Package Section with Promotional Banner */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16"
+        >
+          {/* Ultimate Package Card */}
+          <motion.div variants={fadeInUp} className="lg:col-span-1">
+            <PackageCard
+              {...packages[4]}
+              onOrderClick={() => openOrderModal(packages[4].title)}
+            />
+          </motion.div>
+
+          {/* Promotional Banner */}
+          <motion.div
+            variants={fadeInUp}
+            className="lg:col-span-2 rounded-3xl overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, rgba(232, 105, 171, 0.1) 0%, rgba(219, 123, 168, 0.15) 100%)',
+              border: '2px solid rgba(232, 105, 171, 0.2)'
+            }}
+          >
+            <div className="h-full flex flex-col justify-center p-8 md:p-12">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="mb-4"
+              >
+                <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+                  ✨ Complete Solution
+                </span>
+              </motion.div>
+
+              <motion.h3
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight"
+              >
+                Everything You Need For Your Budget Journey
+              </motion.h3>
+
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-lg text-muted-foreground mb-8"
+              >
+                The Ultimate Package is our most comprehensive collection, designed for those who want the complete budget organization experience. From premium binders and cash organizers to beautiful planners and accessories, everything works together seamlessly.
+              </motion.p>
+
+              <motion.ul
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="space-y-3 mb-8"
+              >
+                <li className="flex items-center gap-3 text-muted-foreground">
+                  <Heart className="w-5 h-5 text-primary fill-primary flex-shrink-0" />
+                  <span>10 premium items included</span>
+                </li>
+                <li className="flex items-center gap-3 text-muted-foreground">
+                  <Heart className="w-5 h-5 text-primary fill-primary flex-shrink-0" />
+                  <span>Perfect for couples or shared budgeting</span>
+                </li>
+                <li className="flex items-center gap-3 text-muted-foreground">
+                  <Heart className="w-5 h-5 text-primary fill-primary flex-shrink-0" />
+                  <span>Includes aesthetic calculator & accessories</span>
+                </li>
+                <li className="flex items-center gap-3 text-muted-foreground">
+                  <Heart className="w-5 h-5 text-primary fill-primary flex-shrink-0" />
+                  <span>Best value & most popular choice</span>
+                </li>
+              </motion.ul>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Button
+                  onClick={() => openOrderModal('Ultimate Package')}
+                  className="bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg w-full sm:w-auto"
+                >
+                  Order Ultimate Package Now
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Order Modal */}
