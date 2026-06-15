@@ -1,8 +1,9 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Facebook } from 'lucide-react'
+import { X, Facebook, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 interface OrderModalProps {
   isOpen: boolean
@@ -76,28 +77,53 @@ export function OrderModal({ isOpen, onClose, packageName }: OrderModalProps) {
                   I&apos;ll get back to you within 24-48 hours with pricing and availability information.
                 </motion.p>
                 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    asChild
-                    className="bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
+                <div className="flex flex-col gap-4 sm:flex-row sm:gap-3 justify-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1"
                   >
-                    <a 
-                      href="https://www.facebook.com/profile.php?id=100087797289721" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
+                    <Button
+                      asChild
+                      className="w-full bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
                     >
-                      <Facebook className="w-5 h-5" />
-                      Message Me on Facebook
-                    </a>
-                  </Button>
-                </motion.div>
+                      <Link
+                        href="/orders"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        <ShoppingCart className="w-5 h-5" />
+                        Order Now
+                      </Link>
+                    </Button>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.45 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1"
+                  >
+                    <Button
+                      asChild
+                      className="w-full bg-pink-200/60 hover:bg-pink-300/60 text-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
+                    >
+                      <a
+                        href="https://www.facebook.com/profile.php?id=100087797289721"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        <Facebook className="w-5 h-5" />
+                        Message Me
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
 
                 <motion.button
                   initial={{ opacity: 0 }}

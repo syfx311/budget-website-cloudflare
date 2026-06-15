@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { Sparkles, Heart, X, Facebook } from 'lucide-react'
+import { Sparkles, Heart, X, Facebook, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -280,30 +280,45 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                 </div>
               </div>
 
-              {/* Facebook Link */}
+              {/* Action Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-center"
               >
-                <p className="text-muted-foreground mb-4">
-                  Interested in this product? Message me on Facebook to inquire or place an order!
+                <p className="text-muted-foreground mb-6">
+                  Ready to order this product?
                 </p>
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full py-6 text-lg font-semibold"
-                >
-                  <a 
-                    href="https://www.facebook.com/profile.php?id=100087797289721" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
+                <div className="flex flex-col gap-3 sm:flex-row sm:gap-3">
+                  <Button
+                    asChild
+                    className="flex-1 bg-gradient-to-r from-primary to-rose-500 hover:from-primary/90 hover:to-rose-600 text-primary-foreground rounded-full py-6 text-lg font-semibold"
                   >
-                    <Facebook className="w-5 h-5" />
-                    Message Me on Facebook
-                  </a>
-                </Button>
+                    <Link
+                      href="/orders"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <ShoppingCart className="w-5 h-5" />
+                      Order Now
+                    </Link>
+                  </Button>
+
+                  <Button
+                    asChild
+                    className="flex-1 bg-pink-200/60 hover:bg-pink-300/60 text-foreground rounded-full py-6 text-lg font-semibold"
+                  >
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100087797289721"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <Facebook className="w-5 h-5" />
+                      Message Me
+                    </a>
+                  </Button>
+                </div>
               </motion.div>
             </div>
           </motion.div>
