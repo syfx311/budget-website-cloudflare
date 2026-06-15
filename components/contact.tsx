@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Youtube } from 'lucide-react'
+import { Facebook, Youtube, ShoppingBag } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 
@@ -120,26 +120,46 @@ export function Contact() {
               Send me a message with your budget goals and preferences, and I&apos;ll help you create 
               the perfect personalized budget templates for your cash stuffing journey.
             </motion.p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Button
-                asChild
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
-                size="lg"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <a 
-                  href="https://www.facebook.com/profile.php?id=100087797289721" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+                <Button
+                  asChild
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
+                  size="lg"
                 >
-                  <Facebook className="h-5 w-5" />
-                  Message Me on Facebook
-                </a>
-              </Button>
-            </motion.div>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=100087797289721"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Facebook className="h-5 w-5" />
+                    Message Me on Facebook
+                  </a>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  asChild
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 font-semibold shadow-lg"
+                  size="lg"
+                >
+                  <Link
+                    href="/orders"
+                    className="flex items-center gap-2"
+                  >
+                    <ShoppingBag className="h-5 w-5" />
+                    View Orders
+                  </Link>
+                </Button>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
