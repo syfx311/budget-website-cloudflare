@@ -8,12 +8,12 @@ import { getCanonicalMetadata } from '@/lib/canonical'
 
 export const metadata: Metadata = {
   ...getCanonicalMetadata('/about-mommy-louise'),
-  title: 'About Mommy Louise | Budget Expert & Financial Coach',
-  description: 'Meet Mommy Louise. Learn about her budgeting journey, mission to help Filipino families achieve financial freedom, and the story behind Mommy Louise Budget PH.',
-  keywords: ['about Mommy Louise', 'financial coach Philippines', 'budgeting expert', 'personal story'],
+  title: 'About Mommy Louise | Cash Stuffing & Budgeting for Filipino Families',
+  description: 'Learn how Mommy Louise helps Filipino families save money, budget effectively, and reach financial goals through cash stuffing systems, savings challenges, and practical budgeting tools.',
+  keywords: ['cash stuffing Philippines', 'budgeting for Filipino families', 'savings challenge Philippines', 'budget binder Philippines', 'family budgeting tips', 'personal finance for moms', 'Filipino budgeting educator'],
   openGraph: {
-    title: 'About Mommy Louise | Budget Expert & Financial Coach',
-    description: 'Meet Mommy Louise. Learn about her budgeting journey and mission to help Filipino families.',
+    title: 'About Mommy Louise | Cash Stuffing & Budgeting for Filipino Families',
+    description: 'Learn how Mommy Louise helps Filipino families save money through cash stuffing systems and budgeting tools.',
     type: 'website',
     url: 'https://mommylouisebudgetph.com/about-mommy-louise',
     images: [
@@ -21,28 +21,82 @@ export const metadata: Metadata = {
         url: 'https://mommylouisebudgetph.com/images/og-about.jpg',
         width: 1200,
         height: 630,
-        alt: 'About Mommy Louise - Budget Expert',
+        alt: 'Mommy Louise teaching budgeting and cash stuffing methods for Filipino families',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Mommy Louise | Budget Expert & Financial Coach',
-    description: 'Meet Mommy Louise and learn about her mission to help Filipino families.',
+    title: 'About Mommy Louise | Cash Stuffing & Budgeting for Filipino Families',
+    description: 'Learn how Mommy Louise helps Filipino families save money through cash stuffing systems, savings challenges, and practical budgeting tools.',
   },
 }
 
-const aboutSchema = {
+const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Mommy Louise',
-  url: 'https://mommylouisebudgetph.com',
-  description: 'Financial expert and budgeting coach dedicated to helping Filipino families achieve financial freedom through cash stuffing and strategic money management.',
-  jobTitle: 'Financial Coach & Budget Expert',
+  url: 'https://mommylouisebudgetph.com/about-mommy-louise',
+  jobTitle: 'Budgeting Educator & Financial Coach',
+  description: 'Helping Filipino families save money through cash stuffing, savings challenges, and budgeting systems. Creator of Mommy Louise Budget PH.',
+  knowsAbout: ['cash stuffing', 'budgeting', 'personal finance', 'savings challenges', 'budget binders', 'family finance', 'Filipino budgeting'],
   sameAs: [
     'https://www.facebook.com/profile.php?id=100087797289721',
     'https://www.tiktok.com/@mommylouiseee',
     'https://www.youtube.com/channel/UCHFl5W8x4mgy5LiEkiu0UCw',
+  ],
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Mommy Louise Budget PH',
+    url: 'https://mommylouisebudgetph.com',
+    description: 'Helping Filipino families achieve financial freedom through cash stuffing and budgeting tools',
+  },
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is cash stuffing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Cash stuffing is a hands-on budgeting method where you allocate physical cash into labeled envelopes for different spending categories. Unlike digital budgeting apps, it gives you immediate visual feedback on your spending and helps you become more intentional with every peso.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do savings challenges work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Savings challenges are structured programs that help you build consistent saving habits. Through Mommy Louise Budget PH, we offer various challenges designed for Filipino families to reach their financial goals while staying motivated through progress tracking and community support.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can beginners use budget binders?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes! Budget binders are designed for all skill levels. They provide templates and systems that make budgeting simple and visual, even if you\'ve never tracked finances before. Our budget binders are specifically designed with Filipino families in mind.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why is budgeting important for Filipino families?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Budgeting helps Filipino families navigate unique financial challenges including extended family obligations, seasonal income fluctuations, and achieving financial peace of mind. It creates clarity on spending, enables faster debt elimination, and builds emergency funds for unexpected situations.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can I start saving money consistently?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Start small and stay consistent. Use the cash stuffing method with budget envelopes, set clear financial goals, track your progress visually, and involve your family. Small progress—like saving ₱100 monthly—beats heroic efforts that don\'t last. Join our savings challenges for community support.',
+      },
+    },
   ],
 }
 
@@ -51,7 +105,11 @@ export default function AboutPage() {
     <>
       <Script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <main className="min-h-screen bg-background">
         <Header />
@@ -66,7 +124,7 @@ export default function AboutPage() {
 
             {/* Hero Headline */}
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground text-center mb-6 leading-tight">
-              The Story of Mommy Louise
+              About Mommy Louise | Helping Filipino Families Budget Better
             </h1>
 
             {/* Hero Subtitle */}
@@ -78,7 +136,7 @@ export default function AboutPage() {
             <div className="aspect-video rounded-lg overflow-hidden shadow-lg mb-12">
               <Image
                 src="https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc004f790a7d541e78e49855898a5d267?format=webp&width=800&height=1200"
-                alt="Mommy Louise - Budget Expert & Financial Coach"
+                alt="Mommy Louise teaching budgeting and cash stuffing methods for Filipino families"
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
@@ -123,6 +181,31 @@ export default function AboutPage() {
 
                 <p className="text-lg leading-relaxed text-foreground/85">
                   Then I discovered cash stuffing—and everything changed. The physical act of organizing cash into labeled envelopes transformed my relationship with money. It was simple, effective, and immediately rewarding.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* How Cash Stuffing Works */}
+          <section className="py-16 md:py-24 bg-white dark:bg-slate-950/50">
+            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-8">Discovering the Cash Stuffing Method</h2>
+
+              <div className="prose prose-lg dark:prose-invert max-w-none">
+                <p className="text-lg leading-relaxed text-foreground/85 mb-6">
+                  The <strong>cash stuffing system</strong> became my financial lifeline. Here's how it works: I took my monthly income and allocated it into labeled envelopes—groceries, utilities, transportation, children's education, savings, and more. Each envelope contained only the cash allocated for that category.
+                </p>
+
+                <p className="text-lg leading-relaxed text-foreground/85 mb-6">
+                  This simple method transformed my relationship with money in ways I never expected. When the grocery envelope was empty, I stopped buying groceries—no more unconscious spending. The visual feedback was immediate and powerful. I could see exactly where every peso was going and what remained.
+                </p>
+
+                <p className="text-lg leading-relaxed text-foreground/85 mb-6">
+                  To organize this system better, I created beautiful <strong>budget binders</strong>—visual tracking systems with monthly pages, category breakdowns, and progress charts. Having a physical binder transformed budgeting from a chore into something I actually enjoyed doing. My children would ask to check our progress, turning financial management into a family activity.
+                </p>
+
+                <p className="text-lg leading-relaxed text-foreground/85">
+                  What made this different from typical budgeting apps was the tangibility. Digital notifications fade into background noise, but holding physical cash and making conscious decisions about each peso creates accountability and awareness. It works specifically well for Filipino families managing cash-based economies and multiple income sources.
                 </p>
               </div>
             </div>
@@ -254,6 +337,48 @@ export default function AboutPage() {
                   <h3 className="text-xl font-semibold text-foreground mb-3">Values Resonance</h3>
                   <p className="text-foreground/75">Embodies hard work and perseverance Filipinos admire.</p>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How We Help Families Section */}
+          <section className="py-16 md:py-24 bg-background">
+            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-8">How I Help Families Save Money</h2>
+
+              <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
+                <p className="text-lg leading-relaxed text-foreground/85 mb-6">
+                  Through Mommy Louise Budget PH, I've developed comprehensive tools and resources to help Filipino families implement cash stuffing and achieve financial stability:
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="p-6 bg-gradient-to-br from-primary/5 to-transparent border border-border rounded-lg">
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Cash Stuffing Systems</h3>
+                  <p className="text-foreground/75">Customizable envelope systems and cash management tools designed for Filipino families to implement the cash stuffing method effectively.</p>
+                </div>
+                <div className="p-6 bg-gradient-to-br from-primary/5 to-transparent border border-border rounded-lg">
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Budget Binders & Printables</h3>
+                  <p className="text-foreground/75">Beautiful, organized tracking systems with expense tracking templates, monthly budgets, and savings goal charts.</p>
+                </div>
+                <div className="p-6 bg-gradient-to-br from-primary/5 to-transparent border border-border rounded-lg">
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Savings Challenges</h3>
+                  <p className="text-foreground/75">Structured programs that make saving fun and achievable, from 30-day challenges to annual savings goals with community accountability.</p>
+                </div>
+                <div className="p-6 bg-gradient-to-br from-primary/5 to-transparent border border-border rounded-lg">
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Sinking Funds & Goal Planning</h3>
+                  <p className="text-foreground/75">Systems for planning irregular expenses like holidays, car repairs, and education costs without financial stress.</p>
+                </div>
+              </div>
+
+              <div className="prose prose-lg dark:prose-invert max-w-none">
+                <p className="text-lg leading-relaxed text-foreground/85 mb-6">
+                  Beyond tools, we create community support through <Link href="/blog" className="text-primary hover:text-primary/80 font-semibold">practical budgeting tips and guidance</Link>, helping families understand expense tracking, build healthy money habits, and celebrate their financial wins together.
+                </p>
+
+                <p className="text-lg leading-relaxed text-foreground/85">
+                  Visit our <Link href="/products" className="text-primary hover:text-primary/80 font-semibold">products page to explore budget binders, envelopes, and savings challenge resources</Link>, or check our <Link href="/gallery" className="text-primary hover:text-primary/80 font-semibold">gallery for budget design inspiration</Link>.
+                </p>
               </div>
             </div>
           </section>
@@ -429,83 +554,161 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Closing Message */}
-          <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 to-primary/5 border-t-2 border-primary/20">
-            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-8">A Message for You</h2>
 
-              <p className="text-xl text-foreground/85 leading-relaxed mb-8">
-                My family is financially stable. My children understand money better than most adults. But the work isn't finished—it's just beginning. Every day, I receive messages from families who've transformed their finances using our tools.
-              </p>
+          {/* Why Families Trust Mommy Louise */}
+          <section className="py-16 md:py-24 bg-white dark:bg-slate-950/50">
+            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-8 text-center">Why Families Trust Mommy Louise</h2>
 
-              <p className="text-xl text-foreground/85 leading-relaxed mb-12">
-                My goal: Help 10,000 Filipino families achieve financial freedom before I retire. That means creating better resources, building stronger community, and innovating ways to make financial management accessible and beautiful.
-              </p>
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">✓ Proven Results</h3>
+                  <p className="text-foreground/75">Over 5 years of helping Filipino families save ₱50M+ and achieve financial freedom through practical, tested systems.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">✓ Cultural Understanding</h3>
+                  <p className="text-foreground/75">Systems designed specifically for Filipino families, understanding our cash-based economy, family values, and unique financial challenges.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">✓ Accessibility</h3>
+                  <p className="text-foreground/75">No special app required, no complex formulas. Cash stuffing works for every income level and family situation starting with small, achievable steps.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">✓ Beautiful, Practical Tools</h3>
+                  <p className="text-foreground/75">Budget binders and savings challenge systems that are both gorgeous and genuinely useful—designed to inspire consistent use.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">✓ Community Support</h3>
+                  <p className="text-foreground/75">Join thousands of Filipino families on the same financial journey, celebrating wins together and supporting each other through challenges.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">✓ Continuous Innovation</h3>
+                  <p className="text-foreground/75">Regularly updated resources, new budgeting guides, and evolving tools based on community feedback and emerging needs.</p>
+                </div>
+              </div>
 
-              <div className="font-signature text-5xl text-primary mb-4">Mommy Louise</div>
-              <p className="text-foreground/70 italic">Founder & Creator</p>
+              <div className="bg-primary/10 p-8 rounded-lg border border-primary/20 text-center">
+                <p className="text-lg text-foreground/85">
+                  "I'm not just selling budget binders—I'm on a mission to help 10,000 Filipino families achieve financial freedom before I retire. Every resource, every guide, every savings challenge is built with genuine commitment to your success."
+                </p>
+                <p className="text-primary font-semibold mt-4">— Mommy Louise</p>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="py-16 md:py-24 bg-background">
+            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-12 text-center">Frequently Asked Questions</h2>
+
+              <div className="space-y-6">
+                <div className="p-6 border border-border rounded-lg">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">What is cash stuffing?</h3>
+                  <p className="text-foreground/75">Cash stuffing is a hands-on budgeting method where you allocate physical cash into labeled envelopes for different spending categories. Unlike digital budgeting apps, it gives you immediate visual feedback on your spending and helps you become more intentional with every peso.</p>
+                </div>
+                <div className="p-6 border border-border rounded-lg">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">How do savings challenges work?</h3>
+                  <p className="text-foreground/75">Savings challenges are structured programs that help you build consistent saving habits. Through Mommy Louise Budget PH, we offer various challenges designed for Filipino families to reach their financial goals while staying motivated through progress tracking and community support.</p>
+                </div>
+                <div className="p-6 border border-border rounded-lg">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Can beginners use budget binders?</h3>
+                  <p className="text-foreground/75">Yes! Budget binders are designed for all skill levels. They provide templates and systems that make budgeting simple and visual, even if you've never tracked finances before. Our budget binders are specifically designed with Filipino families in mind.</p>
+                </div>
+                <div className="p-6 border border-border rounded-lg">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Why is budgeting important for Filipino families?</h3>
+                  <p className="text-foreground/75">Budgeting helps Filipino families navigate unique financial challenges including extended family obligations, seasonal income fluctuations, and achieving financial peace of mind. It creates clarity on spending, enables faster debt elimination, and builds emergency funds for unexpected situations.</p>
+                </div>
+                <div className="p-6 border border-border rounded-lg">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">How can I start saving money consistently?</h3>
+                  <p className="text-foreground/75">Start small and stay consistent. Use the cash stuffing method with budget envelopes, set clear financial goals, track your progress visually, and involve your family. Small progress—like saving ₱100 monthly—beats heroic efforts that don't last. Join our savings challenges for community support.</p>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* CTA Section */}
-          <section className="py-16 md:py-24 bg-background">
+          <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 to-primary/5 border-t-2 border-primary/20">
             <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-8">Ready to Transform Your Finances?</h2>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-8">Ready to Start Your Budgeting Journey?</h2>
 
               <p className="text-xl text-foreground/85 mb-12 max-w-xl mx-auto">
-                Join thousands of Filipino families achieving financial freedom through cash stuffing and our beautiful tools.
+                Join thousands of Filipino families achieving financial freedom through cash stuffing systems, beautiful budget binders, and community support.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="/gallery"
+                  href="/products"
                   className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
                 >
-                  Explore Resources
+                  Shop Budgeting Tools
+                </a>
+                <a
+                  href="/savings-challenge-philippines"
+                  className="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
+                >
+                  Explore Savings Challenges
                 </a>
                 <a
                   href="/blog"
                   className="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
                 >
-                  Read the Blog
+                  Read Budgeting Tips
                 </a>
               </div>
             </div>
           </section>
 
-          {/* Social Connect Section */}
+          {/* Connect & Closing Section */}
           <section className="py-16 md:py-24 bg-white dark:bg-slate-950/50">
-            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Connect With Me</h2>
-              <p className="text-lg text-foreground/85 mb-8">
-                Follow my journey, get daily tips, and join our budgeting community.
-              </p>
+            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">A Message For You</h2>
+                <p className="text-xl text-foreground/85 leading-relaxed mb-6">
+                  My family is financially stable. My children understand money better than most adults. But the work isn't finished—it's just beginning. Every day, I receive messages from families who've transformed their finances using our tools and cash stuffing systems.
+                </p>
 
-              <div className="flex flex-wrap gap-4 justify-center">
-                <a
-                  href="https://www.facebook.com/profile.php?id=100087797289721"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="https://www.tiktok.com/@mommylouiseee"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
-                >
-                  TikTok
-                </a>
-                <a
-                  href="https://www.youtube.com/channel/UCHFl5W8x4mgy5LiEkiu0UCw"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
-                >
-                  YouTube
-                </a>
+                <p className="text-xl text-foreground/85 leading-relaxed mb-8">
+                  My goal: Help 10,000 Filipino families achieve financial freedom before I retire. That means creating better resources, building stronger community, and innovating ways to make financial management accessible and beautiful.
+                </p>
+
+                <div className="font-signature text-5xl text-primary mb-2">Mommy Louise</div>
+                <p className="text-foreground/70 italic">Founder & Creator, Mommy Louise Budget PH</p>
+              </div>
+
+              <hr className="my-12 border-border" />
+
+              <div className="text-center">
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4">Connect With Me</h3>
+                <p className="text-lg text-foreground/85 mb-8">
+                  Follow my journey, get daily budgeting tips, and join our growing community of Filipino families achieving financial freedom.
+                </p>
+
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <a
+                    href="https://www.facebook.com/profile.php?id=100087797289721"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
+                  >
+                    Facebook
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@mommylouiseee"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
+                  >
+                    TikTok
+                  </a>
+                  <a
+                    href="https://www.youtube.com/channel/UCHFl5W8x4mgy5LiEkiu0UCw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
+                  >
+                    YouTube
+                  </a>
+                </div>
               </div>
             </div>
           </section>
