@@ -10,20 +10,17 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 }
 }
 
-const DEFAULT_IFRAME_HEIGHT = 3100
-const MIN_IFRAME_HEIGHT = 2500
-
 export function OrdersForm() {
   const [iframeError, setIframeError] = useState(false)
-  const [iframeHeight, setIframeHeight] = useState(DEFAULT_IFRAME_HEIGHT)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       // Security: validate origin for production
       if (event.data?.type === 'resize-iframe' && typeof event.data.height === 'number') {
-        const newHeight = Math.max(event.data.height, MIN_IFRAME_HEIGHT)
-        setIframeHeight(newHeight)
+        if (iframeRef.current) {
+          iframeRef.current.style.height = `${event.data.height}px`
+        }
       }
     }
 
@@ -83,8 +80,8 @@ export function OrdersForm() {
                 id="order-form-iframe"
                 src="https://order.mommylouisebudgetph.com/"
                 width="100%"
-                height={iframeHeight}
                 style={{
+                  height: '100vh',
                   border: 'none',
                   borderRadius: '16px',
                   background: 'white',
