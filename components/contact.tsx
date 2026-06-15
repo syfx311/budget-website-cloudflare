@@ -120,7 +120,7 @@ export function Contact() {
               Send me a message with your budget goals and preferences, and I&apos;ll help you create 
               the perfect personalized budget templates for your cash stuffing journey.
             </motion.p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
@@ -155,7 +155,7 @@ export function Contact() {
                     className="flex items-center gap-2"
                   >
                     <ShoppingBag className="h-5 w-5" />
-                    View Orders
+                    Order Now
                   </Link>
                 </Button>
               </motion.div>
