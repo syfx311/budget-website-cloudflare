@@ -63,6 +63,9 @@ export function Header() {
             <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
               Products
             </Link>
+            <Link href="/orders" className="text-muted-foreground hover:text-primary transition-colors">
+              Orders
+            </Link>
             <Link href="/gallery" className="text-muted-foreground hover:text-primary transition-colors">
               Gallery
             </Link>
@@ -102,6 +105,7 @@ export function Header() {
                   { label: 'Home', href: '/' },
                   { label: 'App', href: '/app' },
                   { label: 'Products', href: '/products' },
+                  { label: 'Orders', href: '/orders' },
                   { label: 'Gallery', href: '/gallery' },
                   { label: 'Blog', href: '/blog' },
                   { label: 'About', href: '/about-mommy-louise' }
