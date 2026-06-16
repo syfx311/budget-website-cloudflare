@@ -37,6 +37,10 @@ const galleryImages = [
   { id: 29, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ffade6e36d83a469dbf339f05a884c795?format=webp&width=800&height=1200', alt: 'Budget Binder Flat Lay' },
   { id: 30, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64739e329b1e4be3b7a8657cfd5220a0?format=webp&width=800&height=1200', alt: 'White Quilted Storage Organizer Basket' },
   { id: 31, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ff10588329d054c649ead706b8de1283e?format=webp&width=800&height=1200', alt: 'Budget Planning Aesthetic Setup' },
+  { id: 32, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F48fe4c1e5b214b9db890fb1b17888bfd?format=webp&width=800&height=1200', alt: 'Pink Sinking Funds Dividers Collection' },
+  { id: 33, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F483c779d63c94d82ad5658133af9b8b9?format=webp&width=800&height=1200', alt: 'Anime Character Budget Tracker Cards' },
+  { id: 34, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F36465830eedf4ea78f26836ffaed18ab?format=webp&width=800&height=1200', alt: 'Aesthetic Coffee Flat Lay Planner' },
+  { id: 35, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fa4cbb522a54f4906977b7f58be628436?format=webp&width=800&height=1200', alt: 'Weekly Budget Planner Aesthetic' },
 ]
 
 export function GalleryShowcase() {
