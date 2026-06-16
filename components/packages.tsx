@@ -223,8 +223,9 @@ function MysticPackageImage() {
         alt="Mystic Package - Budget Planner"
         width={280}
         height={420}
-        className="mystic-package-img"
+        className="mystic-package-img w-full h-auto"
         priority
+        unoptimized
       />
     </div>
   )
@@ -238,8 +239,9 @@ function UltimatePackageImage() {
         alt="Ultimate Package - Complete Collection"
         width={280}
         height={420}
-        className="ultimate-package-img"
+        className="ultimate-package-img w-full h-auto"
         priority
+        unoptimized
       />
     </div>
   )
