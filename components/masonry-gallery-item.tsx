@@ -48,6 +48,7 @@ export function GalleryItem({ item, index, onImageClick }: GalleryItemProps) {
           className="object-cover group-hover:scale-110 transition-transform duration-500"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           loading="lazy"
+          unoptimized={item.src.startsWith('http')}
         />
         
         {/* Overlay */}
