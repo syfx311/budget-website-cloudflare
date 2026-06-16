@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Header } from '@/components/header'
 import { GalleryShowcase } from '@/components/gallery-showcase'
 import { Contact, Footer } from '@/components/contact'
@@ -30,15 +31,43 @@ export const metadata: Metadata = {
   },
 }
 
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Budget Binder Designs & Templates Gallery',
+  description: 'Explore aesthetic budget binder designs and cash stuffing templates for Filipino families.',
+  url: 'https://mommylouisebudgetph.com/gallery',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Mommy Louise Budget PH',
+    url: 'https://mommylouisebudgetph.com',
+  },
+  mainEntity: {
+    '@type': 'ImageCollection',
+    name: 'Budget Binder Designs & Templates',
+    description: 'Collection of aesthetic budget binder designs, savings challenge templates, and cash stuffing systems for Filipino families.',
+    creator: {
+      '@type': 'Person',
+      name: 'Mommy Louise',
+    },
+  },
+}
+
 export default function GalleryPage() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <div className="pt-20">
-        <GalleryShowcase />
-        <Contact />
-      </div>
-      <Footer />
-    </main>
+    <>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
+      <main className="min-h-screen">
+        <Header />
+        <div className="pt-20">
+          <GalleryShowcase />
+          <Contact />
+        </div>
+        <Footer />
+      </main>
+    </>
   )
 }

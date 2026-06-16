@@ -6,6 +6,11 @@ import { useState } from 'react'
 import { ImageModal } from '@/components/masonry-image-modal'
 
 const galleryImages = [
+  // Latest Designs
+  { id: 32, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F48fe4c1e5b214b9db890fb1b17888bfd?format=webp&width=800&height=1200', alt: 'Pink Sinking Funds Envelope System Cards' },
+  { id: 33, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F483c779d63c94d82ad5658133af9b8b9?format=webp&width=800&height=1200', alt: 'Illustrated Character Budget Allowance Cards' },
+  { id: 34, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F36465830eedf4ea78f26836ffaed18ab?format=webp&width=800&height=1200', alt: 'Coffee Aesthetic Budget Planner Flat Lay Collection' },
+  { id: 35, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fa4cbb522a54f4906977b7f58be628436?format=webp&width=800&height=1200', alt: 'Weekly Budget Planner with Aesthetic Daily Cards' },
   // Product Designs
   { id: 1, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/715969874_1747474516410302_3756133849334655963_n-VzYhxi1xEiQWVpq0FTEkYGBINFIqBH.jpg', alt: 'Pink Checkered Binder Collection' },
   { id: 2, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/716229960_1493503895902549_6147637086174305808_n-v3hcLCnKlzwPgJ0ns4FN3OSg3odtqw.jpg', alt: 'Floral Budget Organizer Cards' },
@@ -19,27 +24,24 @@ const galleryImages = [
   { id: 10, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719300983_2229962241136947_588258290332643950_n-qhHX980pLADI8d1Gs9BqvXp6skJj1Q.jpg', alt: 'Sinking Funds Budget Tracker' },
   // New Accessories & Accessories
   { id: 11, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718906627_1553259506409849_3044130603844716871_n-mGGgyQrbO80DZjhJ5j5rzb8pzAmgzu.jpg', alt: 'Pink Silk Bow Keychain with Pearl Beads' },
-  { id: 12, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718992680_2341959046333111_7678009458581102771_n-tY3HWjAHMZSTl6jrCTvv6M1d8V9Uye.jpg', alt: 'Mon Budget Planner Spiral Notebook' },
+  { id: 12, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718992680_2341959046333111_7678009458581102771_n-tY3HWjAHMZSTl6jrCTvv6M1d8V9Uye.jpg', alt: 'Mommy Louise Budget Planner Spiral Notebook' },
   { id: 13, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719451576_994369263182244_9033156054942415693_n-TtSp6tPh5ZgqlvoCbElQbkzAv84LJq.jpg', alt: 'Pearl Beaded Keychains Collection' },
   { id: 14, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718456581_3966619156965800_5687798835831382895_n-ekkOGjMXFi5ecpHtMBkXWqh8O9Z2zA.jpg', alt: 'Large Pink Silk Bow Charm' },
-  { id: 15, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/720971409_27940712228869890_8117391084618456357_n-aVKml0ztAjxbb5BqOVnR8XJE4CNcQ6.jpg', alt: 'Pearl Beaded Bracelet with Gold Accents' },
-  { id: 16, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718098610_2062578307942141_3691703592350910105_n-s93oC7azrkNczUfaHUXoJdT5YOrNue.jpg', alt: 'Pink Aesthetic Calculator' },
-  { id: 17, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2010%2C%202026%2C%2007_53_40%20PM-3t6QTqDm7uBszdhJFlF44CtfLEMP63.png', alt: 'Pastel Textured Wallets Collection' },
+  { id: 16, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fdc2ae072ea224b2c84699401edae6d8d?format=webp&width=800&height=1200', alt: 'Pink Aesthetic Calculator' },
   // Newly Added Images
   { id: 18, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F402aaf28c01b4bf6be83e38d7f7e4ae4?format=webp&width=800&height=1200', alt: 'Pink Textured Wallet Design' },
   { id: 19, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F665449fa542a45509c0f191ba0c5cd38?format=webp&width=800&height=1200', alt: 'Leather Pink Wallet with Closure' },
-  { id: 20, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fcc385440bb984f8fbdb3a102b53a1406?format=webp&width=800&height=1200', alt: 'Quilted Pink Wallet Collection' },
-  { id: 21, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F8f8fe401d209421c844e9b6645a31aee?format=webp&width=800&height=1200', alt: 'Pink Pleated Fabric Wallet' },
-  { id: 22, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64d449f5a8fe4430844af4488288b471?format=webp&width=800&height=1200', alt: 'Budget Planning Supplies Display' },
-  { id: 23, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc2fc22910a5f4a39bbe174dd65367d40?format=webp&width=800&height=1200', alt: 'Pink Flat Lay Product Showcase' },
-  { id: 24, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F9c174349f1d84fd9bd04944f8332728d?format=webp&width=800&height=1200', alt: 'Budget Planner Collection Display' },
-  { id: 25, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F06e78690d35e4eac939b300eb0e62b50?format=webp&width=800&height=1200', alt: 'Accessories and Supplies Collection' },
-  { id: 26, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F733f5d33b6ad47d7abdff42ef4fbffa3?format=webp&width=800&height=1200', alt: 'Budget Planner Product Line' },
-  { id: 27, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F589ccc20727c4a9aa1cf303161bcc4ae?format=webp&width=800&height=1200', alt: 'Styled Budget Planning Setup' },
+  { id: 20, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fcc385440bb984f8fbdb3a102b53a1406?format=webp&width=800&height=1200', alt: 'Quilted Textured Pink Wallet Design' },
+  { id: 21, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F612e33ce924343489c8c60716eeef140?format=webp&width=800&height=1200', alt: 'Pink Pleated Fabric Wallet' },
+  { id: 22, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64d449f5a8fe4430844af4488288b471?format=webp&width=800&height=1200', alt: 'Budget Planning Supplies Collection' },
+  { id: 23, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc2fc22910a5f4a39bbe174dd65367d40?format=webp&width=800&height=1200', alt: 'Pink Aesthetic Flat Lay Product Showcase' },
+  { id: 24, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F9c174349f1d84fd9bd04944f8332728d?format=webp&width=800&height=1200', alt: 'Budget Planner Accessories Collection' },
+  { id: 26, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F733f5d33b6ad47d7abdff42ef4fbffa3?format=webp&width=800&height=1200', alt: 'Budget Planner Complete Product Line' },
+  { id: 27, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F589ccc20727c4a9aa1cf303161bcc4ae?format=webp&width=800&height=1200', alt: 'Styled Aesthetic Budget Planning Setup' },
   { id: 28, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fbbaeda48357940b29d7fd72189e4a4f4?format=webp&width=800&height=1200', alt: 'Pink Wallet and Accessories Set' },
   { id: 29, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ffade6e36d83a469dbf339f05a884c795?format=webp&width=800&height=1200', alt: 'Budget Binder Flat Lay' },
-  { id: 30, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F25c50fd281f2421994a2f82b8a81f2c0?format=webp&width=800&height=1200', alt: 'White Quilted Storage Organizer Basket' },
-  { id: 31, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ff10588329d054c649ead706b8de1283e?format=webp&width=800&height=1200', alt: 'Budget Planning Aesthetic Setup' },
+  { id: 30, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64739e329b1e4be3b7a8657cfd5220a0?format=webp&width=800&height=1200', alt: 'White Quilted Storage Organizer Basket' },
+  { id: 31, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Ff10588329d054c649ead706b8de1283e?format=webp&width=800&height=1200', alt: 'Coffee Aesthetic Budget Planning Setup' },
 ]
 
 export function GalleryShowcase() {
@@ -75,31 +77,37 @@ export function GalleryShowcase() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          role="region"
+          aria-label="Budget binder design gallery"
         >
           {galleryImages.map((image, index) => (
-            <motion.button
-              key={image.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              whileHover={{ scale: 1.05 }}
-              onClick={() => {
-                setSelectedImage(image)
-                setIsModalOpen(true)
-              }}
-              className="relative aspect-square overflow-hidden rounded-2xl border border-primary/20 hover:border-primary/50 transition-all shadow-md hover:shadow-lg group bg-gradient-to-br from-rose-50 via-pink-50 to-amber-50"
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                loading={index < 6 ? 'eager' : 'lazy'}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.button>
+            <figure key={image.id} className="relative overflow-hidden">
+              <motion.button
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                whileHover={{ scale: 1.05 }}
+                onClick={() => {
+                  setSelectedImage(image)
+                  setIsModalOpen(true)
+                }}
+                className="relative aspect-square overflow-hidden rounded-2xl border border-primary/20 hover:border-primary/50 transition-all shadow-md hover:shadow-lg group bg-gradient-to-br from-rose-50 via-pink-50 to-amber-50 w-full h-full"
+                aria-label={`View ${image.alt}`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  loading={index < 6 ? 'eager' : 'lazy'}
+                  title={image.alt}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </motion.button>
+              <figcaption className="sr-only">{image.alt}</figcaption>
+            </figure>
           ))}
         </motion.div>
 

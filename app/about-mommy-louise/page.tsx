@@ -123,9 +123,12 @@ export default function AboutPage() {
             </div>
 
             {/* Hero Headline */}
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground text-center mb-6 leading-tight">
-              About Mommy Louise | Helping Filipino Families Budget Better
+            <h1 className="text-3xl md:text-5xl font-serif font-bold text-foreground text-center mb-3 leading-tight">
+              About Mommy Louise
             </h1>
+            <p className="text-lg md:text-2xl text-center text-muted-foreground mb-6 leading-relaxed">
+              Helping Filipino Families Budget Better
+            </p>
 
             {/* Hero Subtitle */}
             <p className="text-xl md:text-2xl text-center text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
