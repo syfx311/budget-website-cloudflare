@@ -46,6 +46,8 @@ export function Header() {
                 className="rounded-full border-2 border-primary/30"
                 sizes="60px"
                 quality={80}
+                loading="eager"
+                priority
               />
             </motion.div>
             <div>
