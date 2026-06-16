@@ -29,7 +29,7 @@ const galleryImages = [
   { id: 18, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F402aaf28c01b4bf6be83e38d7f7e4ae4?format=webp&width=800&height=1200', alt: 'Pink Textured Wallet Design' },
   { id: 19, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F665449fa542a45509c0f191ba0c5cd38?format=webp&width=800&height=1200', alt: 'Leather Pink Wallet with Closure' },
   { id: 20, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fcc385440bb984f8fbdb3a102b53a1406?format=webp&width=800&height=1200', alt: 'Quilted Pink Wallet Collection' },
-  { id: 21, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F8f8fe401d209421c844e9b6645a31aee?format=webp&width=800&height=1200', alt: 'Pink Pleated Fabric Wallet' },
+  { id: 21, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F612e33ce924343489c8c60716eeef140?format=webp&width=800&height=1200', alt: 'Pink Pleated Fabric Wallet' },
   { id: 22, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F64d449f5a8fe4430844af4488288b471?format=webp&width=800&height=1200', alt: 'Budget Planning Supplies Display' },
   { id: 23, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fc2fc22910a5f4a39bbe174dd65367d40?format=webp&width=800&height=1200', alt: 'Pink Flat Lay Product Showcase' },
   { id: 24, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F9c174349f1d84fd9bd04944f8332728d?format=webp&width=800&height=1200', alt: 'Budget Planner Collection Display' },
