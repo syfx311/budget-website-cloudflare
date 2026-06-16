@@ -105,6 +105,7 @@ export function AppShowcase() {
                 priority
                 quality={100}
                 className="w-full h-auto"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 800px"
               />
             </motion.div>
           </div>

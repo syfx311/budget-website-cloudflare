@@ -68,6 +68,7 @@ export function Hero() {
         fetchPriority="high"
         quality={85}
         sizes="100vw"
+        loading="eager"
       />
 
       {/* Light cream overlay gradient for text readability */}

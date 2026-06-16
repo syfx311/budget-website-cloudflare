@@ -144,6 +144,7 @@ export default function AboutPage() {
                 height={600}
                 className="w-full h-full object-cover"
                 priority
+                sizes="(max-width: 768px) 100vw, 672px"
               />
             </div>
 

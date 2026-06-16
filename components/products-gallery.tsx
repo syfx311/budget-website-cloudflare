@@ -232,6 +232,7 @@ function ProductDetailModal({ product, isOpen, onClose }: { product: SelectedPro
                   alt={product.title}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 400px"
                 />
                 {product.badge && (
                   <div className="absolute top-4 left-4">
