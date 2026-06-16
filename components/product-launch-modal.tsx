@@ -153,6 +153,7 @@ export function ProductLaunchModal() {
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
                       priority
+                      sizes="50vw"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                       <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -168,6 +169,7 @@ export function ProductLaunchModal() {
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
                       priority
+                      sizes="50vw"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                       <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -244,6 +246,7 @@ export function ProductLaunchModal() {
                       fill
                       className="object-contain"
                       priority
+                      sizes="(max-width: 1024px) 100vw, 1024px"
                     />
                   </div>
                   <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">

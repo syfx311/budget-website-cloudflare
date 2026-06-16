@@ -54,6 +54,7 @@ export function ImageModal({ image, isOpen, onClose }: ImageModalProps) {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 1024px"
                   priority
+                  unoptimized={image.src.startsWith('http')}
                 />
               </div>
               

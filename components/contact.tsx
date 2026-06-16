@@ -213,6 +213,9 @@ export function Footer() {
                 width={50}
                 height={50}
                 className="rounded-full border-2 border-primary/30"
+                sizes="50px"
+                quality={80}
+                loading="eager"
               />
               <div>
                 <span className="font-serif text-foreground block leading-tight" style={{ fontFamily: 'Grand Hotel, sans-serif', fontSize: '20px' }}>mommy louise&apos;s</span>
