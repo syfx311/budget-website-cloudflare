@@ -23,7 +23,6 @@ const galleryImages = [
   { id: 13, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719451576_994369263182244_9033156054942415693_n-TtSp6tPh5ZgqlvoCbElQbkzAv84LJq.jpg', alt: 'Pearl Beaded Keychains Collection' },
   { id: 14, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718456581_3966619156965800_5687798835831382895_n-ekkOGjMXFi5ecpHtMBkXWqh8O9Z2zA.jpg', alt: 'Large Pink Silk Bow Charm' },
   { id: 16, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fdc2ae072ea224b2c84699401edae6d8d?format=webp&width=800&height=1200', alt: 'Pink Aesthetic Calculator' },
-  { id: 17, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2010%2C%202026%2C%2007_53_40%20PM-3t6QTqDm7uBszdhJFlF44CtfLEMP63.png', alt: 'Pastel Textured Wallets Collection' },
   // Newly Added Images
   { id: 18, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F402aaf28c01b4bf6be83e38d7f7e4ae4?format=webp&width=800&height=1200', alt: 'Pink Textured Wallet Design' },
   { id: 19, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2F665449fa542a45509c0f191ba0c5cd38?format=webp&width=800&height=1200', alt: 'Leather Pink Wallet with Closure' },
