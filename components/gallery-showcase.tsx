@@ -22,7 +22,6 @@ const galleryImages = [
   { id: 12, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718992680_2341959046333111_7678009458581102771_n-tY3HWjAHMZSTl6jrCTvv6M1d8V9Uye.jpg', alt: 'Mon Budget Planner Spiral Notebook' },
   { id: 13, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/719451576_994369263182244_9033156054942415693_n-TtSp6tPh5ZgqlvoCbElQbkzAv84LJq.jpg', alt: 'Pearl Beaded Keychains Collection' },
   { id: 14, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718456581_3966619156965800_5687798835831382895_n-ekkOGjMXFi5ecpHtMBkXWqh8O9Z2zA.jpg', alt: 'Large Pink Silk Bow Charm' },
-  { id: 15, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/720971409_27940712228869890_8117391084618456357_n-aVKml0ztAjxbb5BqOVnR8XJE4CNcQ6.jpg', alt: 'Pearl Beaded Bracelet with Gold Accents' },
   { id: 16, src: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fdc2ae072ea224b2c84699401edae6d8d?format=webp&width=800&height=1200', alt: 'Pink Aesthetic Calculator' },
   { id: 17, src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2010%2C%202026%2C%2007_53_40%20PM-3t6QTqDm7uBszdhJFlF44CtfLEMP63.png', alt: 'Pastel Textured Wallets Collection' },
   // Newly Added Images
