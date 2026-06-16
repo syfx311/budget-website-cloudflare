@@ -145,6 +145,7 @@ export default function AboutPage() {
                 className="w-full h-full object-cover"
                 priority
                 sizes="(max-width: 768px) 100vw, 672px"
+                unoptimized
               />
             </div>
 
