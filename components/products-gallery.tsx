@@ -93,7 +93,7 @@ const products = [
     id: 7,
     title: 'Pink Aesthetic Calculator',
     description: 'Charming rose gold calculator with elegant functionality for budgeting',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/718098610_2062578307942141_3691703592350910105_n-ZUcymtOLiIvo32KpVoKZjLTkBiG0hx.jpg',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F8c358e96430c4451949ddae1cc8ed29a%2Fdc2ae072ea224b2c84699401edae6d8d?format=webp&width=800&height=1200',
     features: ['Aesthetic Design', 'Full Function Keys', 'Rose Gold Color'],
     badge: '',
     fullDescription: 'Beautiful rose gold calculator perfect for keeping track of your budget and calculations. Features a charming design with functional buttons and a clear display. Ideal for anyone who loves cute, aesthetic office supplies.',
