@@ -1,12 +1,14 @@
 {
-  "name": "my-project",
+  "name": "budget-website-cloudflare",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -38,8 +40,6 @@
     "@radix-ui/react-toggle-group": "1.1.11",
     "@radix-ui/react-tooltip": "1.2.8",
     "@supabase/supabase-js": "^2.105.4",
-    "@vercel/analytics": "1.6.1",
-    "@vercel/speed-insights": "^2.0.0",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
