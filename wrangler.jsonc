@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "budget-website-cloudflare",
+  "compatibility_date": "2026-06-17",
+  "observability": {
+    "enabled": true
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "budget-website-cloudflare"
+    }
+  ]
+}
