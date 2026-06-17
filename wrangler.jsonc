@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "budget-website-cloudflare",
+  "name": "mommylouise",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-06-17",
   "observability": {
@@ -16,7 +16,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "budget-website-cloudflare"
+      "service": "mommylouise"
     }
   ]
 }
