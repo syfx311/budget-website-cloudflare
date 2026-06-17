@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Playfair_Display, Noto_Sans_Adlam, Noto_Sans, DM_Sans, Allura, Grand_Hotel } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { BackToTop } from '@/components/back-to-top'
 import { organizationSchema, breadcrumbSchema, websiteSearchSchema } from '@/lib/schema'
 import { getCanonicalMetadata } from '@/lib/canonical'
@@ -11,37 +9,31 @@ const geist = Geist({
   subsets: ["latin"],
   variable: '--font-geist'
 })
-
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: '--font-playfair',
   weight: ['400', '500', '600', '700']
 })
-
 const notoSansAdlam = Noto_Sans_Adlam({
   subsets: ["latin"],
   variable: '--font-noto-sans-adlam',
   weight: ['400', '500', '600', '700']
 })
-
 const notoSans = Noto_Sans({
   subsets: ["latin"],
   variable: '--font-noto-sans',
   weight: ['400', '500', '600', '700']
 })
-
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: '--font-dm-sans',
   weight: ['400', '500', '600', '700']
 })
-
 const allura = Allura({
   subsets: ["latin"],
   variable: '--font-handwrite',
   weight: ['400']
 })
-
 const grandHotel = Grand_Hotel({
   subsets: ["latin"],
   variable: '--font-grand-hotel',
@@ -115,8 +107,6 @@ export default function RootLayout({
       <body className={`${geist.variable} ${playfair.variable} ${notoSansAdlam.variable} ${notoSans.variable} ${dmSans.variable} ${allura.variable} ${grandHotel.variable} font-sans antialiased`}>
         {children}
         <BackToTop />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
-        <SpeedInsights />
       </body>
     </html>
   )
